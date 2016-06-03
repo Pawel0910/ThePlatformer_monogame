@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="75ec8eee-59a6-4aa0-932d-a894f21d76cc"
-    Publisher="CN=Kielan"
+    Name="94a8e1cb-2ed0-48b1-a441-f574be1a20fe"
+    Publisher="CN=KielanowskiP"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="75ec8eee-59a6-4aa0-932d-a894f21d76cc" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="94a8e1cb-2ed0-48b1-a441-f574be1a20fe" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>ThePlatformer</DisplayName>
-    <PublisherDisplayName>Kielan</PublisherDisplayName>
+    <PublisherDisplayName>KielanowskiP</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

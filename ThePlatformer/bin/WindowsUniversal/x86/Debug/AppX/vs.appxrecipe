@@ -8,27 +8,27 @@
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
     <SolutionConfiguration>Debug|x86</SolutionConfiguration>
     <PackageArchitecture>x86</PackageArchitecture>
-    <PackageIdentityName>75ec8eee-59a6-4aa0-932d-a894f21d76cc</PackageIdentityName>
-    <IntermediateOutputPath>c:\users\kielan\documents\visual studio 2015\Projects\ThePlatformer\ThePlatformer\obj\x86\Debug\</IntermediateOutputPath>
-    <RegisteredManifestChecksum>D782B2850702CA71DB4E17540D549FF441C219C15ABFB505E47167BC83040373</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>75ec8eee-59a6-4aa0-932d-a894f21d76cc_1.0.0.0_x86__53qgykfhqh30y</RegisteredPackageMoniker>
-    <RegisteredUserModeAppID>75ec8eee-59a6-4aa0-932d-a894f21d76cc_53qgykfhqh30y!App</RegisteredUserModeAppID>
-    <RegisteredPackageID>75ec8eee-59a6-4aa0-932d-a894f21d76cc</RegisteredPackageID>
-    <RegisteredPackagePublisher>CN=Kielan</RegisteredPackagePublisher>
+    <PackageIdentityName>94a8e1cb-2ed0-48b1-a441-f574be1a20fe</PackageIdentityName>
+    <IntermediateOutputPath>C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\obj\x86\Debug\</IntermediateOutputPath>
+    <RegisteredManifestChecksum>4939FB086C94A6E4D1ED7E36CE8E361466EDDBACF89D13A6D9B4142507997E15</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>94a8e1cb-2ed0-48b1-a441-f574be1a20fe_1.0.0.0_x86__p5gvkgxeyk3vw</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>94a8e1cb-2ed0-48b1-a441-f574be1a20fe_p5gvkgxeyk3vw!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>94a8e1cb-2ed0-48b1-a441-f574be1a20fe</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=KielanowskiP</RegisteredPackagePublisher>
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
     <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="c:\users\kielan\documents\visual studio 2015\Projects\ThePlatformer\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-05-20T08:26:02.044</Modified>
+      <Modified>2016-06-03T09:28:39.004</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="c:\users\kielan\documents\visual studio 2015\Projects\ThePlatformer\ThePlatformer\bin\WindowsUniversal\x86\Debug\ThePlatformer.exe">
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\bin\WindowsUniversal\x86\Debug\ThePlatformer.exe">
       <PackagePath>entrypoint\ThePlatformer.exe</PackagePath>
-      <Modified>2016-05-20T08:25:58.872</Modified>
+      <Modified>2016-06-03T09:28:37.222</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -470,55 +470,95 @@
       <PackagePath>SharpDX.Direct2D1.dll</PackagePath>
       <Modified>2016-03-30T06:36:04.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\kielan\documents\visual studio 2015\Projects\ThePlatformer\ThePlatformer\Properties\Default.rd.xml">
-      <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2016-05-20T08:23:50.400</Modified>
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Content\CapGuyDemo.png">
+      <PackagePath>Content\CapGuyDemo.png</PackagePath>
+      <Modified>2016-05-03T12:24:23.809</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\kielan\documents\visual studio 2015\Projects\ThePlatformer\ThePlatformer\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Content\idle1.png">
+      <PackagePath>Content\idle1.png</PackagePath>
+      <Modified>2016-05-03T14:32:02.704</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Content\idle2.png">
+      <PackagePath>Content\idle2.png</PackagePath>
+      <Modified>2016-05-03T14:32:02.720</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Content\idle3.png">
+      <PackagePath>Content\idle3.png</PackagePath>
+      <Modified>2016-05-03T14:32:02.736</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Content\idle4.png">
+      <PackagePath>Content\idle4.png</PackagePath>
+      <Modified>2016-05-03T14:32:02.736</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Content\Images\idle.png">
+      <PackagePath>Content\Images\idle.png</PackagePath>
+      <Modified>2016-05-03T14:37:46.843</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Content\sprite.png">
+      <PackagePath>Content\sprite.png</PackagePath>
+      <Modified>2016-05-03T12:00:12.969</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Content\tile1.png">
+      <PackagePath>Content\tile1.png</PackagePath>
+      <Modified>2016-05-04T16:39:57.623</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Content\tile2.png">
+      <PackagePath>Content\tile2.png</PackagePath>
+      <Modified>2016-05-04T16:39:57.646</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2016-03-29T23:35:48.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\kielan\documents\visual studio 2015\Projects\ThePlatformer\ThePlatformer\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2016-03-29T23:35:48.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\kielan\documents\visual studio 2015\Projects\ThePlatformer\ThePlatformer\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <Modified>2016-03-29T23:35:48.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\kielan\documents\visual studio 2015\Projects\ThePlatformer\ThePlatformer\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <Modified>2016-03-29T23:35:48.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\kielan\documents\visual studio 2015\Projects\ThePlatformer\ThePlatformer\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <Modified>2016-03-29T23:35:48.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\kielan\documents\visual studio 2015\Projects\ThePlatformer\ThePlatformer\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2016-03-29T23:35:48.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\kielan\documents\visual studio 2015\Projects\ThePlatformer\ThePlatformer\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <Modified>2016-03-29T23:35:48.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\kielan\documents\visual studio 2015\Projects\ThePlatformer\ThePlatformer\bin\WindowsUniversal\x86\Debug\ThePlatformer.xr.xml">
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Content\CapGuyDemo.txt">
+      <PackagePath>Content\CapGuyDemo.txt</PackagePath>
+      <Modified>2016-05-03T12:24:23.827</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\Properties\Default.rd.xml">
+      <PackagePath>Properties\Default.rd.xml</PackagePath>
+      <Modified>2016-05-03T11:46:01.965</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\bin\WindowsUniversal\x86\Debug\ThePlatformer.xr.xml">
       <PackagePath>ThePlatformer.xr.xml</PackagePath>
-      <Modified>2016-05-20T08:25:58.138</Modified>
+      <Modified>2016-05-03T11:46:29.620</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
       <Modified>2016-05-20T08:03:19.925</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\kielan\documents\visual studio 2015\Projects\ThePlatformer\ThePlatformer\bin\WindowsUniversal\x86\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\bin\WindowsUniversal\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2016-05-20T08:26:01.232</Modified>
+      <Modified>2016-06-03T09:28:38.657</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\kielan\documents\visual studio 2015\Projects\ThePlatformer\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\ThePlatformer.exe">
+    <AppxPackagedFile Include="C:\Users\Kielan\Desktop\ThePlatformer\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\ThePlatformer.exe">
       <PackagePath>ThePlatformer.exe</PackagePath>
-      <Modified>2016-05-20T08:26:02.029</Modified>
+      <Modified>2016-06-03T09:28:38.994</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

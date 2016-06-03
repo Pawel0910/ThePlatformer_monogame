@@ -7,11 +7,11 @@
 
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="75ec8eee-59a6-4aa0-932d-a894f21d76cc" Publisher="CN=Kielan" Version="1.0.0.0" ProcessorArchitecture="x86" />
-  <mp:PhoneIdentity PhoneProductId="75ec8eee-59a6-4aa0-932d-a894f21d76cc" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="94a8e1cb-2ed0-48b1-a441-f574be1a20fe" Publisher="CN=KielanowskiP" Version="1.0.0.0" ProcessorArchitecture="x86" />
+  <mp:PhoneIdentity PhoneProductId="94a8e1cb-2ed0-48b1-a441-f574be1a20fe" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>ThePlatformer</DisplayName>
-    <PublisherDisplayName>Kielan</PublisherDisplayName>
+    <PublisherDisplayName>KielanowskiP</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -38,7 +38,7 @@
     <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Enterprise 2015" />
     <build:Item Name="OperatingSystem" Version="10.0.10240.16384 (th1.150709-1700)" />
     <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="14.0.25123.0" />
-    <build:Item Name="ProjectGUID" Value="{8618a34e-ebd7-406d-b1a8-9aaaee8ed138}" />
+    <build:Item Name="ProjectGUID" Value="{9DA8E907-52BF-4A4D-A26A-8F3F7FB8BD13}" />
     <build:Item Name="OptimizingToolset" Value="None" />
     <build:Item Name="TargetRuntime" Value="Managed" />
     <build:Item Name="Microsoft.Windows.UI.Xaml.Build.Tasks.dll" Version="14.0.25219.0" />
