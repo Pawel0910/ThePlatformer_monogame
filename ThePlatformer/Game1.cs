@@ -4,7 +4,7 @@ using TexturePackerLoader;
 
 namespace ThePlatformer
 {
-    
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -43,7 +43,7 @@ namespace ThePlatformer
         /// </summary>
         protected override void LoadContent()
         {
-           //SpriteSheetLoader spriteSheetLoader = new SpriteSheetLoader(this.Content);
+            //SpriteSheetLoader spriteSheetLoader = new SpriteSheetLoader(this.Content);
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -88,7 +88,7 @@ namespace ThePlatformer
         protected override void Update(GameTime gameTime)
         {
             marcoPlayer.Update(gameTime);
-            foreach(CollisionTile tile in map.CollisionTiles)
+            foreach (CollisionTile tile in map.CollisionTiles)
             {
                 marcoPlayer.Collision(tile.Rectangle, map.Width, map.Height);
             }
@@ -110,7 +110,7 @@ namespace ThePlatformer
             ),
             new Vector2(350, 530)
         );
-            //map.Draw(spriteBatch);
+            map.Draw(spriteBatch);
             marcoPlayer.Draw(spriteBatch);
             player.Draw(spriteBatch, new Vector2(200, 200));
             // spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);

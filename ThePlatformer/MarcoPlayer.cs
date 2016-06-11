@@ -15,12 +15,13 @@ namespace ThePlatformer
     {
         private TouchCollection touchCollection = TouchPanel.GetState();
         private Texture2D texture;
-        private Vector2 position = new Vector2(10,10);
+        private Vector2 position = new Vector2(10, 10);
         private Vector2 velocity;
+        private float playerRotation;
         private Rectangle rectangle;
 
         public bool hasJumped = false;
-        
+
         public Vector2 Position
         {
             get { return position; }
@@ -48,22 +49,22 @@ namespace ThePlatformer
             //Console.Writeline("witaj");
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                velocity.X = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
+                velocity.X = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 4;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                velocity.X = -(float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
+                velocity.X = -(float)gameTime.ElapsedGameTime.TotalMilliseconds / 4;
             }
             else velocity.X = 0f;
-            if(Keyboard.GetState().IsKeyDown(Keys.Space)&& hasJumped == false)
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && hasJumped == false)
             {
                 position.Y -= 5f;
                 velocity.Y = -9f;
-                hasJumped = false;
+                hasJumped = true;
             }
             //TO DO :
         }
-        public void Collision(Rectangle newRectangle,int xOffset,int yOffset)
+        public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (rectangle.TouchTopOf(newRectangle))
             {
@@ -75,7 +76,7 @@ namespace ThePlatformer
             {
                 position.X = newRectangle.X - rectangle.Width - 2;
             }
-            if(rectangle.TouchRightOf(newRectangle))
+            if (rectangle.TouchRightOf(newRectangle))
             {
                 position.X = newRectangle.X + newRectangle.Width + 2;
             }
@@ -90,7 +91,7 @@ namespace ThePlatformer
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, rectangle, Color.White);
+            spriteBatch.Draw(texture, position, Color.White);
         }
     }
 }
