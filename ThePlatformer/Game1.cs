@@ -14,6 +14,7 @@ namespace ThePlatformer
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Map map;
+        Camera camera;
         private Player player;
         MarcoPlayer marcoPlayer;
         SpriteSheet spriteSheet;
@@ -49,6 +50,8 @@ namespace ThePlatformer
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D texturePlayer = Content.Load<Texture2D>("Images/idle");
             player = new Player(texturePlayer, 1, 4);
+
+            camera = new Camera(GraphicsDevice.Viewport);
 
             Tile.Content = Content;
             map.Generate(new int[,]
@@ -91,8 +94,11 @@ namespace ThePlatformer
             foreach (CollisionTile tile in map.CollisionTiles)
             {
                 marcoPlayer.Collision(tile.Rectangle, map.Width, map.Height);
+                camera.Update(marcoPlayer.Position, map.Width, map.Height);
+
             }
-            player.Update(gameTime);
+
+            //player.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -103,7 +109,10 @@ namespace ThePlatformer
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred,
+                BlendState.AlphaBlend,
+                null,null,null,null,
+                camera.Transform);
             this.spriteRender.Draw(
             this.spriteSheet.Sprite(
                 TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002

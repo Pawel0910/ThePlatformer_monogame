@@ -22,13 +22,13 @@
     <AppXManifest Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-06-11T16:27:36.095</Modified>
+      <Modified>2016-06-11T17:53:59.197</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\ThePlatformer.exe">
       <PackagePath>entrypoint\ThePlatformer.exe</PackagePath>
-      <Modified>2016-06-11T16:27:35.638</Modified>
+      <Modified>2016-06-11T17:53:58.230</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -554,11 +554,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2016-06-11T16:11:42.280</Modified>
+      <Modified>2016-06-11T17:31:13.942</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\ThePlatformer.exe">
       <PackagePath>ThePlatformer.exe</PackagePath>
-      <Modified>2016-06-11T16:27:36.091</Modified>
+      <Modified>2016-06-11T17:53:59.193</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
