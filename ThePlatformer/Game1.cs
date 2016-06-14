@@ -16,6 +16,7 @@ namespace ThePlatformer
         Map map;
         Camera camera;
         private Player player;
+        private PlayerTexturePackerTest playerTxtPacker;
         MarcoPlayer marcoPlayer;
         SpriteSheet spriteSheet;
         SpriteRender spriteRender;
@@ -50,7 +51,7 @@ namespace ThePlatformer
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D texturePlayer = Content.Load<Texture2D>("Images/idle");
             player = new Player(texturePlayer, 1, 4);
-
+            playerTxtPacker = new PlayerTexturePackerTest(texturePlayer, 1, 4);
             camera = new Camera(GraphicsDevice.Viewport);
 
             Tile.Content = Content;
@@ -98,7 +99,8 @@ namespace ThePlatformer
 
             }
 
-            //player.Update(gameTime);
+            player.Update(gameTime);
+            playerTxtPacker.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -114,14 +116,13 @@ namespace ThePlatformer
                 null,null,null,null,
                 camera.Transform);
             this.spriteRender.Draw(
-            this.spriteSheet.Sprite(
-                TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002
-            ),
-            new Vector2(350, 530)
-        );
-            map.Draw(spriteBatch);
+                this.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002),
+                    new Vector2(350, 530));
+            //map.Draw(spriteBatch);
             marcoPlayer.Draw(spriteBatch);
             player.Draw(spriteBatch, new Vector2(200, 200));
+            playerTxtPacker.DrawMoja(this.spriteRender, this.spriteSheet);
+            playerTxtPacker.Draw(spriteBatch, new Vector2(100, 100));
             // spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
             // TODO: Add your drawing code here
             spriteBatch.End();
