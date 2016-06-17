@@ -22,6 +22,7 @@ namespace ThePlatformer
         MarcoPlayer marcoPlayer;
         SpriteSheet spriteSheet;
         SpriteRender spriteRender;
+        bool pause = false;
         enum GameState
         {
             MainMenu,
@@ -118,15 +119,17 @@ namespace ThePlatformer
             switch(CurrentGameState)
             {
                 case GameState.MainMenu:
+                    IsMouseVisible = true;
                     if (btnPlay.isClicked == true) CurrentGameState = GameState.Playing;
                     btnPlay.Update(mouse);
                    // camera.Update(new Vector2(screenWidth/2, screenHight/2), map.Width, map.Height);
                     break;
                 case GameState.Playing:
-                    //if (pauseButton.isClicked == true) CurrentGameState = GameState.Pause;
-                    //pauseButton.Update(mouse);
-                    if (Keyboard.GetState().IsKeyDown(Keys.P))
+                    IsMouseVisible = false;
+                    Mouse.SetPosition(0, 0);
+                    if (Keyboard.GetState().IsKeyDown(Keys.P)&&pause==false)
                     {
+                        pause = true;
                         CurrentGameState = GameState.Pause;
                     }
                     marcoPlayer.Update(gameTime);
@@ -142,7 +145,12 @@ namespace ThePlatformer
 
                     break;
                 case GameState.Pause:
-                    if (backToGameButton.isClicked == true) CurrentGameState = GameState.Playing;
+                    IsMouseVisible = true;
+                    if (backToGameButton.isClicked == true)
+                    {
+                        pause = false;
+                        CurrentGameState = GameState.Playing;
+                    } 
                     backToGameButton.Update(mouse);
                     if (exitButton.isClicked == true) Exit();
                     exitButton.Update(mouse);
