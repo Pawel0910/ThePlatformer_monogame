@@ -1,0 +1,6 @@
+Do zrobienia w mojej grze:
+-Mechanizm animacji jest już zrobiony, więc tylko wystarczy powrzucać sprite`y
+-Logika przeciwnika
+-Menu
+-Stany gracza
+-Dodatkowo chciałem jeszcze zrobić ulepszenia gracza.

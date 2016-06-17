@@ -118,10 +118,10 @@ namespace ThePlatformer
             this.spriteRender.Draw(
                 this.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002),
                     new Vector2(350, 530));
-            //map.Draw(spriteBatch);
+            map.Draw(spriteBatch);
             marcoPlayer.Draw(spriteBatch);
             player.Draw(spriteBatch, new Vector2(200, 200));
-            playerTxtPacker.DrawMoja(this.spriteRender, this.spriteSheet);
+            //playerTxtPacker.DrawMoja(this.spriteRender, this.spriteSheet);
             playerTxtPacker.Draw(spriteBatch, new Vector2(100, 100));
             // spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
             // TODO: Add your drawing code here
