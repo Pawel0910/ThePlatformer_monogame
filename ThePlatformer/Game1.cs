@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 using TexturePackerLoader;
 
 namespace ThePlatformer
@@ -28,7 +29,7 @@ namespace ThePlatformer
             Playing,
         }
         GameState CurrentGameState = GameState.MainMenu;
-        int screenWidth = 800, screenHight = 600;
+        int screenWidth, screenHeight;
 
         cButton btnPlay;
         public Game1()
@@ -83,15 +84,14 @@ namespace ThePlatformer
             this.spriteSheet = spriteSheetLoader.Load("CapGuyDemo.png");
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
             this.spriteRender = new SpriteRender(this.spriteBatch);
-
-            graphics.PreferredBackBufferWidth = screenWidth;
-            graphics.PreferredBackBufferHeight = screenHight;
+            //graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            Debug.Write(graphics.PreferredBackBufferWidth);
+            // graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             IsMouseVisible = true;
 
             btnPlay = new cButton(Content.Load<Texture2D>("button"),graphics.GraphicsDevice);
-            btnPlay.setPosition(new Vector2(350, 300));
         }
 
         /// <summary>
@@ -111,7 +111,6 @@ namespace ThePlatformer
         protected override void Update(GameTime gameTime)
         {
             MouseState mouse = Mouse.GetState();
-            marcoPlayer.Update(gameTime);
             switch(CurrentGameState)
             {
                 case GameState.MainMenu:
@@ -120,10 +119,11 @@ namespace ThePlatformer
                    // camera.Update(new Vector2(screenWidth/2, screenHight/2), map.Width, map.Height);
                     break;
                 case GameState.Playing:
+                    marcoPlayer.Update(gameTime);
                     foreach (CollisionTile tile in map.CollisionTiles)
                     {
                         marcoPlayer.Collision(tile.Rectangle, map.Width, map.Height);
-                      //  camera.Update(marcoPlayer.Position, map.Width, map.Height);
+                        camera.Update(marcoPlayer.Position, map.Width, map.Height);
 
                     }
 
@@ -145,19 +145,22 @@ namespace ThePlatformer
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
-            //spriteBatch.Begin(SpriteSortMode.Deferred,
-            //    BlendState.AlphaBlend,
-            //    null,null,null,null,
-            //    camera.Transform);
+            
             switch (CurrentGameState)
             {
                 case GameState.MainMenu:
-                    map.Draw(spriteBatch);
-                    spriteBatch.Draw(Content.Load<Texture2D>("mainMenu"), new Rectangle(0, 0, screenWidth, screenHight), Color.White);
+                    GraphicsDevice.Clear(Color.White);
+                    spriteBatch.Begin();
+                    Vector2 vector=getXYtoDrawMenu();
+                    spriteBatch.Draw(Content.Load<Texture2D>("mainMenu"), new Rectangle((int)vector.Y,(int)vector.X, 800, 600), Color.White);
+                    btnPlay.setPosition(new Vector2(330+ (int)vector.Y, 300+ (int)vector.X));
                     btnPlay.Draw(spriteBatch);
                     break;
                 case GameState.Playing:
+                    spriteBatch.Begin(SpriteSortMode.Deferred,
+                BlendState.AlphaBlend,
+                null, null, null, null,
+                camera.Transform);
                     this.spriteRender.Draw(
                 this.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002),
                     new Vector2(350, 530));
@@ -170,10 +173,28 @@ namespace ThePlatformer
 
             }
             
-            // spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
             // TODO: Add your drawing code here
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+        protected Vector2 getXYtoDrawMenu()
+        {
+            int a = GraphicsDevice.Viewport.Height;
+            screenHeight = GraphicsDevice.Viewport.Height;
+            screenWidth = GraphicsDevice.Viewport.Width;
+            Vector2 vector = new Vector2();
+            if (screenHeight > 600)
+            {
+                vector.X = (screenHeight - 600) / 2;
+            }
+            else vector.X = 0;
+            if (screenWidth > 800)
+            {
+                vector.Y = (screenWidth - 800) / 2;
+            }
+            else
+                vector.Y = 0;
+            return vector;
         }
     }
 }
