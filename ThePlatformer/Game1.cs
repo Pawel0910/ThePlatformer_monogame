@@ -27,11 +27,13 @@ namespace ThePlatformer
             MainMenu,
             Options,
             Playing,
+            Pause,
         }
         GameState CurrentGameState = GameState.MainMenu;
         int screenWidth, screenHeight;
 
         cButton btnPlay;
+        cButton backToGameButton,exitButton;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -92,6 +94,8 @@ namespace ThePlatformer
             IsMouseVisible = true;
 
             btnPlay = new cButton(Content.Load<Texture2D>("button"),graphics.GraphicsDevice);
+            backToGameButton = new cButton(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
+            exitButton = new cButton(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
         }
 
         /// <summary>
@@ -119,6 +123,12 @@ namespace ThePlatformer
                    // camera.Update(new Vector2(screenWidth/2, screenHight/2), map.Width, map.Height);
                     break;
                 case GameState.Playing:
+                    //if (pauseButton.isClicked == true) CurrentGameState = GameState.Pause;
+                    //pauseButton.Update(mouse);
+                    if (Keyboard.GetState().IsKeyDown(Keys.P))
+                    {
+                        CurrentGameState = GameState.Pause;
+                    }
                     marcoPlayer.Update(gameTime);
                     foreach (CollisionTile tile in map.CollisionTiles)
                     {
@@ -130,6 +140,12 @@ namespace ThePlatformer
                     player.Update(gameTime);
                     playerTxtPacker.Update(gameTime);
 
+                    break;
+                case GameState.Pause:
+                    if (backToGameButton.isClicked == true) CurrentGameState = GameState.Playing;
+                    backToGameButton.Update(mouse);
+                    if (exitButton.isClicked == true) Exit();
+                    exitButton.Update(mouse);
                     break;
 
             }
@@ -156,11 +172,25 @@ namespace ThePlatformer
                     btnPlay.setPosition(new Vector2(330+ (int)vector.Y, 300+ (int)vector.X));
                     btnPlay.Draw(spriteBatch);
                     break;
+                case GameState.Pause:
+                    GraphicsDevice.Clear(Color.White);
+                    spriteBatch.Begin();
+                    Vector2 vector1 = getXYtoDrawMenu();
+                    backToGameButton.setPosition(new Vector2(330 + (int)vector1.Y, 300 + (int)vector1.X));
+
+                    backToGameButton.Draw(spriteBatch);
+                    exitButton.setPosition(new Vector2(330 + (int)vector1.Y, 350 + (int)vector1.X));
+
+                    exitButton.Draw(spriteBatch);
+                    break;
                 case GameState.Playing:
+                    
                     spriteBatch.Begin(SpriteSortMode.Deferred,
                 BlendState.AlphaBlend,
                 null, null, null, null,
                 camera.Transform);
+                    //pauseButton.setPosition(new Vector2(0, 0));
+                    //pauseButton.Draw(spriteBatch);
                     this.spriteRender.Draw(
                 this.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002),
                     new Vector2(350, 530));
