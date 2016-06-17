@@ -22,13 +22,13 @@
     <AppXManifest Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-06-14T14:22:09.953</Modified>
+      <Modified>2016-06-17T07:52:16.894</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\ThePlatformer.exe">
       <PackagePath>entrypoint\ThePlatformer.exe</PackagePath>
-      <Modified>2016-06-14T14:22:09.527</Modified>
+      <Modified>2016-06-17T07:52:16.459</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -494,6 +494,14 @@
       <PackagePath>Content\Images\idle.png</PackagePath>
       <Modified>2016-06-14T11:37:49.184</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\mainMenu.png">
+      <PackagePath>Content\mainMenu.png</PackagePath>
+      <Modified>2016-06-17T07:23:39.319</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\PlayerAnimation\IdlePlayer.png">
+      <PackagePath>Content\PlayerAnimation\IdlePlayer.png</PackagePath>
+      <Modified>2016-06-14T15:31:42.007</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\sprite.png">
       <PackagePath>Content\sprite.png</PackagePath>
       <Modified>2016-05-03T12:00:12.969</Modified>
@@ -540,6 +548,18 @@
       <PackagePath>Content\CapGuyDemo.txt</PackagePath>
       <Modified>2016-05-03T12:24:23.827</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\PlayerAnimation\IdlePlayer.txt">
+      <PackagePath>Content\PlayerAnimation\IdlePlayer.txt</PackagePath>
+      <Modified>2016-06-14T15:31:42.025</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\TODO.txt">
+      <PackagePath>TODO.txt</PackagePath>
+      <Modified>2016-06-17T06:58:56.491</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\button.jpg">
+      <PackagePath>Content\button.jpg</PackagePath>
+      <Modified>2016-06-17T07:37:33.365</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
       <Modified>2016-05-03T11:46:01.965</Modified>
@@ -554,11 +574,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2016-06-14T12:05:08.841</Modified>
+      <Modified>2016-06-17T07:38:59.142</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\ThePlatformer.exe">
       <PackagePath>ThePlatformer.exe</PackagePath>
-      <Modified>2016-06-14T14:22:09.942</Modified>
+      <Modified>2016-06-17T07:52:16.890</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

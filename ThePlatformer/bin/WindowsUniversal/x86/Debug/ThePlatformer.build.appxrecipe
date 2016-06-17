@@ -369,6 +369,9 @@
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\Images\idle.png">
       <PackagePath>Content\Images\idle.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\mainMenu.png">
+      <PackagePath>Content\mainMenu.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\PlayerAnimation\IdlePlayer.png">
       <PackagePath>Content\PlayerAnimation\IdlePlayer.png</PackagePath>
     </AppxPackagedFile>
@@ -409,6 +412,12 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\PlayerAnimation\IdlePlayer.txt">
       <PackagePath>Content\PlayerAnimation\IdlePlayer.txt</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\TODO.txt">
+      <PackagePath>TODO.txt</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\button.jpg">
+      <PackagePath>Content\button.jpg</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>

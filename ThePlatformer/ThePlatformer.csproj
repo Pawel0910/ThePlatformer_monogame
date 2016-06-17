@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="Camera.cs" />
     <Compile Include="CapGuyDemo.cs" />
+    <Compile Include="cButton.cs" />
     <Compile Include="Content\PlayerAnimation\IdlePlayer.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
@@ -136,7 +137,9 @@
     <Content Include="Content\idle2.png" />
     <Content Include="Content\idle3.png" />
     <Content Include="Content\idle4.png" />
+    <Content Include="Content\button.jpg" />
     <Content Include="Content\Images\idle.png" />
+    <Content Include="Content\mainMenu.png" />
     <Content Include="Content\PlayerAnimation\IdlePlayer.png" />
     <Content Include="Content\PlayerAnimation\IdlePlayer.txt" />
     <Content Include="Content\sprite.png" />
