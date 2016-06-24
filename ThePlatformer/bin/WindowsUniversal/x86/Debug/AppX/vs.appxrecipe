@@ -22,13 +22,13 @@
     <AppXManifest Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-06-21T18:58:14.984</Modified>
+      <Modified>2016-06-24T13:14:55.987</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\ThePlatformer.exe">
       <PackagePath>entrypoint\ThePlatformer.exe</PackagePath>
-      <Modified>2016-06-21T18:58:14.119</Modified>
+      <Modified>2016-06-24T13:14:54.436</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -496,7 +496,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\mainMenu.png">
       <PackagePath>Content\mainMenu.png</PackagePath>
-      <Modified>2016-06-17T07:23:39.319</Modified>
+      <Modified>2016-06-24T13:12:47.959</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\PlayerAnimation\IdlePlayer.png">
       <PackagePath>Content\PlayerAnimation\IdlePlayer.png</PackagePath>
@@ -548,6 +548,10 @@
       <PackagePath>Content\CapGuyDemo.txt</PackagePath>
       <Modified>2016-05-03T12:24:23.827</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\mainMenu.txt">
+      <PackagePath>Content\mainMenu.txt</PackagePath>
+      <Modified>2016-06-24T13:12:47.979</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\PlayerAnimation\IdlePlayer.txt">
       <PackagePath>Content\PlayerAnimation\IdlePlayer.txt</PackagePath>
       <Modified>2016-06-14T15:31:42.025</Modified>
@@ -574,11 +578,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2016-06-21T18:58:14.725</Modified>
+      <Modified>2016-06-24T13:14:55.475</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\ThePlatformer.exe">
       <PackagePath>ThePlatformer.exe</PackagePath>
-      <Modified>2016-06-21T18:58:14.984</Modified>
+      <Modified>2016-06-24T13:14:55.983</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

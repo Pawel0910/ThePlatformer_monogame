@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
 using TexturePackerLoader;
+using ThePlatformer.View.Menu;
 
 namespace ThePlatformer
 {
@@ -19,6 +20,7 @@ namespace ThePlatformer
         Camera camera;
         private Player player;
         private PlayerTexturePackerTest playerTxtPacker;
+        private MainMenu mainMenu;
         MarcoPlayer marcoPlayer;
         SpriteSheet spriteSheet;
         SpriteRender spriteRender;
@@ -67,6 +69,8 @@ namespace ThePlatformer
             Texture2D texturePlayer = Content.Load<Texture2D>("Images/idle");
             player = new Player(texturePlayer, 1, 4);
             playerTxtPacker = new PlayerTexturePackerTest(texturePlayer, 1, 4);
+            mainMenu = new MainMenu();
+           // mainMenu = new MainMenu(Content.Load<Texture2D>("menu/"));
             camera = new Camera(GraphicsDevice.Viewport);
 
             Tile.Content = Content;
@@ -90,8 +94,8 @@ namespace ThePlatformer
             //graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             Debug.Write(graphics.PreferredBackBufferWidth);
             // graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            graphics.IsFullScreen = true;
-            graphics.ApplyChanges();
+           // graphics.IsFullScreen = true;
+           // graphics.ApplyChanges();
             IsMouseVisible = true;
 
             btnPlay = new cButton(Content.Load<Texture2D>("button"),graphics.GraphicsDevice);
@@ -119,10 +123,14 @@ namespace ThePlatformer
             switch(CurrentGameState)
             {
                 case GameState.MainMenu:
+                    playerTxtPacker.Update(gameTime);
+
                     IsMouseVisible = true;
                     if (btnPlay.isClicked == true) CurrentGameState = GameState.Playing;
                     btnPlay.Update(mouse);
-                   // camera.Update(new Vector2(screenWidth/2, screenHight/2), map.Width, map.Height);
+                    mainMenu.Update(gameTime);
+
+                    // camera.Update(new Vector2(screenWidth/2, screenHight/2), map.Width, map.Height);
                     break;
                 case GameState.Playing:
                     IsMouseVisible = false;
@@ -141,8 +149,6 @@ namespace ThePlatformer
                     }
 
                     player.Update(gameTime);
-                    playerTxtPacker.Update(gameTime);
-
                     break;
                 case GameState.Pause:
                     IsMouseVisible = true;
@@ -176,9 +182,14 @@ namespace ThePlatformer
                     GraphicsDevice.Clear(Color.White);
                     spriteBatch.Begin();
                     Vector2 vector=getXYtoDrawMenu();
-                    spriteBatch.Draw(Content.Load<Texture2D>("mainMenu"), new Rectangle((int)vector.Y,(int)vector.X, 800, 600), Color.White);
+
+                    // mainMenu.Draw(this.spriteRender, this.spriteSheet);
+                    //spriteBatch.Draw(Content.Load<Texture2D>("mainMenu"), new Rectangle((int)vector.Y,(int)vector.X, 800, 600), Color.White);
+                    playerTxtPacker.DrawMoja(this.spriteRender, this.spriteSheet);
+
                     btnPlay.setPosition(new Vector2(330+ (int)vector.Y, 300+ (int)vector.X));
                     btnPlay.Draw(spriteBatch);
+                    //this.spriteSheet.Sprite(PlayerAnimationLists.drawMenuStart(), new Vector2(200, 200));
                     break;
                 case GameState.Pause:
                     GraphicsDevice.Clear(Color.White);
@@ -199,14 +210,14 @@ namespace ThePlatformer
                 camera.Transform);
                     //pauseButton.setPosition(new Vector2(0, 0));
                     //pauseButton.Draw(spriteBatch);
-                    this.spriteRender.Draw(
-                this.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002),
-                    new Vector2(350, 530));
+                    //this.spriteRender.Draw(
+                    // this.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002),
+                    //    new Vector2(350, 530));
+
                     map.Draw(spriteBatch);
                     marcoPlayer.Draw(spriteBatch);
                     player.Draw(spriteBatch, new Vector2(200, 200));
-                    //playerTxtPacker.DrawMoja(this.spriteRender, this.spriteSheet);
-                    playerTxtPacker.Draw(spriteBatch, new Vector2(100, 100));
+                   // playerTxtPacker.DrawMoja(spriteBatch, new Vector2(100, 100));
                     break;
 
             }

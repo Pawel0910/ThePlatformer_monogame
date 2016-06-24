@@ -68,13 +68,16 @@ namespace ThePlatformer
         }
         public void DrawMoja(SpriteRender spriteRender,SpriteSheet spriteSheet)
         {
-            List<String> lista1 = new List<String>();
-            lista1.Add(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002);
-            lista1.Add(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0003);
-            lista1.Add(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0004);
-            lista1.Add(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0005);
+            List<String> lista1 = PlayerAnimationLists.getTestList();
+            List<String> list = new List<String>();
+            list.Add(TexturePackerMonoGameDefinitions.mainMenu.MainMenu1);
+            list.Add(TexturePackerMonoGameDefinitions.mainMenu.MainMenu2);
+            //lista1.Add(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002);
+            //lista1.Add(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0003);
+            //lista1.Add(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0004);
+            //lista1.Add(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0005);
             spriteRender.Draw(
-                spriteSheet.Sprite(lista1[currentFrame]),
+                spriteSheet.Sprite(list[0]),
                     new Vector2(100, 100));
         }
     }

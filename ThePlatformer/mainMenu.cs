@@ -4,12 +4,12 @@
  * Contains references to each image within the sprite sheet.
  *
  * http://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:7b9e0f437bf2f68233d5064696431ee6:703859ae7dc1a3985746aaad0e608f90:aad99d7f13f4c819e14f64f55a50db2f$
+ * $TexturePacker:SmartUpdate:7be3e5771c434eb11f37888a5a1bbee9:703859ae7dc1a3985746aaad0e608f90:33509bb3a714716791e424b67cb95b8d$
  *
  */
 namespace TexturePackerMonoGameDefinitions
 {
-	public class unsaved
+	public class mainMenu
 	{
 		public const string MainMenu1 = "mainMenu1";
 		public const string MainMenu2 = "mainMenu2";
