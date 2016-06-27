@@ -25,10 +25,10 @@ namespace ThePlatformer
         public static List<String> getTestList()
         {
             List<String> list = new List<String>();
-            list.Add(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002);
-            list.Add(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0003);
-            list.Add(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0004);
-            list.Add(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0005);
+            list.Add(TexturePackerMonoGameDefinitions.mainMenu.MainMenu1);
+            list.Add(TexturePackerMonoGameDefinitions.mainMenu.MainMenu2);
+            list.Add(TexturePackerMonoGameDefinitions.mainMenu.MainMenu3);
+            list.Add(TexturePackerMonoGameDefinitions.mainMenu.MainMenu4);
             return list;
         }
     }
