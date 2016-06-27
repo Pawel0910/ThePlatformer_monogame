@@ -15,20 +15,31 @@ namespace ThePlatformer
     {
         private TouchCollection touchCollection = TouchPanel.GetState();
         private Texture2D texture;
-        private Vector2 position = new Vector2(10, 10);
+        private static Vector2 position = new Vector2(10, 10);
         private Vector2 velocity;
         private Vector2 origin;
         private SpriteEffects flip;
         private bool isLeft = false, isRight = true;
         private Rectangle rectangle;
-
-        public bool hasJumped = false;
-
+        private int mapWidth, mapHeight;
+        public static int lives = 3;
+        public bool hasJumped = false, dead=false;
+        enum Checkpoint
+        {
+            Checkpoint1,
+            Checkpoint2,
+            Checkpoint3,
+            Checkpoint4
+        }
+        Checkpoint currentCheckpoint = Checkpoint.Checkpoint1;
         public Vector2 Position
         {
             get { return position; }
         }
-        public MarcoPlayer() { }
+        public MarcoPlayer(int mapWidth, int mapHeight) {
+            this.mapHeight = mapHeight;
+            this.mapWidth = mapWidth;
+        }
 
         public void Load(ContentManager Content)
         {
@@ -36,6 +47,8 @@ namespace ThePlatformer
         }
         public void Update(GameTime gameTime)
         {
+            int prevoiusLivesAmount = lives;
+            isCrossedMap();
             position += velocity;
             rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
             origin = new Vector2(rectangle.Width / 2, rectangle.Height / 2);
@@ -44,6 +57,17 @@ namespace ThePlatformer
             if (velocity.Y < 10)
             {
                 velocity.Y += 0.4f;
+            }
+            switch (currentCheckpoint)
+            {
+                case Checkpoint.Checkpoint1:
+                    if (lives < prevoiusLivesAmount)
+                    {
+
+                    }
+                    break;
+                case Checkpoint.Checkpoint2:
+                    break;
             }
         }
         private void Input(GameTime gameTime)
@@ -102,8 +126,20 @@ namespace ThePlatformer
             }
             if (position.X < 0) position.X = 0;
             if (position.X > xOffset - rectangle.Width) position.X = xOffset - rectangle.Width;
-            if (position.Y < 0) velocity.Y = 1f;
-            if (position.Y > yOffset - rectangle.Height) position.Y = yOffset - rectangle.Height;
+            // if (position.Y < 0) velocity.Y = 1f;
+            //isCrossedMap(xOffset,yOffset);
+            // if (position.Y > yOffset - rectangle.Height) position.Y = yOffset - rectangle.Height;
+        }
+        public void isCrossedMap()
+        {
+            if (position.Y > mapHeight - rectangle.Height&&!dead)
+            {
+                position.Y = 66;
+                position.X = 86;
+                lives--;
+                dead = true;
+            }
+
         }
         public void Draw(SpriteBatch spriteBatch)
         {

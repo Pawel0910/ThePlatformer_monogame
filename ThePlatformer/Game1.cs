@@ -53,7 +53,6 @@ namespace ThePlatformer
         protected override void Initialize()
         {
             map = new Map();
-            marcoPlayer = new MarcoPlayer();
             normalEnemy = new NormalEnemy();
             base.Initialize();
         }
@@ -88,6 +87,7 @@ namespace ThePlatformer
                 {2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2},
                 {2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2},
             }, 64);
+            marcoPlayer = new MarcoPlayer(map.Width,map.Height);
             marcoPlayer.Load(Content);
             normalEnemy.Load(Content);
             SpriteSheetLoader spriteSheetLoader = new SpriteSheetLoader(this.Content);
@@ -145,6 +145,7 @@ namespace ThePlatformer
                         CurrentGameState = GameState.Pause;
                     }
                     marcoPlayer.Update(gameTime);
+                    //marcoPlayer.isCrossedMap(map.Width, map.Height);
                     normalEnemy.Update(gameTime);
 
                     foreach (CollisionTile tile in map.CollisionTiles)

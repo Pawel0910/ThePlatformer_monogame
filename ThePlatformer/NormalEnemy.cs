@@ -12,12 +12,13 @@ namespace ThePlatformer
     class NormalEnemy
     {
         private Texture2D texture;
-        private Vector2 position = new Vector2(10, 10);
+        private Vector2 position = new Vector2(50, 10);
         private Vector2 velocity;
         private Vector2 origin;
         private SpriteEffects flip;
         private bool isLeft = false, isRight = true;
         private Rectangle rectangle;
+        
         public Vector2 Position
         {
             get { return position; }
