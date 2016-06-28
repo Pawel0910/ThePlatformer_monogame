@@ -20,7 +20,7 @@ namespace ThePlatformer
         private Vector2 origin;
         private SpriteEffects flip;
         private bool isLeft = false, isRight = true;
-        private Rectangle rectangle;
+        public static Rectangle rectangle;
         private int mapWidth, mapHeight;
         public static int lives = 3;
         public bool hasJumped = false, dead=false;
@@ -47,7 +47,6 @@ namespace ThePlatformer
         }
         public void Update(GameTime gameTime)
         {
-            int prevoiusLivesAmount = lives;
             isCrossedMap();
             position += velocity;
             rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
@@ -61,10 +60,6 @@ namespace ThePlatformer
             switch (currentCheckpoint)
             {
                 case Checkpoint.Checkpoint1:
-                    if (lives < prevoiusLivesAmount)
-                    {
-
-                    }
                     break;
                 case Checkpoint.Checkpoint2:
                     break;

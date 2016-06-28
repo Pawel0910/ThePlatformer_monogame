@@ -17,7 +17,7 @@ namespace ThePlatformer
         private Vector2 origin;
         private SpriteEffects flip;
         private bool isLeft = false, isRight = true;
-        private Rectangle rectangle;
+        public static Rectangle rectangle;
         
         public Vector2 Position
         {
@@ -31,6 +31,10 @@ namespace ThePlatformer
 
         public void Update(GameTime gameTime)
         {
+            if (MarcoPlayer.rectangle.Intersects(rectangle))
+            {
+                position += new Vector2(2,0);
+            }
             position += velocity;
             rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
             origin = new Vector2(rectangle.Width / 2, rectangle.Height / 2);
