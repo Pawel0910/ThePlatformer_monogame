@@ -142,6 +142,7 @@
     <Content Include="Content\idle4.png" />
     <Content Include="Content\button.jpg" />
     <Content Include="Content\Images\idle.png" />
+    <Content Include="Content\mainMenu.png" />
     <Content Include="Content\menu\mainMenu.png" />
     <Content Include="Content\menu\mainMenu.txt" />
     <Content Include="Content\PlayerAnimation\IdlePlayer.png" />

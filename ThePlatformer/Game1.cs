@@ -192,8 +192,8 @@ namespace ThePlatformer
                     Vector2 vector=getXYtoDrawMenu();
 
                     // mainMenu.Draw(this.spriteRender, this.spriteSheet);
-                    //spriteBatch.Draw(Content.Load<Texture2D>("mainMenu"), new Rectangle((int)vector.Y,(int)vector.X, 800, 600), Color.White);
-                    playerTxtPacker.DrawMoja(this.spriteRender, this.spriteSheet);
+                    spriteBatch.Draw(Content.Load<Texture2D>("mainMenu"), new Rectangle((int)vector.Y,(int)vector.X, 800, 600), Color.White);
+                    //playerTxtPacker.DrawMoja(this.spriteRender, this.spriteSheet);
 
                     btnPlay.setPosition(new Vector2(330+ (int)vector.Y, 300+ (int)vector.X));
                     btnPlay.Draw(spriteBatch);

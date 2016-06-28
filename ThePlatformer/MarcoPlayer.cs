@@ -112,7 +112,7 @@ namespace ThePlatformer
                 position.X = newRectangle.X - rectangle.Width - 2;
             }
             if (rectangle.TouchRightOf(newRectangle))
-            {
+            {   
                 position.X = newRectangle.X + newRectangle.Width + 2;
             }
             if (rectangle.TouchBottomOf(newRectangle))
