@@ -15,13 +15,13 @@ namespace ThePlatformer
     {
         private TouchCollection touchCollection = TouchPanel.GetState();
         private Texture2D texture;
-        private static Vector2 position = new Vector2(10, 10);
+        private static Vector2 position = new Vector2(16, 38);
         private Vector2 velocity;
         private Vector2 origin;
         private SpriteEffects flip;
         private bool isLeft = false, isRight = true;
         public static Rectangle rectangle;
-        private int mapWidth, mapHeight;
+        public static int mapWidth, mapHeight;
         public static int lives = 3;
         public bool hasJumped = false, dead=false;
         enum Checkpoint
@@ -36,9 +36,9 @@ namespace ThePlatformer
         {
             get { return position; }
         }
-        public MarcoPlayer(int mapWidth, int mapHeight) {
-            this.mapHeight = mapHeight;
-            this.mapWidth = mapWidth;
+        public MarcoPlayer(int mapWidth1, int mapHeight1) {
+            mapHeight = mapHeight1;
+            mapWidth = mapWidth1;
         }
 
         public void Load(ContentManager Content)
@@ -55,7 +55,7 @@ namespace ThePlatformer
 
             if (velocity.Y < 10)
             {
-                velocity.Y += 0.4f;
+                velocity.Y += 0.4f;//grawitacja
             }
             switch (currentCheckpoint)
             {
@@ -129,8 +129,8 @@ namespace ThePlatformer
         {
             if (position.Y > mapHeight - rectangle.Height&&!dead)
             {
-                position.Y = 66;
-                position.X = 86;
+                position.Y = 20;
+                position.X = 38;
                 lives--;
                 dead = true;
             }

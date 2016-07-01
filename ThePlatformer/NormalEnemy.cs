@@ -18,8 +18,9 @@ namespace ThePlatformer
         private SpriteEffects flip;
         private bool isLeft = false, isRight = true;
         private int distanceToPlayer = 100;
-        public bool hasJumped = false;
+        public bool hasJumped = false, canTeleport = false;
         public static Rectangle rectangle;
+        private float startTime = 0, endTime = 0;
         
         public Vector2 Position
         {
@@ -33,34 +34,47 @@ namespace ThePlatformer
 
         public void Update(GameTime gameTime)
         {
-            runAwayBeforePlayer();
+            if (position.Y > MarcoPlayer.mapHeight - rectangle.Height)
+            {
+                //position += new Vector2(100, 0);
+                position.X = MarcoPlayer.rectangle.X+300;
+                position.Y = -20;
+            }
+            //    startTime += gameTime.ElapsedGameTime.Milliseconds;
+            //    if (startTime > 3500)
+            //    {
+            //        if (canTeleport)
+            //        {
+            //            position += new Vector2(100, 0);
+            //            position.Y = 0;
+            //        //canTeleport = false - bedzie woczas ustawiany w updatcie kolizji
+            //    }
+            //    startTime = 0;
+            //}
+            //running away before player
             if (rectangle.X-MarcoPlayer.rectangle.X< distanceToPlayer)
             {
                 position += new Vector2(4,0);
+                //position += new Vector2(MarcoPlayer.rectangle.X + 10, 0);
             }
+            //zmiana pozycji
             position += velocity;
             rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
             origin = new Vector2(rectangle.Width / 2, rectangle.Height / 2);
-
+            //grawitacaj
             if (velocity.Y < 10)
             {
                 velocity.Y += 0.4f;
             }
         }
-        public void runAwayBeforePlayer()
-        {
-            Rectangle playerRectangle = MarcoPlayer.rectangle;
-            if (playerRectangle.TouchLeftOf(rectangle))
-            {
-                position += new Vector2(4, 0);
-            }
-        }
+        
         public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (rectangle.TouchTopOf(newRectangle))
             {
                 rectangle.Y = newRectangle.Y - rectangle.Height;
                 velocity.Y = 0f;
+                canTeleport = false;
                 hasJumped = false;
             }
             else if (rectangle.TouchLeftOf(newRectangle))
@@ -68,21 +82,21 @@ namespace ThePlatformer
                 position.X = newRectangle.X - rectangle.Width - 2;
                 if (hasJumped == false)
                 {
+                   // Rectangle playerRectangle = MarcoPlayer.rectangle;
+
                     position.Y -= 5f;
                     velocity.Y = -12f;
                     hasJumped = true;
                 }
             }
-            //else if (rectangle.TouchRightOf(newRectangle))
-            //{
-            //    position.X = newRectangle.X + newRectangle.Width + 2;
-            //}
             else if (rectangle.TouchBottomOf(newRectangle))
             {
                 velocity.Y = 1f;
-               
             }
-
+            if (!rectangle.TouchTopOf(newRectangle))
+            {
+                canTeleport = true;
+            }
             if (position.X < 0) position.X = 0;
             if (position.X > xOffset - rectangle.Width) position.X = xOffset - rectangle.Width;
            // if (position.Y < 0) velocity.Y = 1f;
