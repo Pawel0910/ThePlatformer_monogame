@@ -73,10 +73,10 @@ namespace ThePlatformer
                     hasJumped = true;
                 }
             }
-            else if (rectangle.TouchRightOf(newRectangle))
-            {
-                position.X = newRectangle.X + newRectangle.Width + 2;
-            }
+            //else if (rectangle.TouchRightOf(newRectangle))
+            //{
+            //    position.X = newRectangle.X + newRectangle.Width + 2;
+            //}
             else if (rectangle.TouchBottomOf(newRectangle))
             {
                 velocity.Y = 1f;
