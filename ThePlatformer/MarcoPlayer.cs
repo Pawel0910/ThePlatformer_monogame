@@ -27,6 +27,7 @@ namespace ThePlatformer
         public static int lives = 3;
         public bool hasJumped = false, dead=false;
         private List<Bullet> bulletList = new List<Bullet>();
+        public float startTime = 0, delayBetweenBulletShots = 1000;
         enum Checkpoint
         {
             Checkpoint1,
@@ -118,10 +119,16 @@ namespace ThePlatformer
                 velocity.Y = -9f;
                 hasJumped = true;
             }
+            startTime += gameTime.ElapsedGameTime.Milliseconds;
             if (Keyboard.GetState().IsKeyDown(Keys.LeftControl))
             {
-                Bullet bullet = new Bullet(position);
-                bulletList.Add(bullet);
+                if (startTime > delayBetweenBulletShots)
+                {
+                    Bullet bullet = new Bullet(position);
+                    bulletList.Add(bullet);
+                    startTime = 0;
+                }
+               
             }
             //TO DO :
         }

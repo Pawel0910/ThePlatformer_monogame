@@ -28,7 +28,7 @@ namespace ThePlatformer.Enemies
         }
         public void Update()
         {
-            position.X += 4f;
+            position.X += 10f;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
