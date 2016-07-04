@@ -15,11 +15,14 @@ namespace ThePlatformer.Enemies
         private Vector2 velocity;
         public Vector2 position,startPos;
         private Vector2 origin;
+        private bool negativeSpeed = false;
         private float RotationAngle;
+        public float bulletSpeed=8f;
         public Bullet() { }
-        public Bullet(Vector2 startPos) {
+        public Bullet(Vector2 startPos,bool isLeft) {
             this.startPos = startPos;
             this.position = startPos;
+            this.negativeSpeed = isLeft;
             
         }
         public void Load(ContentManager Content)
@@ -28,7 +31,10 @@ namespace ThePlatformer.Enemies
         }
         public void Update()
         {
-            position.X += 10f;
+            if (!negativeSpeed)
+                position.X += bulletSpeed;
+            else
+                position.X -= bulletSpeed;
         }
         public void Draw(SpriteBatch spriteBatch)
         {

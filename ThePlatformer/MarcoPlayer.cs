@@ -27,7 +27,7 @@ namespace ThePlatformer
         public static int lives = 3;
         public bool hasJumped = false, dead=false;
         private List<Bullet> bulletList = new List<Bullet>();
-        public float startTime = 0, delayBetweenBulletShots = 1000;
+        public float startTime = 0, delayBetweenBulletShots = 100;
         enum Checkpoint
         {
             Checkpoint1,
@@ -81,7 +81,8 @@ namespace ThePlatformer
             for(int i = 0; i < bulletList.Count; i++)
             {
                 bulletList[i].Update();
-                if(bulletList[i].position.X - bulletList[i].startPos.X > bulletDistance)
+                if(bulletList[i].position.X - bulletList[i].startPos.X > bulletDistance ||
+                    bulletList[i].startPos.X - bulletList[i].position.X>bulletDistance)
                 {
                     bulletList.RemoveAt(i);
                 }
@@ -124,7 +125,8 @@ namespace ThePlatformer
             {
                 if (startTime > delayBetweenBulletShots)
                 {
-                    Bullet bullet = new Bullet(position);
+                    
+                    Bullet bullet = new Bullet(position,isLeft);
                     bulletList.Add(bullet);
                     startTime = 0;
                 }
