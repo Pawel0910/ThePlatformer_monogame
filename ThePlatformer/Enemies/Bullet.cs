@@ -13,11 +13,12 @@ namespace ThePlatformer.Enemies
     {
         public static Texture2D textureBullet;
         private Vector2 velocity;
-        public Vector2 position;
+        public Vector2 position,startPos;
         private Vector2 origin;
         private float RotationAngle;
         public Bullet() { }
         public Bullet(Vector2 startPos) {
+            this.startPos = startPos;
             this.position = startPos;
             
         }

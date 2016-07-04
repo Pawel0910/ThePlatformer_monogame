@@ -21,6 +21,7 @@ namespace ThePlatformer
         private Vector2 origin;
         private SpriteEffects flip;
         private bool isLeft = false, isRight = true;
+        public int bulletDistance=200;
         public static Rectangle rectangle;
         public static int mapWidth, mapHeight;
         public static int lives = 3;
@@ -68,10 +69,21 @@ namespace ThePlatformer
                 case Checkpoint.Checkpoint2:
                     break;
             }
-            foreach(Bullet bullet in bulletList)
+            //foreach(Bullet bullet in bulletList)
+            //{
+            //    bullet.Update();
+            //    if (bullet.position.X - bullet.startPos.X > bulletDistance)
+            //    {
+            //        //bulletList.Remove(bullet);
+            //    }
+            //}
+            for(int i = 0; i < bulletList.Count; i++)
             {
-                bullet.Update();
-                if(bullet.position.X>)
+                bulletList[i].Update();
+                if(bulletList[i].position.X - bulletList[i].startPos.X > bulletDistance)
+                {
+                    bulletList.RemoveAt(i);
+                }
             }
         }
         private void Input(GameTime gameTime)
