@@ -26,7 +26,7 @@ namespace ThePlatformer
         public static int mapWidth, mapHeight;
         public static int lives = 3;
         public bool hasJumped = false, dead=false;
-        private List<Bullet> bulletList = new List<Bullet>();
+        public List<Bullet> bulletList = new List<Bullet>();
         public float startTime = 0, delayBetweenBulletShots = 100;
         enum Checkpoint
         {
@@ -70,14 +70,7 @@ namespace ThePlatformer
                 case Checkpoint.Checkpoint2:
                     break;
             }
-            //foreach(Bullet bullet in bulletList)
-            //{
-            //    bullet.Update();
-            //    if (bullet.position.X - bullet.startPos.X > bulletDistance)
-            //    {
-            //        //bulletList.Remove(bullet);
-            //    }
-            //}
+            //usuwanie kuli na podstawie przebytej odleglosci
             for(int i = 0; i < bulletList.Count; i++)
             {
                 bulletList[i].Update();
@@ -133,6 +126,18 @@ namespace ThePlatformer
                
             }
             //TO DO :
+        }
+        public bool bulletCollisionWithNormalEnemy(NormalEnemy enemy)
+        {
+            for (int i = 0; i < bulletList.Count; i++)
+            {
+                if (bulletList[i].rectangle.Intersects(enemy.rectangle))
+                {
+                    bulletList.RemoveAt(i);
+                    return true;
+                }
+            }
+            return false;
         }
         public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {

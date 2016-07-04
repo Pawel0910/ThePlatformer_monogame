@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace ThePlatformer
 {
-    class NormalEnemy
+    public class NormalEnemy
     {
-        private Texture2D texture;
+        public Texture2D texture;
         private Vector2 position = new Vector2(50, 10);
         private Vector2 velocity;
         private Vector2 origin;
@@ -19,7 +19,7 @@ namespace ThePlatformer
         private bool isLeft = false, isRight = true;
         private int distanceToPlayer = 100;
         public bool hasJumped = false, canTeleport = false;
-        public static Rectangle rectangle;
+        public Rectangle rectangle;
         private float startTime = 0, endTime = 0;
         
         public Vector2 Position

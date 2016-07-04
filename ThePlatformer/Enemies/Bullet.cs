@@ -15,9 +15,10 @@ namespace ThePlatformer.Enemies
         private Vector2 velocity;
         public Vector2 position,startPos;
         private Vector2 origin;
+        public Rectangle rectangle;
         private bool negativeSpeed = false;
         private float RotationAngle;
-        public float bulletSpeed=8f;
+        public float bulletSpeed=1f;
         public Bullet() { }
         public Bullet(Vector2 startPos,bool isLeft) {
             this.startPos = startPos;
@@ -31,6 +32,7 @@ namespace ThePlatformer.Enemies
         }
         public void Update()
         {
+            rectangle = new Rectangle((int)position.X, (int)position.Y, 1, 1);
             if (!negativeSpeed)
                 position.X += bulletSpeed;
             else

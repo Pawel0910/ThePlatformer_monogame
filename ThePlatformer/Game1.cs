@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
 using TexturePackerLoader;
+using ThePlatformer.Enemies;
 using ThePlatformer.View.Menu;
 
 namespace ThePlatformer
@@ -157,6 +158,12 @@ namespace ThePlatformer
                     }
 
                     player.Update(gameTime);
+
+                   if (marcoPlayer.bulletCollisionWithNormalEnemy(normalEnemy))
+                    {
+                        normalEnemy.texture = Content.Load<Texture2D>("tile1");
+
+                    }
                     break;
                 case GameState.Pause:
                     IsMouseVisible = true;
