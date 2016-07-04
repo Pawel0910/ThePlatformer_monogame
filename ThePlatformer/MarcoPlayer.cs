@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThePlatformer.Enemies;
 
 namespace ThePlatformer
 {
@@ -24,6 +25,7 @@ namespace ThePlatformer
         public static int mapWidth, mapHeight;
         public static int lives = 3;
         public bool hasJumped = false, dead=false;
+        private List<Bullet> bulletList = new List<Bullet>();
         enum Checkpoint
         {
             Checkpoint1,
@@ -44,6 +46,8 @@ namespace ThePlatformer
         public void Load(ContentManager Content)
         {
             texture = Content.Load<Texture2D>("idle1");
+            Bullet bullet1 = new Bullet();
+            bullet1.Load(Content);
         }
         public void Update(GameTime gameTime)
         {
@@ -63,6 +67,11 @@ namespace ThePlatformer
                     break;
                 case Checkpoint.Checkpoint2:
                     break;
+            }
+            foreach(Bullet bullet in bulletList)
+            {
+                bullet.Update();
+                if(bullet.position.X>)
             }
         }
         private void Input(GameTime gameTime)
@@ -96,6 +105,11 @@ namespace ThePlatformer
                 position.Y -= 5f;
                 velocity.Y = -9f;
                 hasJumped = true;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.LeftControl))
+            {
+                Bullet bullet = new Bullet(position);
+                bulletList.Add(bullet);
             }
             //TO DO :
         }
@@ -139,6 +153,10 @@ namespace ThePlatformer
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position,null, Color.White,0f,Vector2.Zero,1,flip,0);
+            foreach(Bullet bullet in bulletList)
+            {
+                bullet.Draw(spriteBatch);
+            }
         }
     }
 }

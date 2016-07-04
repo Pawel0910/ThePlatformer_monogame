@@ -22,13 +22,13 @@
     <AppXManifest Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-07-01T12:53:56.821</Modified>
+      <Modified>2016-07-04T13:38:10.016</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\ThePlatformer.exe">
       <PackagePath>entrypoint\ThePlatformer.exe</PackagePath>
-      <Modified>2016-07-01T12:53:56.403</Modified>
+      <Modified>2016-07-04T13:38:09.504</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -470,13 +470,21 @@
       <PackagePath>SharpDX.Direct2D1.dll</PackagePath>
       <Modified>2016-03-30T06:36:04.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bulletBig.png">
+      <PackagePath>Content\bulletBig.png</PackagePath>
+      <Modified>2016-07-04T13:34:11.863</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bulletSmall.png">
+      <PackagePath>Content\bulletSmall.png</PackagePath>
+      <Modified>2016-07-04T12:09:00.905</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\capGuyDemo.png">
       <PackagePath>Content\capGuyDemo.png</PackagePath>
       <Modified>2016-06-24T13:38:49.215</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\idle1.png">
       <PackagePath>Content\idle1.png</PackagePath>
-      <Modified>2016-05-03T14:32:02.704</Modified>
+      <Modified>2016-07-04T13:32:46.674</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\idle2.png">
       <PackagePath>Content\idle2.png</PackagePath>
@@ -582,11 +590,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2016-06-28T20:42:03.114</Modified>
+      <Modified>2016-07-04T13:34:22.329</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\ThePlatformer.exe">
       <PackagePath>ThePlatformer.exe</PackagePath>
-      <Modified>2016-07-01T12:53:56.818</Modified>
+      <Modified>2016-07-04T13:38:10.012</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

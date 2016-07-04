@@ -105,6 +105,7 @@
     <Compile Include="Content\capGuyDemo.cs" />
     <Compile Include="Content\menu\mainMenu.cs" />
     <Compile Include="Content\PlayerAnimation\IdlePlayer.cs" />
+    <Compile Include="Enemies\Bullet.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
@@ -134,6 +135,8 @@
     <None Include="ThePlatformer_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bulletBig.png" />
+    <Content Include="Content\bulletSmall.png" />
     <Content Include="Content\capGuyDemo.png" />
     <Content Include="Content\capGuyDemo.txt" />
     <Content Include="Content\idle1.png" />
