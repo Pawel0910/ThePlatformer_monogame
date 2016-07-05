@@ -31,7 +31,7 @@ namespace ThePlatformer
         private int screenWidth, screenHeight;
         public int currentLifeNumber { get; set; }
         public int lives = 3;
-        public int livePoints = 100;//100 pkt życia w jednym życiu :P
+        public int livePoints;// pkt życia w jednym życiu :P
       
         private HealthBar healthBar;
         enum Checkpoint
@@ -58,6 +58,7 @@ namespace ThePlatformer
             Bullet bullet1 = new Bullet();
             bullet1.Load(Content);
             healthBar = new HealthBar(Content);
+            livePoints = HealthBar.fullHealth;
         }
         public void Update(GameTime gameTime, GraphicsDevice graphics)
         {
@@ -70,7 +71,20 @@ namespace ThePlatformer
             destroyBullet();
 
             healthBar.Update(setHealthBarPosition());
-
+            checkCurrentLifeStatus();
+        }
+        private void checkCurrentLifeStatus()
+        {
+            if (livePoints <= 0 && lives > 1)
+            {
+                lives--;
+                livePoints = HealthBar.fullHealth;
+                healthBar.restartHealthBar();
+            }
+            else if (lives == 0)
+            {
+                //deaaddd
+            }
         }
         /// <summary>
         /// 
@@ -79,6 +93,7 @@ namespace ThePlatformer
         public void playerGotHurt(int hurtAmount)
         {
             healthBar.updateHealthStatus(hurtAmount);
+            livePoints = healthBar.currentHealth;
         }
         private Vector2 setHealthBarPosition()
         {

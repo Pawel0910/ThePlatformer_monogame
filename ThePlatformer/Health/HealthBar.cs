@@ -13,8 +13,9 @@ namespace ThePlatformer.Health
     {
         private Texture2D container, lifeBar;
         private Vector2 position;
-        private int fullHealth;
-        private int currentHealth;
+        public static int fullHealth;
+        public int currentHealth;
+        private Color healthBarColor=Color.Green;
         public HealthBar(ContentManager content)
         {
             LoadContent(content);
@@ -45,15 +46,29 @@ namespace ThePlatformer.Health
                 currentHealth = (int)(percent-amountToChange);
                 currentHealth = (int)(((double)currentHealth * fullHealth)/100);
             }
+            colorSwitcher();
+        }
+        private void colorSwitcher()
+        {
+            int lifeInPercent = (int)((double)currentHealth / fullHealth * 100);
+            if (lifeInPercent > 80)
+                healthBarColor = Color.Green;
+            else if (lifeInPercent > 50)
+                healthBarColor = Color.Yellow;
+            else if (lifeInPercent > 30)
+                healthBarColor = Color.Orange;
+            else if (lifeInPercent >= 20)
+                healthBarColor = Color.Red;
         }
         public void restartHealthBar()
         {
             currentHealth = fullHealth;
+            healthBarColor = Color.Green;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(lifeBar, position, new Rectangle((int)position.X,(int)position.Y,currentHealth,lifeBar.Height),
-                Color.LightGreen);
+                healthBarColor);
             spriteBatch.Draw(container, position, Color.White);
         }
     }
