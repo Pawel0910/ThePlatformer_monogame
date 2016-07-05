@@ -17,7 +17,6 @@ namespace ThePlatformer.Health
         private int currentHealth=80;
         public HealthBar(ContentManager content)
         {
-            position = new Vector2(100, 100);
             LoadContent(content);
             fullHealth = lifeBar.Width;
         }
@@ -26,14 +25,14 @@ namespace ThePlatformer.Health
             container = content.Load<Texture2D>("healthContainer");
             lifeBar = content.Load<Texture2D>("healthBar"); 
         }
-        public void Update()
+        public void Update(Vector2 position)
         {
-
+            this.position = position;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(lifeBar, position, new Rectangle((int)position.X,(int)position.Y,currentHealth,lifeBar.Height),
-                Color.White);
+                Color.LightGreen);
             spriteBatch.Draw(container, position, Color.White);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using System.Diagnostics;
 using TexturePackerLoader;
 using ThePlatformer.Enemies;
@@ -29,9 +30,8 @@ namespace ThePlatformer
         SpriteSheet spriteSheet;
         SpriteRender spriteRender;
         bool pause = false;
-
-
-        HealthBar health;
+        int screenWidth, screenHeight;
+        
         enum GameState
         {
             MainMenu,
@@ -41,7 +41,6 @@ namespace ThePlatformer
             Restart
         }
         GameState CurrentGameState = GameState.MainMenu;
-        int screenWidth, screenHeight;
 
         cButton btnPlay;
         cButton backToGameButton,exitButton;
@@ -107,15 +106,14 @@ namespace ThePlatformer
             //graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             Debug.Write(graphics.PreferredBackBufferWidth);
             // graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-           // graphics.IsFullScreen = true;
+            graphics.IsFullScreen = true;
            // graphics.ApplyChanges();
-            IsMouseVisible = true;
+           // IsMouseVisible = true;
 
             btnPlay = new cButton(Content.Load<Texture2D>("button"),graphics.GraphicsDevice);
             backToGameButton = new cButton(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
             exitButton = new cButton(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
-
-            health = new HealthBar(Content);
+            
 
         }
 
@@ -144,10 +142,15 @@ namespace ThePlatformer
                     playerTxtPacker.Update(gameTime);
 
                     IsMouseVisible = true;
+                    var touchPanelState = TouchPanel.GetState();
+                    if (touchPanelState.Count >= 1)
+                    {
+                        CurrentGameState = GameState.Playing;
+
+                    }
                     if (btnPlay.isClicked == true) CurrentGameState = GameState.Playing;
                     btnPlay.Update(mouse);
                     mainMenu.Update(gameTime);
-
                     // camera.Update(new Vector2(screenWidth/2, screenHight/2), map.Width, map.Height);
                     break;
 #endregion
@@ -160,7 +163,7 @@ namespace ThePlatformer
                         pause = true;
                         CurrentGameState = GameState.Pause;
                     }
-                    marcoPlayer.Update(gameTime);
+                    marcoPlayer.Update(gameTime,GraphicsDevice);
                     //marcoPlayer.isCrossedMap(map.Width, map.Height);
                     normalEnemy.Update(gameTime);
                     mojEnemy.Update(gameTime);
@@ -170,9 +173,7 @@ namespace ThePlatformer
                         normalEnemy.Collision(tile.Rectangle, map.Width, map.Height);
                         mojEnemy.Collision(tile.Rectangle, map.Width, map.Height);
                         camera.Update(marcoPlayer.Position, map.Width, map.Height);
-
                     }
-
                     player.Update(gameTime);
                     #region Bullet collision with Enemies
                     if (marcoPlayer.bulletCollisionWithNormalEnemy(normalEnemy))
@@ -187,7 +188,6 @@ namespace ThePlatformer
                         normalEnemy.texture = Content.Load<Texture2D>("tile1");
 
                     }
-                    health.Update();
                     #endregion
                     break;
 #endregion
@@ -266,7 +266,7 @@ namespace ThePlatformer
                     normalEnemy.Draw(spriteBatch);
                     mojEnemy.Draw(spriteBatch);
                     player.Draw(spriteBatch, new Vector2(200, 200));
-                    health.Draw(spriteBatch);
+                    
                    // playerTxtPacker.DrawMoja(spriteBatch, new Vector2(100, 100));
                     break;
                     #endregion
@@ -278,6 +278,7 @@ namespace ThePlatformer
         }
         protected Vector2 getXYtoDrawMenu()
         {
+            
             int a = GraphicsDevice.Viewport.Height;
             screenHeight = GraphicsDevice.Viewport.Height;
             screenWidth = GraphicsDevice.Viewport.Width;
