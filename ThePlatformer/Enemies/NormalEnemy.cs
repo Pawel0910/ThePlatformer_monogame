@@ -46,6 +46,7 @@ namespace ThePlatformer
             {
                 velocity.Y += 0.4f;
             }
+            //base.Update(gameTime) ;
         }
     }
 }

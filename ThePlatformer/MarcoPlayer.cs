@@ -113,6 +113,7 @@ namespace ThePlatformer
                 velocity.Y = -9f;
                 hasJumped = true;
             }
+            //strzelanie
             startTime += gameTime.ElapsedGameTime.Milliseconds;
             if (Keyboard.GetState().IsKeyDown(Keys.LeftControl))
             {
