@@ -34,6 +34,7 @@ namespace ThePlatformer
             Options,
             Playing,
             Pause,
+            Restart
         }
         GameState CurrentGameState = GameState.MainMenu;
         int screenWidth, screenHeight;
@@ -76,7 +77,7 @@ namespace ThePlatformer
             mainMenu = new MainMenu();
            // mainMenu = new MainMenu(Content.Load<Texture2D>("menu/"));
             camera = new Camera(GraphicsDevice.Viewport);
-
+            #region Map initialize
             Tile.Content = Content;
             map.Generate(new int[,]
             {
@@ -90,6 +91,7 @@ namespace ThePlatformer
                 {2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2},
                 {2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2},
             }, 80);
+            #endregion
             marcoPlayer = new MarcoPlayer(map.Width,map.Height);
             marcoPlayer.Load(Content);
             normalEnemy.Load(Content,"idle2", new Vector2(60, 10));
@@ -130,6 +132,7 @@ namespace ThePlatformer
 
             switch (CurrentGameState)
             {
+                #region MainMen update
                 case GameState.MainMenu:
                     playerTxtPacker.Update(gameTime);
 
@@ -140,6 +143,8 @@ namespace ThePlatformer
 
                     // camera.Update(new Vector2(screenWidth/2, screenHight/2), map.Width, map.Height);
                     break;
+#endregion
+                #region Playing update
                 case GameState.Playing:
                     IsMouseVisible = false;
                     Mouse.SetPosition(0, 0);
@@ -162,13 +167,23 @@ namespace ThePlatformer
                     }
 
                     player.Update(gameTime);
-
-                   if (marcoPlayer.bulletCollisionWithNormalEnemy(normalEnemy))
+                    #region Bullet collision with Enemies
+                    if (marcoPlayer.bulletCollisionWithNormalEnemy(normalEnemy))
                     {
                         normalEnemy.texture = Content.Load<Texture2D>("tile1");
 
                     }
+                    #endregion
+                    #region Bullet collision with Player
+                    if (mojEnemy.bulletCollisionWithPlayer())
+                    {
+                        normalEnemy.texture = Content.Load<Texture2D>("tile1");
+
+                    }
+                    #endregion
                     break;
+#endregion
+                #region Pause update
                 case GameState.Pause:
                     IsMouseVisible = true;
                     if (backToGameButton.isClicked == true)
@@ -180,13 +195,13 @@ namespace ThePlatformer
                     if (exitButton.isClicked == true) Exit();
                     exitButton.Update(mouse);
                     break;
-
+#endregion
             }
-            
+
 
             base.Update(gameTime);
         }
-
+        
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -197,6 +212,7 @@ namespace ThePlatformer
             
             switch (CurrentGameState)
             {
+                #region MainMenu Draw
                 case GameState.MainMenu:
                     GraphicsDevice.Clear(Color.White);
                     spriteBatch.Begin();
@@ -210,6 +226,8 @@ namespace ThePlatformer
                     btnPlay.Draw(spriteBatch);
                     //this.spriteSheet.Sprite(PlayerAnimationLists.drawMenuStart(), new Vector2(200, 200));
                     break;
+                #endregion
+                #region Pause Draw
                 case GameState.Pause:
                     GraphicsDevice.Clear(Color.White);
                     spriteBatch.Begin();
@@ -221,6 +239,8 @@ namespace ThePlatformer
 
                     exitButton.Draw(spriteBatch);
                     break;
+                #endregion
+                #region Playing Draw
                 case GameState.Playing:
                     
                     spriteBatch.Begin(SpriteSortMode.Deferred,
@@ -240,9 +260,9 @@ namespace ThePlatformer
                     player.Draw(spriteBatch, new Vector2(200, 200));
                    // playerTxtPacker.DrawMoja(spriteBatch, new Vector2(100, 100));
                     break;
-
+                    #endregion
             }
-            
+
             // TODO: Add your drawing code here
             spriteBatch.End();
             base.Draw(gameTime);

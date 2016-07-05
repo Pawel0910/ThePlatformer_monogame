@@ -15,7 +15,6 @@ namespace ThePlatformer.Enemies
         private float playerPosX, distanceToSeePlayer = 100;
         private bool isLeft = false;
         private float bulletDistance = 500;
-        public List<Bullet> bulletList = new List<Bullet>();
         public float startTime = 0, delayBetweenBulletShots = 1000;
         public int maxBulletCount = 3;
 
@@ -53,10 +52,8 @@ namespace ThePlatformer.Enemies
                     startTime = 0;
                 }
             }
-            {
-
-            }
         }
+        
         private void rotation()
         {
             if(rectangle.X<playerPosX)

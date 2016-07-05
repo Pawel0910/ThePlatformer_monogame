@@ -15,6 +15,7 @@ namespace ThePlatformer.Enemies
         public Texture2D texture;
         public Vector2 velocity, position = new Vector2(10, 10);
         public bool hasJumped = false, canTeleport = false;
+        public List<Bullet> bulletList = new List<Bullet>();
         public void Load(ContentManager Content,String path)
         {
             texture = Content.Load<Texture2D>(path);
@@ -73,11 +74,24 @@ namespace ThePlatformer.Enemies
             this.rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
             hasJumped = false;
             canTeleport = false;
+            bulletList = new List<Bullet>();
 
         }
         virtual public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
+        }
+        public bool bulletCollisionWithPlayer()
+        {
+            for (int i = 0; i < bulletList.Count; i++)
+            {
+                if (bulletList[i].rectangle.Intersects(MarcoPlayer.rectangle))
+                {
+                    bulletList.RemoveAt(i);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
