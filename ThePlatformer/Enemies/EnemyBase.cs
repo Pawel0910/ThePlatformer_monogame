@@ -66,6 +66,15 @@ namespace ThePlatformer.Enemies
             if (position.X < 0) position.X = 0;
             if (position.X > xOffset - rectangle.Width) position.X = xOffset - rectangle.Width;
         }
+        virtual public void restart()
+        {
+            position = new Vector2(10, 10);
+            this.velocity = new Vector2();
+            this.rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+            hasJumped = false;
+            canTeleport = false;
+
+        }
         virtual public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);

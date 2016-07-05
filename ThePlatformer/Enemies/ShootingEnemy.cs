@@ -14,8 +14,10 @@ namespace ThePlatformer.Enemies
         private SpriteEffects flip;
         private float playerPosX, distanceToSeePlayer = 100;
         private bool isLeft = false;
+        private float bulletDistance = 500;
         public List<Bullet> bulletList = new List<Bullet>();
-        public float startTime = 0, delayBetweenBulletShots = 500;
+        public float startTime = 0, delayBetweenBulletShots = 1000;
+        public int maxBulletCount = 3;
 
         public override void Update(GameTime gameTime)
         {
@@ -26,11 +28,11 @@ namespace ThePlatformer.Enemies
             for (int i = 0; i < bulletList.Count; i++)
             {
                 bulletList[i].Update();
-                //if (bulletList[i].position.X - bulletList[i].startPos.X > bulletDistance ||
-                //    bulletList[i].startPos.X - bulletList[i].position.X > bulletDistance)
-                //{
-                //    bulletList.RemoveAt(i);
-                //}
+                if (bulletList[i].position.X - bulletList[i].startPos.X > bulletDistance ||
+                    bulletList[i].startPos.X - bulletList[i].position.X > bulletDistance)
+                {
+                    bulletList.RemoveAt(i);
+                }
             }
         }
         private void shooting(GameTime gameTime)
@@ -44,7 +46,7 @@ namespace ThePlatformer.Enemies
             if (rectangle.X-distanceToSeePlayer<playerPosX&&playerPosX<rectangle.X||
                 playerPosX>rectangle.X&&rectangle.X+distanceToSeePlayer>playerPosX)
             {
-                if (startTime > delayBetweenBulletShots)
+                if (startTime > delayBetweenBulletShots && bulletList.Count< maxBulletCount)
                 {
                     Bullet bullet = new Bullet(position, isLeft);
                     bulletList.Add(bullet);
