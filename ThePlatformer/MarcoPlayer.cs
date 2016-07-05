@@ -127,7 +127,7 @@ namespace ThePlatformer
             }
             //TO DO :
         }
-        public bool bulletCollisionWithNormalEnemy(NormalEnemy enemy)
+        public bool bulletCollisionWithNormalEnemy(EnemyBase enemy)
         {
             for (int i = 0; i < bulletList.Count; i++)
             {

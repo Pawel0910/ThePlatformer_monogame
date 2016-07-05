@@ -106,13 +106,15 @@
     <Compile Include="Content\menu\mainMenu.cs" />
     <Compile Include="Content\PlayerAnimation\IdlePlayer.cs" />
     <Compile Include="Enemies\Bullet.cs" />
+    <Compile Include="Enemies\EnemyBase.cs" />
+    <Compile Include="Enemies\ShootingEnemy.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Game1.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MarcoPlayer.cs" />
-    <Compile Include="NormalEnemy.cs" />
+    <Compile Include="Enemies\NormalEnemy.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerAnimationLists.cs" />
     <Compile Include="PlayerTexturePackerTest.cs" />

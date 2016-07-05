@@ -23,7 +23,8 @@ namespace ThePlatformer
         private PlayerTexturePackerTest playerTxtPacker;
         private MainMenu mainMenu;
         MarcoPlayer marcoPlayer;
-        NormalEnemy normalEnemy;
+        EnemyBase normalEnemy;
+        EnemyBase mojEnemy;
         SpriteSheet spriteSheet;
         SpriteRender spriteRender;
         bool pause = false;
@@ -55,6 +56,7 @@ namespace ThePlatformer
         {
             map = new Map();
             normalEnemy = new NormalEnemy();
+            mojEnemy = new ShootingEnemy();
             base.Initialize();
         }
 
@@ -90,7 +92,8 @@ namespace ThePlatformer
             }, 80);
             marcoPlayer = new MarcoPlayer(map.Width,map.Height);
             marcoPlayer.Load(Content);
-            normalEnemy.Load(Content);
+            normalEnemy.Load(Content,"idle2", new Vector2(60, 10));
+            mojEnemy.Load(Content, "idle1", new Vector2(120, 10));
             SpriteSheetLoader spriteSheetLoader = new SpriteSheetLoader(this.Content);
             this.spriteSheet = spriteSheetLoader.Load("CapGuyDemo.png");
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -148,11 +151,12 @@ namespace ThePlatformer
                     marcoPlayer.Update(gameTime);
                     //marcoPlayer.isCrossedMap(map.Width, map.Height);
                     normalEnemy.Update(gameTime);
-
+                    mojEnemy.Update(gameTime);
                     foreach (CollisionTile tile in map.CollisionTiles)
                     {
                         marcoPlayer.Collision(tile.Rectangle, map.Width, map.Height);
                         normalEnemy.Collision(tile.Rectangle, map.Width, map.Height);
+                        mojEnemy.Collision(tile.Rectangle, map.Width, map.Height);
                         camera.Update(marcoPlayer.Position, map.Width, map.Height);
 
                     }
@@ -232,6 +236,7 @@ namespace ThePlatformer
                     map.Draw(spriteBatch);
                     marcoPlayer.Draw(spriteBatch);
                     normalEnemy.Draw(spriteBatch);
+                    mojEnemy.Draw(spriteBatch);
                     player.Draw(spriteBatch, new Vector2(200, 200));
                    // playerTxtPacker.DrawMoja(spriteBatch, new Vector2(100, 100));
                     break;
