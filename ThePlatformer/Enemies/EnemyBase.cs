@@ -16,6 +16,7 @@ namespace ThePlatformer.Enemies
         public Vector2 velocity, position = new Vector2(10, 10);
         public bool hasJumped = false, canTeleport = false;
         public List<Bullet> bulletList = new List<Bullet>();
+        public int bulletStrengthHit = 100;
         public void Load(ContentManager Content,String path)
         {
             texture = Content.Load<Texture2D>(path);
@@ -37,7 +38,7 @@ namespace ThePlatformer.Enemies
             }
         }
 
-        public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+        public void CollisionMap(Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (rectangle.TouchTopOf(newRectangle))
             {
@@ -81,13 +82,22 @@ namespace ThePlatformer.Enemies
         {
             spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
         }
-        public bool bulletCollisionWithPlayer()
+        public void allCollisionWithPlayer(MarcoPlayer player)
+        {
+            if (bulletCollisionWithPlayer())
+            {
+                if (player.currentLifeNumber > 0)
+                    player.playerGotHurt(bulletStrengthHit);
+            }
+        }
+        private bool bulletCollisionWithPlayer()
         {
             for (int i = 0; i < bulletList.Count; i++)
             {
                 if (bulletList[i].rectangle.Intersects(MarcoPlayer.rectangle))
                 {
                     bulletList.RemoveAt(i);
+                    
                     return true;
                 }
             }

@@ -170,8 +170,8 @@ namespace ThePlatformer
                     foreach (CollisionTile tile in map.CollisionTiles)
                     {
                         marcoPlayer.Collision(tile.Rectangle, map.Width, map.Height);
-                        normalEnemy.Collision(tile.Rectangle, map.Width, map.Height);
-                        mojEnemy.Collision(tile.Rectangle, map.Width, map.Height);
+                        normalEnemy.CollisionMap(tile.Rectangle, map.Width, map.Height);
+                        mojEnemy.CollisionMap(tile.Rectangle, map.Width, map.Height);
                         camera.Update(marcoPlayer.Position, map.Width, map.Height);
                     }
                     player.Update(gameTime);
@@ -183,11 +183,7 @@ namespace ThePlatformer
                     }
                     #endregion
                     #region Bullet collision with Player
-                    if (mojEnemy.bulletCollisionWithPlayer())
-                    {
-                        normalEnemy.texture = Content.Load<Texture2D>("tile1");
-
-                    }
+                    mojEnemy.allCollisionWithPlayer(marcoPlayer);
                     #endregion
                     break;
 #endregion

@@ -13,7 +13,7 @@ using ThePlatformer.Health;
 
 namespace ThePlatformer
 {
-    class MarcoPlayer
+    public class MarcoPlayer
     {
         private TouchCollection touchCollection = TouchPanel.GetState();
         private Texture2D texture;
@@ -22,15 +22,17 @@ namespace ThePlatformer
         private Vector2 origin;
         private SpriteEffects flip;
         private bool isLeft = false, isRight = true;
-        public int bulletDistance=200;
+        public int bulletDistance = 200;
         public static Rectangle rectangle;
         public static int mapWidth, mapHeight;
-        public static int lives = 3;
-        public bool hasJumped = false, dead=false;
+        public bool hasJumped = false, dead = false;
         public List<Bullet> bulletList = new List<Bullet>();
         public float startTime = 0, delayBetweenBulletShots = 100;
         private int screenWidth, screenHeight;
-
+        public int currentLifeNumber { get; set; }
+        public int lives = 3;
+        public int livePoints = 100;//100 pkt życia w jednym życiu :P
+      
         private HealthBar healthBar;
         enum Checkpoint
         {
@@ -47,6 +49,7 @@ namespace ThePlatformer
         public MarcoPlayer(int mapWidth1, int mapHeight1) {
             mapHeight = mapHeight1;
             mapWidth = mapWidth1;
+            currentLifeNumber = lives;
         }
 
         public void Load(ContentManager Content)
@@ -68,6 +71,14 @@ namespace ThePlatformer
 
             healthBar.Update(setHealthBarPosition());
 
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hurtAmount">Ilość procentowa do odjęcia z healthBara</param>
+        public void playerGotHurt(int hurtAmount)
+        {
+            healthBar.updateHealthStatus(hurtAmount);
         }
         private Vector2 setHealthBarPosition()
         {
