@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
 using TexturePackerLoader;
 using ThePlatformer.Enemies;
+using ThePlatformer.Health;
 using ThePlatformer.View.Menu;
 
 namespace ThePlatformer
@@ -28,6 +29,9 @@ namespace ThePlatformer
         SpriteSheet spriteSheet;
         SpriteRender spriteRender;
         bool pause = false;
+
+
+        HealthBar health;
         enum GameState
         {
             MainMenu,
@@ -110,6 +114,9 @@ namespace ThePlatformer
             btnPlay = new cButton(Content.Load<Texture2D>("button"),graphics.GraphicsDevice);
             backToGameButton = new cButton(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
             exitButton = new cButton(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
+
+            health = new HealthBar(Content);
+
         }
 
         /// <summary>
@@ -180,6 +187,7 @@ namespace ThePlatformer
                         normalEnemy.texture = Content.Load<Texture2D>("tile1");
 
                     }
+                    health.Update();
                     #endregion
                     break;
 #endregion
@@ -258,6 +266,7 @@ namespace ThePlatformer
                     normalEnemy.Draw(spriteBatch);
                     mojEnemy.Draw(spriteBatch);
                     player.Draw(spriteBatch, new Vector2(200, 200));
+                    health.Draw(spriteBatch);
                    // playerTxtPacker.DrawMoja(spriteBatch, new Vector2(100, 100));
                     break;
                     #endregion
