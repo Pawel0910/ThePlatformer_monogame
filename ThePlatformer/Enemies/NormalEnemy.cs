@@ -22,31 +22,13 @@ namespace ThePlatformer
                 position.X = MarcoPlayer.rectangle.X + 300;
                 position.Y = -20;
             }
-            //    startTime += gameTime.ElapsedGameTime.Milliseconds;
-            //    if (startTime > 3500)
-            //    {
-            //        if (canTeleport)
-            //        {
-            //            position += new Vector2(100, 0);
-            //            position.Y = 0;
-            //        //canTeleport = false - bedzie woczas ustawiany w updatcie kolizji
-            //    }
-            //    startTime = 0;
-            //}
-            //running away before player
             if (rectangle.X - MarcoPlayer.rectangle.X < distanceToPlayer)
             {
                 position += new Vector2(4, 0);
             }
-            //zmiana pozycji
-            position += velocity;
-            rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
-            //grawitacaj
-            if (velocity.Y < 10)
-            {
-                velocity.Y += 0.4f;
-            }
-            //base.Update(gameTime) ;
+            
+            base.Update(gameTime);
         }
+        
     }
 }

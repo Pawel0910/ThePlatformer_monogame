@@ -7,6 +7,8 @@ using TexturePackerLoader;
 using ThePlatformer.Enemies;
 using ThePlatformer.Health;
 using ThePlatformer.View.Menu;
+using System.Collections.Generic;
+
 
 namespace ThePlatformer
 {
@@ -25,12 +27,13 @@ namespace ThePlatformer
         private PlayerTexturePackerTest playerTxtPacker;
         private MainMenu mainMenu;
         MarcoPlayer marcoPlayer;
-        EnemyBase normalEnemy;
-        EnemyBase mojEnemy;
+        public List<EnemyBase> enemiesList = new List<EnemyBase>();
         SpriteSheet spriteSheet;
         SpriteRender spriteRender;
         bool pause = false;
         int screenWidth, screenHeight;
+        SpriteFont font;
+        int score;
         
         enum GameState
         {
@@ -59,8 +62,11 @@ namespace ThePlatformer
         protected override void Initialize()
         {
             map = new Map();
-            normalEnemy = new NormalEnemy();
-            mojEnemy = new ShootingEnemy();
+           // normalEnemy = new NormalEnemy();
+           // mojEnemy = new ShootingEnemy();
+           // moj1Enemy = new ShootingEnemy();
+            enemiesList.Add(new NormalEnemy());
+            enemiesList.Add(new ShootingEnemy());
             base.Initialize();
         }
 
@@ -97,8 +103,14 @@ namespace ThePlatformer
             #endregion
             marcoPlayer = new MarcoPlayer(map.Width,map.Height);
             marcoPlayer.Load(Content);
-            normalEnemy.Load(Content,"idle2", new Vector2(60, 10));
-            mojEnemy.Load(Content, "idle1", new Vector2(120, 10));
+           // normalEnemy.Load(Content,"idle2", new Vector2(60, 10));
+            //mojEnemy.Load(Content, "idle1", new Vector2(120, 10));
+            //moj1Enemy.Load(Content, "idle1", new Vector2(200, 10));
+            foreach(EnemyBase enemy in enemiesList)
+            {
+                enemy.Load(Content, "idle3", new Vector2(150, 10));
+            }
+
             SpriteSheetLoader spriteSheetLoader = new SpriteSheetLoader(this.Content);
             this.spriteSheet = spriteSheetLoader.Load("CapGuyDemo.png");
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -165,26 +177,39 @@ namespace ThePlatformer
                     }
                     marcoPlayer.Update(gameTime,GraphicsDevice);
                     //marcoPlayer.isCrossedMap(map.Width, map.Height);
-                    normalEnemy.Update(gameTime);
-                    mojEnemy.Update(gameTime);
+                   // normalEnemy.Update(gameTime);
+                   // mojEnemy.Update(gameTime);
+                   // moj1Enemy.Update(gameTime);
+                    foreach(EnemyBase enemy in enemiesList)
+                    {
+                        enemy.Update(gameTime);
+                    }
                     foreach (CollisionTile tile in map.CollisionTiles)
                     {
                         marcoPlayer.Collision(tile.Rectangle, map.Width, map.Height);
-                        normalEnemy.CollisionMap(tile.Rectangle, map.Width, map.Height);
-                        mojEnemy.CollisionMap(tile.Rectangle, map.Width, map.Height);
+                       // normalEnemy.CollisionMap(tile.Rectangle, map.Width, map.Height);
+                      //  mojEnemy.CollisionMap(tile.Rectangle, map.Width, map.Height);
+                       // moj1Enemy.CollisionMap(tile.Rectangle, map.Width, map.Height);
+                        foreach (EnemyBase enemy in enemiesList)
+                        {
+                            enemy.CollisionMap(tile.Rectangle, map.Width, map.Height);
+                        }
+
                         camera.Update(marcoPlayer.Position, map.Width, map.Height);
                     }
                     player.Update(gameTime);
-                    #region Bullet collision with Enemies
-                    if (marcoPlayer.bulletCollisionWithNormalEnemy(normalEnemy))
+                    #region Bullet collisiona with Player
+                   // mojEnemy.allCollisionWithPlayer(marcoPlayer);
+                   // moj1Enemy.allCollisionWithPlayer(marcoPlayer);
+                    foreach (EnemyBase enemy in enemiesList)
                     {
-                        normalEnemy.texture = Content.Load<Texture2D>("tile1");
-
+                        enemy.allCollisionWithPlayer(marcoPlayer);
+                        marcoPlayer.allCollisionsWithEnemies(enemy);
                     }
+                    // marcoPlayer.allCollisionsWithEnemies(mojEnemy);
+
                     #endregion
-                    #region Bullet collision with Player
-                    mojEnemy.allCollisionWithPlayer(marcoPlayer);
-                    #endregion
+                    deleteDeadEnemiesFromGame();
                     break;
 #endregion
                 #region Pause update
@@ -201,11 +226,19 @@ namespace ThePlatformer
                     break;
 #endregion
             }
-
-
+            
             base.Update(gameTime);
         }
-        
+        private void deleteDeadEnemiesFromGame()
+        {
+            for(int i = 0; i < enemiesList.Count; i++)
+            {
+                if (enemiesList[i].isDead)
+                {
+                    enemiesList.RemoveAt(i);
+                }
+            }
+        }
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -259,8 +292,13 @@ namespace ThePlatformer
 
                     map.Draw(spriteBatch);
                     marcoPlayer.Draw(spriteBatch);
-                    normalEnemy.Draw(spriteBatch);
-                    mojEnemy.Draw(spriteBatch);
+                    //normalEnemy.Draw(spriteBatch);
+                   // mojEnemy.Draw(spriteBatch);
+                   // moj1Enemy.Draw(spriteBatch);
+                    foreach (EnemyBase enemy in enemiesList)
+                    {
+                        enemy.Draw(spriteBatch);
+                    }
                     player.Draw(spriteBatch, new Vector2(200, 200));
                     
                    // playerTxtPacker.DrawMoja(spriteBatch, new Vector2(100, 100));

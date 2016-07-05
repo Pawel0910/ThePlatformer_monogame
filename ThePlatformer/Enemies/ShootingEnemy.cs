@@ -69,20 +69,20 @@ namespace ThePlatformer.Enemies
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1, flip, 0);
+            switch (liveStatus)
+            {
+                case LiveStatus.alive:
+                    spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1, flip, 0);
+                    healthBar.Draw(spriteBatch, scale);
+                    break;
+                case LiveStatus.dead:
+                    break;
+            }
             foreach (Bullet bullet in bulletList)
             {
                 bullet.Draw(spriteBatch);
             }
+            
         }
-        //public override void Update(GameTime gameTime)
-        //{
-        //    //rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
-        //    //grawitacja
-        //    if (velocity.Y < 10)
-        //    {
-        //        velocity.Y += 0.4f;
-        //    }
-        //}
     }
 }

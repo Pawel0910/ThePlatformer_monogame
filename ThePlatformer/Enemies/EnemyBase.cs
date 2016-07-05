@@ -6,38 +6,83 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThePlatformer.Health;
 
 namespace ThePlatformer.Enemies
 {
     public abstract class EnemyBase
     {
+        public float scale = 0.2f;
         public Rectangle rectangle;
         public Texture2D texture;
         public Vector2 velocity, position = new Vector2(10, 10);
         public bool hasJumped = false, canTeleport = false;
         public List<Bullet> bulletList = new List<Bullet>();
-        public int bulletStrengthHit = 100;
+        public int bulletStrengthHit;
+        public int livePoints;
+        public HealthBar healthBar;
+        public bool isDead = false;
+        public enum LiveStatus
+        {
+            alive,
+            dead
+        }
+        public LiveStatus liveStatus = LiveStatus.alive;
         public void Load(ContentManager Content,String path)
         {
             texture = Content.Load<Texture2D>(path);
         }
         public void Load(ContentManager Content,String path, Vector2 startPosition)
         {
-            Load(Content, path);
-            this.position = startPosition;
-            rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+            
+                    Load(Content, path);
+                    this.position = startPosition;
+                    rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+                    bulletStrengthHit = (int)((double)MarcoPlayer.healthBar.fullHealth / 5);
+                    healthBar = new HealthBar(Content);
+                    livePoints = healthBar.fullHealth;
+            
         }
         virtual public void  Update(GameTime gameTime)
         {
+            switch (liveStatus)
+            {
+                case LiveStatus.alive:
+                    myPosition();
+                    gravity();
+                    int healthBarShift = (int)((double)healthBar.fullHealth / 2 * scale);
+                    healthBar.Update(new Vector2(rectangle.X + (texture.Width / 2) - healthBarShift, rectangle.Y - 15));
+                    checkCurrentHealthStatus();
+                    break;
+                case LiveStatus.dead:
+                    if (!isDead)
+                    {
+                        isDead = true;
+                    }
+                    break;
+            }
+        }
+
+        private void myPosition()
+        {
             position += velocity;
             rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+        }
+        private void gravity()
+        {
             //grawitacja
             if (velocity.Y < 10)
             {
                 velocity.Y += 0.4f;
             }
         }
-
+        private void checkCurrentHealthStatus()
+        {
+            if (livePoints <= 0)
+            {
+                liveStatus = LiveStatus.dead;
+            }
+        }
         public void CollisionMap(Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (rectangle.TouchTopOf(newRectangle))
@@ -80,15 +125,33 @@ namespace ThePlatformer.Enemies
         }
         virtual public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
+            switch (liveStatus)
+            {
+                case LiveStatus.alive:
+                    spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    healthBar.Draw(spriteBatch, scale);
+                    break;
+                case LiveStatus.dead:
+                    break;
+            }
         }
         public void allCollisionWithPlayer(MarcoPlayer player)
         {
             if (bulletCollisionWithPlayer())
             {
-                if (player.currentLifeNumber > 0)
+                if (player.lives > 0)
                     player.playerGotHurt(bulletStrengthHit);
             }
+            if (MarcoPlayer.rectangle.Intersects(this.rectangle))
+            {
+                player.playerGotHurt(bulletStrengthHit);
+                player.knockBack(position);
+            }
+        }
+        public void enemyGotHurt(int hurtAmount)
+        {
+            healthBar.updateHealthStatus(hurtAmount);
+            livePoints = healthBar.currentHealth;
         }
         private bool bulletCollisionWithPlayer()
         {

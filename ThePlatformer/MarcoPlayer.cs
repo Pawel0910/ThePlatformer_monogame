@@ -33,7 +33,7 @@ namespace ThePlatformer
         public int lives = 3;
         public int livePoints;// pkt życia w jednym życiu :P
       
-        private HealthBar healthBar;
+        public static HealthBar healthBar;
         enum Checkpoint
         {
             Checkpoint1,
@@ -58,7 +58,7 @@ namespace ThePlatformer
             Bullet bullet1 = new Bullet();
             bullet1.Load(Content);
             healthBar = new HealthBar(Content);
-            livePoints = HealthBar.fullHealth;
+            livePoints = healthBar.fullHealth;
         }
         public void Update(GameTime gameTime, GraphicsDevice graphics)
         {
@@ -78,7 +78,7 @@ namespace ThePlatformer
             if (livePoints <= 0 && lives > 1)
             {
                 lives--;
-                livePoints = HealthBar.fullHealth;
+                livePoints = healthBar.fullHealth;
                 healthBar.restartHealthBar();
             }
             else if (lives == 0)
@@ -183,9 +183,16 @@ namespace ThePlatformer
                 }
                
             }
-            //TO DO :
         }
-        public bool bulletCollisionWithNormalEnemy(EnemyBase enemy)
+        public void allCollisionsWithEnemies(EnemyBase enemy)
+        {
+            if (bulletCollisionWithNormalEnemy(enemy))
+            {
+                int hurtAmount = enemy.healthBar.fullHealth / 2;
+                enemy.enemyGotHurt(hurtAmount);
+            }
+        }
+        private bool bulletCollisionWithNormalEnemy(EnemyBase enemy)
         {
             for (int i = 0; i < bulletList.Count; i++)
             {
@@ -233,6 +240,17 @@ namespace ThePlatformer
                 dead = true;
             }
 
+        }
+        public void knockBack(Vector2 enemyPosition)
+        {
+            if (enemyPosition.X > position.X)
+            {
+                velocity += new Vector2(-80, 0);
+            }
+            else
+            {
+                velocity += new Vector2(80, 0);
+            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ThePlatformer.Health
 {
-    class HealthBar
+    public class HealthBar
     {
         private Texture2D container, lifeBar;
         private Vector2 position;
-        public static int fullHealth;
+        public int fullHealth;
         public int currentHealth;
         private Color healthBarColor=Color.Green;
         public HealthBar(ContentManager content)
@@ -70,6 +70,12 @@ namespace ThePlatformer.Health
             spriteBatch.Draw(lifeBar, position, new Rectangle((int)position.X,(int)position.Y,currentHealth,lifeBar.Height),
                 healthBarColor);
             spriteBatch.Draw(container, position, Color.White);
+        }
+        public void Draw(SpriteBatch spriteBatch, float scale)
+        {
+            spriteBatch.Draw(lifeBar, position, new Rectangle((int)position.X, (int)position.Y, currentHealth, lifeBar.Height),
+               healthBarColor,0f,Vector2.Zero,scale,SpriteEffects.None,0);
+            spriteBatch.Draw(container, position,null, Color.White,0f,Vector2.Zero,scale,SpriteEffects.None,0);
         }
     }
 }
