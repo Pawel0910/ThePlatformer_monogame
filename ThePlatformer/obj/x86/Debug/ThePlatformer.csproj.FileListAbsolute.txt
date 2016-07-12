@@ -619,3 +619,4 @@ C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanows
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\obj\x86\Debug\qualifiers.txt.intermediate
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\obj\x86\Debug\ProjectArchitectures.txt
+C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Content\healthsFont.xnb

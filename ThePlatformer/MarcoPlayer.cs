@@ -29,6 +29,7 @@ namespace ThePlatformer
         public List<Bullet> bulletList = new List<Bullet>();
         public float startTime = 0, delayBetweenBulletShots = 100;
         private int screenWidth, screenHeight;
+        private SpriteFont font;
         public int currentLifeNumber { get; set; }
         public int lives = 3;
         public int livePoints;// pkt życia w jednym życiu :P
@@ -59,6 +60,7 @@ namespace ThePlatformer
             bullet1.Load(Content);
             healthBar = new HealthBar(Content);
             livePoints = healthBar.fullHealth;
+            font = Content.Load<SpriteFont>("healthsFont");
         }
         public void Update(GameTime gameTime, GraphicsDevice graphics)
         {
@@ -72,7 +74,9 @@ namespace ThePlatformer
 
             healthBar.Update(setHealthBarPosition());
             checkCurrentLifeStatus();
+
         }
+        
         private void checkCurrentLifeStatus()
         {
             if (livePoints <= 0 && lives > 1)
@@ -252,10 +256,15 @@ namespace ThePlatformer
                 velocity += new Vector2(80, 0);
             }
         }
+        private Vector2 setLifesFontPosition()
+        {
+            return new Vector2(-screenWidth / 2 + position.X + 10, -screenHeight / 2 + position.Y + 20);
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position,null, Color.White,0f,Vector2.Zero,1,flip,0);
             healthBar.Draw(spriteBatch);
+            spriteBatch.DrawString(font, "Lifes: " + lives, setLifesFontPosition(), Color.Black);
             foreach(Bullet bullet in bulletList)
             {
                 bullet.Draw(spriteBatch);

@@ -125,8 +125,8 @@ namespace ThePlatformer
             btnPlay = new cButton(Content.Load<Texture2D>("button"),graphics.GraphicsDevice);
             backToGameButton = new cButton(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
             exitButton = new cButton(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
-            
 
+            font = Content.Load<SpriteFont>("healthsFont");
         }
 
         /// <summary>
@@ -300,7 +300,7 @@ namespace ThePlatformer
                         enemy.Draw(spriteBatch);
                     }
                     player.Draw(spriteBatch, new Vector2(200, 200));
-                    
+                   // spriteBatch.DrawString(font, "Score: " + score, new Vector2(50, 50), Color.Black);
                    // playerTxtPacker.DrawMoja(spriteBatch, new Vector2(100, 100));
                     break;
                     #endregion

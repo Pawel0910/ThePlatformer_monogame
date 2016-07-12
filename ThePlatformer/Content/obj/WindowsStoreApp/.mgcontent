@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>WindowsStoreApp</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/healthsFont.spritefont</File>
+  </SourceFiles>
+</SourceFileCollection>
