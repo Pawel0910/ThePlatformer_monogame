@@ -41,9 +41,9 @@ namespace ThePlatformer
             Options,
             Playing,
             Pause,
-            Restart
+            DeadMenu
         }
-        public static GameState CurrentGameState = GameState.MainMenu;
+        public static GameState CurrentGameState;
 
         cButton btnPlay;
         cButton backToGameButton,exitButton;
@@ -68,6 +68,7 @@ namespace ThePlatformer
             enemiesList.Add(new NormalEnemy());
             enemiesList.Add(new ShootingEnemy());
             base.Initialize();
+            CurrentGameState = GameState.MainMenu;
         }
 
         /// <summary>
@@ -224,9 +225,25 @@ namespace ThePlatformer
                     if (exitButton.isClicked == true) Exit();
                     exitButton.Update(mouse);
                     break;
-#endregion
+                #endregion
+                #region DeadMenu update
+                case GameState.DeadMenu:
+                    IsMouseVisible = true;
+                    if (backToGameButton.isClicked == true)
+                    {
+                        enemiesList.Clear();
+                        marcoPlayer = null;
+                        camera = null;
+                        Initialize();
+                        LoadContent();
+                    }
+                    backToGameButton.Update(mouse);
+                    if (exitButton.isClicked == true) Exit();
+                    exitButton.Update(mouse);
+                    break;
+                    #endregion
             }
-            
+
             base.Update(gameTime);
         }
         private void deleteDeadEnemiesFromGame()
@@ -277,6 +294,19 @@ namespace ThePlatformer
                     exitButton.Draw(spriteBatch);
                     break;
                 #endregion
+                #region DeadMenu Draw
+                case GameState.DeadMenu:
+                    GraphicsDevice.Clear(Color.White);
+                    spriteBatch.Begin();
+                    Vector2 vector2 = getXYtoDrawMenu();
+                    backToGameButton.setPosition(new Vector2(330 + (int)vector2.Y, 300 + (int)vector2.X));
+
+                    backToGameButton.Draw(spriteBatch);
+                    exitButton.setPosition(new Vector2(330 + (int)vector2.Y, 350 + (int)vector2.X));
+
+                    exitButton.Draw(spriteBatch);
+                    break;
+                #endregion
                 #region Playing Draw
                 case GameState.Playing:
                     
@@ -309,10 +339,6 @@ namespace ThePlatformer
             // TODO: Add your drawing code here
             spriteBatch.End();
             base.Draw(gameTime);
-        }
-        static public void deadPlayer()
-        {
-            CurrentGameState = GameState.MainMenu;
         }
         protected Vector2 getXYtoDrawMenu()
         {

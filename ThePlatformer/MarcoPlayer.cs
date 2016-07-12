@@ -17,7 +17,7 @@ namespace ThePlatformer
     {
         private TouchCollection touchCollection = TouchPanel.GetState();
         private Texture2D texture;
-        private static Vector2 position = new Vector2(16, 38);
+        private static Vector2 position;
         private Vector2 velocity;
         private Vector2 origin;
         private SpriteEffects flip;
@@ -56,7 +56,9 @@ namespace ThePlatformer
 
         public void Load(ContentManager Content)
         {
+            position = new Vector2(16, 38);
             texture = Content.Load<Texture2D>("idle1");
+
             Bullet bullet1 = new Bullet();
             bullet1.Load(Content);
             healthBar = new HealthBar(Content);
@@ -85,9 +87,9 @@ namespace ThePlatformer
                 livePoints = healthBar.fullHealth;
                 healthBar.restartHealthBar();
             }
-            else if (lives == 1)
+            else if (lives == 0)
             {
-                Game1.CurrentGameState = Game1.GameState.MainMenu;
+                Game1.CurrentGameState = Game1.GameState.DeadMenu;
             }
         }
         /// <summary>
@@ -237,12 +239,14 @@ namespace ThePlatformer
         }
         public void isCrossedMap()
         {
-            if (position.Y > mapHeight - rectangle.Height&&!dead)
+            if (position.Y > mapHeight - rectangle.Height)
             {
                 position.Y = 20;
                 position.X = 38;
                 lives--;
-                dead = true;
+                livePoints = healthBar.fullHealth;
+                healthBar.restartHealthBar();
+                // dead = true;
             }
 
         }
