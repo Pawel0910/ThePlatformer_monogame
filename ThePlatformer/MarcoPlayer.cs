@@ -72,7 +72,7 @@ namespace ThePlatformer
             checkpointManager();
             destroyBullet();
 
-            healthBar.Update(setHealthBarPosition());
+           // healthBar.Update(setHealthBarPosition());
             checkCurrentLifeStatus();
 
         }
@@ -263,7 +263,7 @@ namespace ThePlatformer
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position,null, Color.White,0f,Vector2.Zero,1,flip,0);
-            healthBar.Draw(spriteBatch);
+            healthBar.Draw(spriteBatch,setHealthBarPosition());
             spriteBatch.DrawString(font, "Lifes: " + lives, setLifesFontPosition(), Color.Black);
             foreach(Bullet bullet in bulletList)
             {

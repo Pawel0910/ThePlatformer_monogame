@@ -65,7 +65,7 @@ namespace ThePlatformer.Health
             currentHealth = fullHealth;
             healthBarColor = Color.Green;
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch,Vector2 position)
         {
             spriteBatch.Draw(lifeBar, position, new Rectangle((int)position.X,(int)position.Y,currentHealth,lifeBar.Height),
                 healthBarColor);
