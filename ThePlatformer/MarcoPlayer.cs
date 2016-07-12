@@ -30,6 +30,7 @@ namespace ThePlatformer
         public float startTime = 0, delayBetweenBulletShots = 100;
         private int screenWidth, screenHeight;
         private SpriteFont font;
+        public int score;
         public int currentLifeNumber { get; set; }
         public int lives = 3;
         public int livePoints;// pkt życia w jednym życiu :P
@@ -71,8 +72,7 @@ namespace ThePlatformer
             gravity();
             checkpointManager();
             destroyBullet();
-
-           // healthBar.Update(setHealthBarPosition());
+            
             checkCurrentLifeStatus();
 
         }
@@ -85,9 +85,9 @@ namespace ThePlatformer
                 livePoints = healthBar.fullHealth;
                 healthBar.restartHealthBar();
             }
-            else if (lives == 0)
+            else if (lives == 1)
             {
-                //deaaddd
+                Game1.CurrentGameState = Game1.GameState.MainMenu;
             }
         }
         /// <summary>
@@ -192,6 +192,7 @@ namespace ThePlatformer
         {
             if (bulletCollisionWithNormalEnemy(enemy))
             {
+                score += 20;
                 int hurtAmount = enemy.healthBar.fullHealth / 2;
                 enemy.enemyGotHurt(hurtAmount);
             }
@@ -256,15 +257,16 @@ namespace ThePlatformer
                 velocity += new Vector2(80, 0);
             }
         }
-        private Vector2 setLifesFontPosition()
+        private Vector2 setFontPosition(int shiftX,int shiftY)
         {
-            return new Vector2(-screenWidth / 2 + position.X + 10, -screenHeight / 2 + position.Y + 20);
+            return new Vector2(-screenWidth / 2 + position.X + shiftX, -screenHeight / 2 + position.Y + shiftY);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position,null, Color.White,0f,Vector2.Zero,1,flip,0);
             healthBar.Draw(spriteBatch,setHealthBarPosition());
-            spriteBatch.DrawString(font, "Lifes: " + lives, setLifesFontPosition(), Color.Black);
+            spriteBatch.DrawString(font, "Lifes: " + lives, setFontPosition(30,60), Color.Black);
+            spriteBatch.DrawString(font, "Score: " + score, setFontPosition(30,90), Color.Black);
             foreach(Bullet bullet in bulletList)
             {
                 bullet.Draw(spriteBatch);

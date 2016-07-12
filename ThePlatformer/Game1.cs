@@ -35,7 +35,7 @@ namespace ThePlatformer
         SpriteFont font;
         int score;
         
-        enum GameState
+        public enum GameState
         {
             MainMenu,
             Options,
@@ -43,7 +43,7 @@ namespace ThePlatformer
             Pause,
             Restart
         }
-        GameState CurrentGameState = GameState.MainMenu;
+        public static GameState CurrentGameState = GameState.MainMenu;
 
         cButton btnPlay;
         cButton backToGameButton,exitButton;
@@ -309,6 +309,10 @@ namespace ThePlatformer
             // TODO: Add your drawing code here
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+        static public void deadPlayer()
+        {
+            CurrentGameState = GameState.MainMenu;
         }
         protected Vector2 getXYtoDrawMenu()
         {
