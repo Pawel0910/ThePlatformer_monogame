@@ -81,7 +81,7 @@ namespace ThePlatformer
         
         private void checkCurrentLifeStatus()
         {
-            if (livePoints <= 0 && lives > 1)
+            if (livePoints <= 0 && lives > 0)
             {
                 lives--;
                 livePoints = healthBar.fullHealth;
