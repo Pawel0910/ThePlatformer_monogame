@@ -34,14 +34,12 @@ namespace ThePlatformer.Enemies
         }
         public void Load(ContentManager Content,String path, Vector2 startPosition)
         {
-            
                     Load(Content, path);
                     this.position = startPosition;
                     rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
                     bulletStrengthHit = (int)((double)MarcoPlayer.healthBar.fullHealth / 5);
                     healthBar = new HealthBar(Content);
                     livePoints = healthBar.fullHealth;
-            
         }
         virtual public void  Update(GameTime gameTime)
         {

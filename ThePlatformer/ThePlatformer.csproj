@@ -126,6 +126,8 @@
     <Compile Include="SpriteSheet.cs" />
     <Compile Include="SpriteSheetLoader.cs" />
     <Compile Include="Tile.cs" />
+    <Compile Include="Treasures\BaseTreasureAbstract.cs" />
+    <Compile Include="Treasures\TreasureChest.cs" />
     <Compile Include="View\Menu\MainMenu.cs" />
   </ItemGroup>
   <ItemGroup>

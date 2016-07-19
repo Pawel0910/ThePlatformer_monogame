@@ -8,7 +8,7 @@ using ThePlatformer.Enemies;
 using ThePlatformer.Health;
 using ThePlatformer.View.Menu;
 using System.Collections.Generic;
-
+using ThePlatformer.Treasures;
 
 namespace ThePlatformer
 {
@@ -28,6 +28,7 @@ namespace ThePlatformer
         private MainMenu mainMenu;
         MarcoPlayer marcoPlayer;
         public List<EnemyBase> enemiesList = new List<EnemyBase>();
+        private BaseTreasureAbstract treasureChest;
         SpriteSheet spriteSheet;
         SpriteRender spriteRender;
         bool pause = false;
@@ -67,6 +68,7 @@ namespace ThePlatformer
            // moj1Enemy = new ShootingEnemy();
             enemiesList.Add(new NormalEnemy());
             enemiesList.Add(new ShootingEnemy());
+            treasureChest = new TreasureChest();
             base.Initialize();
             CurrentGameState = GameState.MainMenu;
         }
@@ -111,7 +113,7 @@ namespace ThePlatformer
             {
                 enemy.Load(Content, "idle3", new Vector2(150, 10));
             }
-
+            treasureChest.Load(Content, "idle2");
             SpriteSheetLoader spriteSheetLoader = new SpriteSheetLoader(this.Content);
             this.spriteSheet = spriteSheetLoader.Load("CapGuyDemo.png");
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -195,9 +197,11 @@ namespace ThePlatformer
                         {
                             enemy.CollisionMap(tile.Rectangle, map.Width, map.Height);
                         }
-
+                        treasureChest.CollisionMap(tile.Rectangle, map.Width, map.Height);
                         camera.Update(marcoPlayer.Position, map.Width, map.Height);
                     }
+                        treasureChest.Update(gameTime);
+
                     player.Update(gameTime);
                     #region Bullet collisiona with Player
                    // mojEnemy.allCollisionWithPlayer(marcoPlayer);
@@ -311,15 +315,15 @@ namespace ThePlatformer
                 case GameState.Playing:
                     
                     spriteBatch.Begin(SpriteSortMode.Deferred,
-                BlendState.AlphaBlend,
-                null, null, null, null,
-                camera.Transform);
+                       BlendState.AlphaBlend,
+                       null, null, null, null,
+                       camera.Transform);
                     //pauseButton.setPosition(new Vector2(0, 0));
                     //pauseButton.Draw(spriteBatch);
                     //this.spriteRender.Draw(
                     // this.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002),
                     //    new Vector2(350, 530));
-
+                    treasureChest.Draw(spriteBatch);
                     map.Draw(spriteBatch);
                     marcoPlayer.Draw(spriteBatch);
                     //normalEnemy.Draw(spriteBatch);
