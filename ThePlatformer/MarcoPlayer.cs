@@ -17,7 +17,8 @@ namespace ThePlatformer
     {
         private TouchCollection touchCollection = TouchPanel.GetState();
         private Texture2D texture;
-        private static Vector2 position;
+        //private static Vector2 position;
+        public Vector2 position;
         private Vector2 velocity;
         private Vector2 origin;
         private SpriteEffects flip;

@@ -11,18 +11,20 @@ namespace ThePlatformer.Treasures
 {
     public class BaseTreasureAbstract
     {
+        private bool isExist=true;
         public Rectangle rectangle;
         public Texture2D texture;
-        public Vector2 velocity, position = new Vector2(10, 10);//velocity jest, by działała na niego grawitacja
+        public Vector2 velocity, position = new Vector2(100, 10);//velocity jest, by działała na niego grawitacja
         public void Load(ContentManager Content, String path)
         {
             texture = Content.Load<Texture2D>(path);
         }
-        virtual public void Update(GameTime gameTime)
+        virtual public void Update(GameTime gameTime,MarcoPlayer player)
         {
             position += velocity;
             rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
             gravity();
+            treasureCollectCollision(player);
         }
         public void CollisionMap(Rectangle newRectangle, int xOffset, int yOffset)
         {
@@ -51,9 +53,41 @@ namespace ThePlatformer.Treasures
                 velocity.Y += 0.4f;
             }
         }
+
+        public void treasureCollectCollision(MarcoPlayer player)
+        {
+            if (MarcoPlayer.rectangle.TouchTopOf(this.rectangle))
+            {
+                destroyTreasure();
+            }
+            else if (MarcoPlayer.rectangle.TouchLeftOf(this.rectangle))
+            {
+                player.position.X = position.X - rectangle.Width - 2;
+            }
+            else if (MarcoPlayer.rectangle.TouchRightOf(this.rectangle))
+            {
+                player.position.X = position.X + rectangle.Width + 2;
+            }
+        }
+        //public void collisonWithChest(MarcoPlayer player)
+        //{
+        //    if (MarcoPlayer.rectangle.TouchLeftOf(this.rectangle)
+        //    {
+        //        position.X = newRectangle.X - rectangle.Width - 2;
+
+        //    }
+        //}
+        private void destroyTreasure()
+        {
+            isExist = false;
+        }
+
         virtual public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);        
+            if (isExist)
+            {
+                spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
+            }
         }
     }
 }

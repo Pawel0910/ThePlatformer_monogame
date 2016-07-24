@@ -200,7 +200,7 @@ namespace ThePlatformer
                         treasureChest.CollisionMap(tile.Rectangle, map.Width, map.Height);
                         camera.Update(marcoPlayer.Position, map.Width, map.Height);
                     }
-                        treasureChest.Update(gameTime);
+                        treasureChest.Update(gameTime,marcoPlayer);
 
                     player.Update(gameTime);
                     #region Bullet collisiona with Player
