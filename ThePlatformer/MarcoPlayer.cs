@@ -212,6 +212,11 @@ namespace ThePlatformer
             }
             return false;
         }
+        public void giveMeHP()
+        {
+            livePoints = healthBar.fullHealth;
+            healthBar.restartHealthBar();
+        }
         public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (rectangle.TouchTopOf(newRectangle))

@@ -8,6 +8,12 @@ namespace ThePlatformer.Treasures
 {
     public class TreasureChest : BaseTreasureAbstract
     {
-
+        public override void upgrade(MarcoPlayer player)
+        {
+            if (!isExist)
+            {
+                player.giveMeHP();
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace ThePlatformer.Treasures
 {
     public class BaseTreasureAbstract
     {
-        private bool isExist=true;
+        public bool isExist=true;
         public Rectangle rectangle;
         public Texture2D texture;
         public Vector2 velocity, position = new Vector2(100, 10);//velocity jest, by działała na niego grawitacja
@@ -25,7 +25,9 @@ namespace ThePlatformer.Treasures
             rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
             gravity();
             treasureCollectCollision(player);
+            upgrade(player);
         }
+        public virtual void upgrade(MarcoPlayer player) { }
         public void CollisionMap(Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (rectangle.TouchTopOf(newRectangle))
