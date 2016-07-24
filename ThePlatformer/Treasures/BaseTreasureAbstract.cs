@@ -58,6 +58,7 @@ namespace ThePlatformer.Treasures
         {
             if (MarcoPlayer.rectangle.TouchTopOf(this.rectangle))
             {
+                player.velocity += new Vector2(0, -2);
                 destroyTreasure();
             }
             else if (MarcoPlayer.rectangle.TouchLeftOf(this.rectangle))
@@ -69,14 +70,6 @@ namespace ThePlatformer.Treasures
                 player.position.X = position.X + rectangle.Width + 2;
             }
         }
-        //public void collisonWithChest(MarcoPlayer player)
-        //{
-        //    if (MarcoPlayer.rectangle.TouchLeftOf(this.rectangle)
-        //    {
-        //        position.X = newRectangle.X - rectangle.Width - 2;
-
-        //    }
-        //}
         private void destroyTreasure()
         {
             isExist = false;

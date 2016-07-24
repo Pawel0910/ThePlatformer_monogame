@@ -19,7 +19,7 @@ namespace ThePlatformer
         private Texture2D texture;
         //private static Vector2 position;
         public Vector2 position;
-        private Vector2 velocity;
+        public Vector2 velocity;
         private Vector2 origin;
         private SpriteEffects flip;
         private bool isLeft = false, isRight = true;
