@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace ThePlatformer
 {
-    class Tile
+    public class Tile
     {
-        protected Texture2D texture;
+        public Texture2D texture;
         private Rectangle rectangle;
         public Rectangle Rectangle
         {
@@ -32,7 +32,7 @@ namespace ThePlatformer
         }
     }
 
-    class CollisionTile : Tile
+   public class CollisionTile : Tile
     {
         public CollisionTile(int i, Rectangle newRectangle)
         {

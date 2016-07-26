@@ -539,7 +539,6 @@ C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanows
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\SharpDX.Direct3D11.xml
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\SharpDX.MediaFoundation.xml
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\SharpDX.Direct2D1.xml
-C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\obj\x86\Debug\ThePlatformer.csprojResolveAssemblyReference.cache
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\obj\x86\Debug\App.g.i.cs
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\obj\x86\Debug\App.g.cs
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\obj\x86\Debug\GamePage.g.i.cs

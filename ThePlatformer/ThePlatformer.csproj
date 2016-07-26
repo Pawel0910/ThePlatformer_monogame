@@ -100,32 +100,33 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Camera.cs" />
-    <Compile Include="cButton.cs" />
+    <Compile Include="Characters\Enemies\EnemiesManager\EnemiesManager.cs" />
+    <Compile Include="View\Camera\Camera.cs" />
+    <Compile Include="View\Menu\Buttons\cButton.cs" />
     <Compile Include="Content\capGuyDemo.cs" />
     <Compile Include="Content\menu\mainMenu.cs" />
     <Compile Include="Content\PlayerAnimation\IdlePlayer.cs" />
-    <Compile Include="Enemies\Bullet.cs" />
-    <Compile Include="Enemies\EnemyBase.cs" />
-    <Compile Include="Enemies\ShootingEnemy.cs" />
+    <Compile Include="Characters\Enemies\Bullet.cs" />
+    <Compile Include="Characters\Enemies\EnemyBase.cs" />
+    <Compile Include="Characters\Enemies\ShootingEnemy.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Game1.cs" />
     <Compile Include="Health\HealthBar.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="MarcoPlayer.cs" />
-    <Compile Include="Enemies\NormalEnemy.cs" />
+    <Compile Include="View\Map\Map.cs" />
+    <Compile Include="Characters\Player\MarcoPlayer.cs" />
+    <Compile Include="Characters\Enemies\NormalEnemy.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerAnimationLists.cs" />
     <Compile Include="PlayerTexturePackerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RectangleHelper.cs" />
-    <Compile Include="SpriteFrame.cs" />
-    <Compile Include="SpriteRender.cs" />
-    <Compile Include="SpriteSheet.cs" />
-    <Compile Include="SpriteSheetLoader.cs" />
-    <Compile Include="Tile.cs" />
+    <Compile Include="Physics\RectangleHelper.cs" />
+    <Compile Include="TexturePackerLoader\SpriteFrame.cs" />
+    <Compile Include="TexturePackerLoader\SpriteRender.cs" />
+    <Compile Include="TexturePackerLoader\SpriteSheet.cs" />
+    <Compile Include="TexturePackerLoader\SpriteSheetLoader.cs" />
+    <Compile Include="View\Map\Tile.cs" />
     <Compile Include="Treasures\BaseTreasureAbstract.cs" />
     <Compile Include="Treasures\TreasureChest.cs" />
     <Compile Include="View\Menu\MainMenu.cs" />
@@ -140,6 +141,7 @@
     <None Include="ThePlatformer_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Characters\Enemies\EnemiesManager\idle3.png" />
     <Content Include="Content\bulletBig.png" />
     <Content Include="Content\bulletSmall.png" />
     <Content Include="Content\capGuyDemo.png" />
@@ -183,7 +185,9 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Characters\Animation\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

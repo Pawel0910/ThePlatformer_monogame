@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ThePlatformer
 {
-    class Map
+   public class Map
     {
         private List<CollisionTile> collisionTiles = new List<CollisionTile>();
 

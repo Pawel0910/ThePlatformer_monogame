@@ -9,6 +9,7 @@ using ThePlatformer.Health;
 using ThePlatformer.View.Menu;
 using System.Collections.Generic;
 using ThePlatformer.Treasures;
+using ThePlatformer.Characters.Enemies.EnemiesManager;
 
 namespace ThePlatformer
 {
@@ -18,6 +19,7 @@ namespace ThePlatformer
     /// </summary>
     public class Game1 : Game
     {
+        private EnemiesManager enemiesManager = new EnemiesManager();
         private Texture2D background;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -27,7 +29,6 @@ namespace ThePlatformer
         private PlayerTexturePackerTest playerTxtPacker;
         private MainMenu mainMenu;
         MarcoPlayer marcoPlayer;
-        public List<EnemyBase> enemiesList = new List<EnemyBase>();
         private BaseTreasureAbstract treasureChest;
         SpriteSheet spriteSheet;
         SpriteRender spriteRender;
@@ -63,11 +64,6 @@ namespace ThePlatformer
         protected override void Initialize()
         {
             map = new Map();
-           // normalEnemy = new NormalEnemy();
-           // mojEnemy = new ShootingEnemy();
-           // moj1Enemy = new ShootingEnemy();
-            enemiesList.Add(new NormalEnemy());
-            enemiesList.Add(new ShootingEnemy());
             treasureChest = new TreasureChest();
             base.Initialize();
             CurrentGameState = GameState.MainMenu;
@@ -104,15 +100,15 @@ namespace ThePlatformer
                 {2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2},
             }, 80);
             #endregion
+           
             marcoPlayer = new MarcoPlayer(map.Width,map.Height);
             marcoPlayer.Load(Content);
-           // normalEnemy.Load(Content,"idle2", new Vector2(60, 10));
+            enemiesManager.Initialize();
+            enemiesManager.LoadContent(Content);
+            // normalEnemy.Load(Content,"idle2", new Vector2(60, 10));
             //mojEnemy.Load(Content, "idle1", new Vector2(120, 10));
             //moj1Enemy.Load(Content, "idle1", new Vector2(200, 10));
-            foreach(EnemyBase enemy in enemiesList)
-            {
-                enemy.Load(Content, "idle3", new Vector2(150, 10));
-            }
+
             treasureChest.Load(Content, "idle2");
             SpriteSheetLoader spriteSheetLoader = new SpriteSheetLoader(this.Content);
             this.spriteSheet = spriteSheetLoader.Load("CapGuyDemo.png");
@@ -179,42 +175,26 @@ namespace ThePlatformer
                         CurrentGameState = GameState.Pause;
                     }
                     marcoPlayer.Update(gameTime,GraphicsDevice);
-                    //marcoPlayer.isCrossedMap(map.Width, map.Height);
-                   // normalEnemy.Update(gameTime);
-                   // mojEnemy.Update(gameTime);
-                   // moj1Enemy.Update(gameTime);
-                    foreach(EnemyBase enemy in enemiesList)
-                    {
-                        enemy.Update(gameTime);
-                    }
+
+                   enemiesManager.CollisionsAndUpdate(gameTime, map);
+
                     foreach (CollisionTile tile in map.CollisionTiles)
                     {
                         marcoPlayer.Collision(tile.Rectangle, map.Width, map.Height);
-                       // normalEnemy.CollisionMap(tile.Rectangle, map.Width, map.Height);
-                      //  mojEnemy.CollisionMap(tile.Rectangle, map.Width, map.Height);
-                       // moj1Enemy.CollisionMap(tile.Rectangle, map.Width, map.Height);
-                        foreach (EnemyBase enemy in enemiesList)
-                        {
-                            enemy.CollisionMap(tile.Rectangle, map.Width, map.Height);
-                        }
+                       
                         treasureChest.CollisionMap(tile.Rectangle, map.Width, map.Height);
                         camera.Update(marcoPlayer.Position, map.Width, map.Height);
                     }
                         treasureChest.Update(gameTime,marcoPlayer);
 
                     player.Update(gameTime);
+                    enemiesManager.collisionsWithPlayer(marcoPlayer);
                     #region Bullet collisiona with Player
-                   // mojEnemy.allCollisionWithPlayer(marcoPlayer);
-                   // moj1Enemy.allCollisionWithPlayer(marcoPlayer);
-                    foreach (EnemyBase enemy in enemiesList)
-                    {
-                        enemy.allCollisionWithPlayer(marcoPlayer);
-                        marcoPlayer.allCollisionsWithEnemies(enemy);
-                    }
-                    // marcoPlayer.allCollisionsWithEnemies(mojEnemy);
+                    
+                   // marcoPlayer.allCollisionsWithEnemies(enemy);!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
                     #endregion
-                    deleteDeadEnemiesFromGame();
                     break;
 #endregion
                 #region Pause update
@@ -235,7 +215,7 @@ namespace ThePlatformer
                     IsMouseVisible = true;
                     if (backToGameButton.isClicked == true)
                     {
-                        enemiesList.Clear();
+                        enemiesManager.restartEnemies();
                         marcoPlayer = null;
                         camera = null;
                         Initialize();
@@ -250,16 +230,7 @@ namespace ThePlatformer
 
             base.Update(gameTime);
         }
-        private void deleteDeadEnemiesFromGame()
-        {
-            for(int i = 0; i < enemiesList.Count; i++)
-            {
-                if (enemiesList[i].isDead)
-                {
-                    enemiesList.RemoveAt(i);
-                }
-            }
-        }
+      
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -327,12 +298,9 @@ namespace ThePlatformer
                     map.Draw(spriteBatch);
                     marcoPlayer.Draw(spriteBatch);
                     //normalEnemy.Draw(spriteBatch);
-                   // mojEnemy.Draw(spriteBatch);
-                   // moj1Enemy.Draw(spriteBatch);
-                    foreach (EnemyBase enemy in enemiesList)
-                    {
-                        enemy.Draw(spriteBatch);
-                    }
+                    // mojEnemy.Draw(spriteBatch);
+                    // moj1Enemy.Draw(spriteBatch);
+                    enemiesManager.Draw(spriteBatch);
                     player.Draw(spriteBatch, new Vector2(200, 200));
                    // spriteBatch.DrawString(font, "Score: " + score, new Vector2(50, 50), Color.Black);
                    // playerTxtPacker.DrawMoja(spriteBatch, new Vector2(100, 100));
