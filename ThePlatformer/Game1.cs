@@ -65,6 +65,7 @@ namespace ThePlatformer
         {
             map = new Map();
             treasureChest = new TreasureChest();
+            enemiesManager.Initialize();
             base.Initialize();
             CurrentGameState = GameState.MainMenu;
         }
@@ -103,7 +104,6 @@ namespace ThePlatformer
            
             marcoPlayer = new MarcoPlayer(map.Width,map.Height);
             marcoPlayer.Load(Content);
-            enemiesManager.Initialize();
             enemiesManager.LoadContent(Content);
             // normalEnemy.Load(Content,"idle2", new Vector2(60, 10));
             //mojEnemy.Load(Content, "idle1", new Vector2(120, 10));
@@ -175,8 +175,8 @@ namespace ThePlatformer
                         CurrentGameState = GameState.Pause;
                     }
                     marcoPlayer.Update(gameTime,GraphicsDevice);
-
-                   enemiesManager.CollisionsAndUpdate(gameTime, map);
+                    enemiesManager.Update(gameTime);
+                   enemiesManager.CollisionsWithMap(map);
 
                     foreach (CollisionTile tile in map.CollisionTiles)
                     {

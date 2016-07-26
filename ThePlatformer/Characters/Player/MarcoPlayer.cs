@@ -247,14 +247,18 @@ namespace ThePlatformer
         {
             if (position.Y > mapHeight - rectangle.Height)
             {
-                position.Y = 20;
-                position.X = 38;
+                restartPosition();
                 lives--;
                 livePoints = healthBar.fullHealth;
                 healthBar.restartHealthBar();
                 // dead = true;
             }
 
+        }
+        private void restartPosition()
+        {
+            position.Y = 20;
+            position.X = 38;
         }
         public void knockBack(Vector2 enemyPosition)
         {

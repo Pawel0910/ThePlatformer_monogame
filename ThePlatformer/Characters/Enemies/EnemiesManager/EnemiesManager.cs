@@ -30,13 +30,15 @@ namespace ThePlatformer.Characters.Enemies.EnemiesManager
                 enemy.Load(content, "idle3", new Vector2(150, 10));
             }
         }
-
-        public void CollisionsAndUpdate(GameTime gameTime, Map map)
+        public void Update(GameTime gameTime)
         {
             foreach (EnemyBase enemy in enemiesList)
             {
                 enemy.Update(gameTime);
             }
+        }
+        public void CollisionsWithMap(Map map)
+        {
             foreach (CollisionTile tile in map.CollisionTiles)
             {
                 foreach (EnemyBase enemy in enemiesList)
