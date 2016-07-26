@@ -54,13 +54,7 @@ namespace ThePlatformer
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
+        
         protected override void Initialize()
         {
             map = new Map();
@@ -69,22 +63,14 @@ namespace ThePlatformer
             base.Initialize();
             CurrentGameState = GameState.MainMenu;
         }
-
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
+        
         protected override void LoadContent()
         {
-            //SpriteSheetLoader spriteSheetLoader = new SpriteSheetLoader(this.Content);
-
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D texturePlayer = Content.Load<Texture2D>("Images/idle");
             player = new Player(texturePlayer, 1, 4);
             playerTxtPacker = new PlayerTexturePackerTest(texturePlayer, 1, 4);
             mainMenu = new MainMenu();
-           // mainMenu = new MainMenu(Content.Load<Texture2D>("menu/"));
             camera = new Camera(GraphicsDevice.Viewport);
             #region Map initialize
             Tile.Content = Content;
@@ -105,9 +91,6 @@ namespace ThePlatformer
             marcoPlayer = new MarcoPlayer(map.Width,map.Height);
             marcoPlayer.Load(Content);
             enemiesManager.LoadContent(Content);
-            // normalEnemy.Load(Content,"idle2", new Vector2(60, 10));
-            //mojEnemy.Load(Content, "idle1", new Vector2(120, 10));
-            //moj1Enemy.Load(Content, "idle1", new Vector2(200, 10));
 
             treasureChest.Load(Content, "idle2");
             SpriteSheetLoader spriteSheetLoader = new SpriteSheetLoader(this.Content);
@@ -127,21 +110,12 @@ namespace ThePlatformer
 
             font = Content.Load<SpriteFont>("healthsFont");
         }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
+        
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
-
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        
         protected override void Update(GameTime gameTime)
         {
             MouseState mouse = Mouse.GetState();
@@ -231,10 +205,6 @@ namespace ThePlatformer
             base.Update(gameTime);
         }
       
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -289,26 +259,15 @@ namespace ThePlatformer
                        BlendState.AlphaBlend,
                        null, null, null, null,
                        camera.Transform);
-                    //pauseButton.setPosition(new Vector2(0, 0));
-                    //pauseButton.Draw(spriteBatch);
-                    //this.spriteRender.Draw(
-                    // this.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.CapGuyDemo.Capguy_turn_0002),
-                    //    new Vector2(350, 530));
                     treasureChest.Draw(spriteBatch);
                     map.Draw(spriteBatch);
                     marcoPlayer.Draw(spriteBatch);
-                    //normalEnemy.Draw(spriteBatch);
-                    // mojEnemy.Draw(spriteBatch);
-                    // moj1Enemy.Draw(spriteBatch);
                     enemiesManager.Draw(spriteBatch);
                     player.Draw(spriteBatch, new Vector2(200, 200));
-                   // spriteBatch.DrawString(font, "Score: " + score, new Vector2(50, 50), Color.Black);
-                   // playerTxtPacker.DrawMoja(spriteBatch, new Vector2(100, 100));
                     break;
                     #endregion
             }
-
-            // TODO: Add your drawing code here
+            
             spriteBatch.End();
             base.Draw(gameTime);
         }
