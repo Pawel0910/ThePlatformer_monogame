@@ -11,11 +11,13 @@ namespace ThePlatformer.Characters.Player
 {
     class PlayerManager
     {
-
+        Camera camera;
         MarcoPlayer marcoPlayer;
         MapManager mapManager = MapManager.getInstance();
-        public void LoadContent(ContentManager Content)
+        public void LoadContent(ContentManager Content,GraphicsDevice graphics)
         {
+           // camera = new Camera(graphics.Viewport);
+
             marcoPlayer = new MarcoPlayer(mapManager.getMapWidth(), mapManager.getMapHeight());
             marcoPlayer.Load(Content);
         }
@@ -23,6 +25,8 @@ namespace ThePlatformer.Characters.Player
         public void Update(GameTime gameTime, GraphicsDevice graphics)
         {
             marcoPlayer.Update(gameTime, graphics);
+           // camera.Update(marcoPlayer.Position, mapManager.getMapWidth(), mapManager.getMapHeight());
+
         }
 
         public void collisionWithMap()
@@ -39,10 +43,16 @@ namespace ThePlatformer.Characters.Player
         public void restart()
         {
             marcoPlayer = null;
+            camera = null;
+
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             marcoPlayer.Draw(spriteBatch);
+            //spriteBatch.Begin(SpriteSortMode.Deferred,
+            //           BlendState.AlphaBlend,
+            //           null, null, null, null,
+            //           camera.Transform);
         }
     }
 }

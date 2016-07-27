@@ -24,7 +24,6 @@ namespace ThePlatformer
         private Texture2D background;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Camera camera;
         MapManager mapManager = MapManager.getInstance();
         private Player player;
         private PlayerTexturePackerTest playerTxtPacker;
@@ -72,12 +71,11 @@ namespace ThePlatformer
             player = new Player(texturePlayer, 1, 4);
             playerTxtPacker = new PlayerTexturePackerTest(texturePlayer, 1, 4);
             mainMenu = new MainMenu();
-            camera = new Camera(GraphicsDevice.Viewport);
             #region Map initialize
-           mapManager.LoadContent(Content);
+            mapManager.LoadContent(Content);
             #endregion
            
-            playerManager.LoadContent(Content);
+            playerManager.LoadContent(Content,GraphicsDevice);
             enemiesManager.LoadContent(Content);
 
             treasureChest.Load(Content, "idle2");
@@ -145,7 +143,6 @@ namespace ThePlatformer
                     {
                        
                         treasureChest.CollisionMap(tile.Rectangle, mapManager.getMapWidth(), mapManager.getMapHeight());
-                        camera.Update(playerManager.getPlayer().Position, mapManager.getMapWidth(), mapManager.getMapHeight());
                     }
                         treasureChest.Update(gameTime, playerManager.getPlayer());
 
@@ -179,7 +176,6 @@ namespace ThePlatformer
                     {
                         enemiesManager.restartEnemies();
                         playerManager.restart();
-                        camera = null;
                         Initialize();
                         LoadContent();
                     }
@@ -242,11 +238,6 @@ namespace ThePlatformer
                 #endregion
                 #region Playing Draw
                 case GameState.Playing:
-                    
-                    spriteBatch.Begin(SpriteSortMode.Deferred,
-                       BlendState.AlphaBlend,
-                       null, null, null, null,
-                       camera.Transform);
                     treasureChest.Draw(spriteBatch);
                     mapManager.Draw(spriteBatch);
                     playerManager.Draw(spriteBatch);
