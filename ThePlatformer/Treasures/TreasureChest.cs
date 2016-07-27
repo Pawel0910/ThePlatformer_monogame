@@ -10,9 +10,10 @@ namespace ThePlatformer.Treasures
     {
         public override void upgrade(MarcoPlayer player)
         {
-            if (isExist)
+            if (!isExist)
             {
                 player.giveMeHP();
+                isExist = true;//po to by player nie byl niesmiertelny :((
             }
         }
     }

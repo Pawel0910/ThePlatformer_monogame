@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="Characters\Enemies\EnemiesManager\EnemiesManager.cs" />
     <Compile Include="View\Camera\Camera.cs" />
+    <Compile Include="View\MapView\MapManager.cs" />
     <Compile Include="View\Menu\Buttons\cButton.cs" />
     <Compile Include="Content\capGuyDemo.cs" />
     <Compile Include="Content\menu\mainMenu.cs" />
@@ -114,7 +115,7 @@
     </Compile>
     <Compile Include="Game1.cs" />
     <Compile Include="Health\HealthBar.cs" />
-    <Compile Include="View\Map\Map.cs" />
+    <Compile Include="View\MapView\Map.cs" />
     <Compile Include="Characters\Player\MarcoPlayer.cs" />
     <Compile Include="Characters\Enemies\NormalEnemy.cs" />
     <Compile Include="Player.cs" />
@@ -126,7 +127,7 @@
     <Compile Include="TexturePackerLoader\SpriteRender.cs" />
     <Compile Include="TexturePackerLoader\SpriteSheet.cs" />
     <Compile Include="TexturePackerLoader\SpriteSheetLoader.cs" />
-    <Compile Include="View\Map\Tile.cs" />
+    <Compile Include="View\MapView\Tile.cs" />
     <Compile Include="Treasures\BaseTreasureAbstract.cs" />
     <Compile Include="Treasures\TreasureChest.cs" />
     <Compile Include="View\Menu\MainMenu.cs" />

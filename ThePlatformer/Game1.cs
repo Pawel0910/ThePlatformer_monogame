@@ -23,8 +23,8 @@ namespace ThePlatformer
         private Texture2D background;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Map map;
         Camera camera;
+        MapManager mapManager = new MapManager();
         private Player player;
         private PlayerTexturePackerTest playerTxtPacker;
         private MainMenu mainMenu;
@@ -57,7 +57,7 @@ namespace ThePlatformer
         
         protected override void Initialize()
         {
-            map = new Map();
+            mapManager.Initialize();
             treasureChest = new TreasureChest();
             enemiesManager.Initialize();
             base.Initialize();
@@ -73,22 +73,10 @@ namespace ThePlatformer
             mainMenu = new MainMenu();
             camera = new Camera(GraphicsDevice.Viewport);
             #region Map initialize
-            Tile.Content = Content;
-            map.Generate(new int[,]
-            {
-                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-                {1,1,1,1,1,1,1,0,0,0,0,0,1,0,1,1,1,0,0,0,1},
-                {2,2,2,2,2,2,2,1,0,1,1,1,2,0,2,2,2,1,1,0,2},
-                {2,2,2,2,2,2,2,2,1,2,2,2,2,0,2,2,2,2,2,2,2},
-                {2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2},
-                {2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2},
-                {2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2},
-                {2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2},
-                {2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2},
-            }, 80);
+            mapManager.LoadContent(Content);
             #endregion
            
-            marcoPlayer = new MarcoPlayer(map.Width,map.Height);
+            marcoPlayer = new MarcoPlayer(mapManager.getMapWidth(),mapManager.getMapHeight());
             marcoPlayer.Load(Content);
             enemiesManager.LoadContent(Content);
 
@@ -150,14 +138,14 @@ namespace ThePlatformer
                     }
                     marcoPlayer.Update(gameTime,GraphicsDevice);
                     enemiesManager.Update(gameTime);
-                   enemiesManager.CollisionsWithMap(map);
+                    enemiesManager.CollisionsWithMap(mapManager.getMap());
 
-                    foreach (CollisionTile tile in map.CollisionTiles)
+                    foreach (CollisionTile tile in mapManager.getMap().CollisionTiles)
                     {
-                        marcoPlayer.Collision(tile.Rectangle, map.Width, map.Height);
+                        marcoPlayer.Collision(tile.Rectangle, mapManager.getMapWidth(), mapManager.getMapHeight());
                        
-                        treasureChest.CollisionMap(tile.Rectangle, map.Width, map.Height);
-                        camera.Update(marcoPlayer.Position, map.Width, map.Height);
+                        treasureChest.CollisionMap(tile.Rectangle, mapManager.getMapWidth(), mapManager.getMapHeight());
+                        camera.Update(marcoPlayer.Position, mapManager.getMapWidth(), mapManager.getMapHeight());
                     }
                         treasureChest.Update(gameTime,marcoPlayer);
 
@@ -260,7 +248,7 @@ namespace ThePlatformer
                        null, null, null, null,
                        camera.Transform);
                     treasureChest.Draw(spriteBatch);
-                    map.Draw(spriteBatch);
+                    mapManager.Draw(spriteBatch);
                     marcoPlayer.Draw(spriteBatch);
                     enemiesManager.Draw(spriteBatch);
                     player.Draw(spriteBatch, new Vector2(200, 200));
