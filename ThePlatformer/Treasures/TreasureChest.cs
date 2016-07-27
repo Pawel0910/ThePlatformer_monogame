@@ -10,7 +10,7 @@ namespace ThePlatformer.Treasures
     {
         public override void upgrade(MarcoPlayer player)
         {
-            if (!isExist)
+            if (isExist)
             {
                 player.giveMeHP();
             }
