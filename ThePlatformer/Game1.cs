@@ -24,19 +24,17 @@ namespace ThePlatformer
         private Texture2D background;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        MapManager mapManager = MapManager.getInstance();
+        private MapManager mapManager = MapManager.getInstance();
         private Player player;
         private PlayerTexturePackerTest playerTxtPacker;
         private MainMenu mainMenu;
-        PlayerManager playerManager = new PlayerManager();
-        private BaseTreasureAbstract treasureChest;
+        private PlayerManager playerManager = new PlayerManager();
         SpriteSheet spriteSheet;
         SpriteRender spriteRender;
         bool pause = false;
         int screenWidth, screenHeight;
-        SpriteFont font;
         int score;
-        
+
         public enum GameState
         {
             MainMenu,
@@ -48,22 +46,21 @@ namespace ThePlatformer
         public static GameState CurrentGameState;
 
         cButton btnPlay;
-        cButton backToGameButton,exitButton;
+        cButton backToGameButton, exitButton;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-        
+
         protected override void Initialize()
         {
             mapManager.Initialize();
-            treasureChest = new TreasureChest();
             enemiesManager.Initialize();
             base.Initialize();
             CurrentGameState = GameState.MainMenu;
         }
-        
+
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -74,11 +71,10 @@ namespace ThePlatformer
             #region Map initialize
             mapManager.LoadContent(Content);
             #endregion
-           
-            playerManager.LoadContent(Content,GraphicsDevice);
+
+            playerManager.LoadContent(Content, GraphicsDevice.Viewport);
             enemiesManager.LoadContent(Content);
 
-            treasureChest.Load(Content, "idle2");
             SpriteSheetLoader spriteSheetLoader = new SpriteSheetLoader(this.Content);
             this.spriteSheet = spriteSheetLoader.Load("CapGuyDemo.png");
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -87,21 +83,20 @@ namespace ThePlatformer
             Debug.Write(graphics.PreferredBackBufferWidth);
             // graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             graphics.IsFullScreen = true;
-           // graphics.ApplyChanges();
-           // IsMouseVisible = true;
+            // graphics.ApplyChanges();
+            // IsMouseVisible = true;
 
-            btnPlay = new cButton(Content.Load<Texture2D>("button"),graphics.GraphicsDevice);
+            btnPlay = new cButton(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
             backToGameButton = new cButton(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
             exitButton = new cButton(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
 
-            font = Content.Load<SpriteFont>("healthsFont");
         }
-        
+
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
-        
+
         protected override void Update(GameTime gameTime)
         {
             MouseState mouse = Mouse.GetState();
@@ -124,38 +119,34 @@ namespace ThePlatformer
                     mainMenu.Update(gameTime);
                     // camera.Update(new Vector2(screenWidth/2, screenHight/2), map.Width, map.Height);
                     break;
-#endregion
+                #endregion
                 #region Playing update
                 case GameState.Playing:
                     IsMouseVisible = false;
                     Mouse.SetPosition(0, 0);
-                    if (Keyboard.GetState().IsKeyDown(Keys.P)&&pause==false)
+                    if (Keyboard.GetState().IsKeyDown(Keys.P) && pause == false)
                     {
                         pause = true;
                         CurrentGameState = GameState.Pause;
                     }
-                    playerManager.Update(gameTime,GraphicsDevice);
-                    playerManager.collisionWithMap();
+                    playerManager.Update(gameTime, GraphicsDevice);
 
                     enemiesManager.Update(gameTime);
                     enemiesManager.CollisionsWithMap(mapManager.getMap());
-                    foreach (CollisionTile tile in mapManager.getMap().CollisionTiles)
-                    {
-                       
-                        treasureChest.CollisionMap(tile.Rectangle, mapManager.getMapWidth(), mapManager.getMapHeight());
-                    }
-                        treasureChest.Update(gameTime, playerManager.getPlayer());
+                    
+                    enemiesManager.collisionsWithPlayer(playerManager.getPlayer());
+                    mapManager.Update(gameTime,playerManager);
 
                     player.Update(gameTime);
-                    enemiesManager.collisionsWithPlayer(playerManager.getPlayer());
+
                     #region Bullet collisiona with Player
-                    
-                   // marcoPlayer.allCollisionsWithEnemies(enemy);!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                    // marcoPlayer.allCollisionsWithEnemies(enemy);!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
                     #endregion
                     break;
-#endregion
+                #endregion
                 #region Pause update
                 case GameState.Pause:
                     IsMouseVisible = true;
@@ -163,7 +154,7 @@ namespace ThePlatformer
                     {
                         pause = false;
                         CurrentGameState = GameState.Playing;
-                    } 
+                    }
                     backToGameButton.Update(mouse);
                     if (exitButton.isClicked == true) Exit();
                     exitButton.Update(mouse);
@@ -188,24 +179,24 @@ namespace ThePlatformer
 
             base.Update(gameTime);
         }
-      
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            
+
             switch (CurrentGameState)
             {
                 #region MainMenu Draw
                 case GameState.MainMenu:
                     GraphicsDevice.Clear(Color.White);
                     spriteBatch.Begin();
-                    Vector2 vector=getXYtoDrawMenu();
+                    Vector2 vector = getXYtoDrawMenu();
 
                     // mainMenu.Draw(this.spriteRender, this.spriteSheet);
-                    spriteBatch.Draw(Content.Load<Texture2D>("mainMenu"), new Rectangle((int)vector.Y,(int)vector.X, 800, 600), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("mainMenu"), new Rectangle((int)vector.Y, (int)vector.X, 800, 600), Color.White);
                     //playerTxtPacker.DrawMoja(this.spriteRender, this.spriteSheet);
 
-                    btnPlay.setPosition(new Vector2(330+ (int)vector.Y, 300+ (int)vector.X));
+                    btnPlay.setPosition(new Vector2(330 + (int)vector.Y, 300 + (int)vector.X));
                     btnPlay.Draw(spriteBatch);
                     //this.spriteSheet.Sprite(PlayerAnimationLists.drawMenuStart(), new Vector2(200, 200));
                     break;
@@ -238,21 +229,21 @@ namespace ThePlatformer
                 #endregion
                 #region Playing Draw
                 case GameState.Playing:
-                    treasureChest.Draw(spriteBatch);
+                    playerManager.Draw(spriteBatch);//to musi być pierwsze bo kamera używa begin by się dodać
+                    //a to moze byc wywolane tylko raz
                     mapManager.Draw(spriteBatch);
-                    playerManager.Draw(spriteBatch);
                     enemiesManager.Draw(spriteBatch);
                     player.Draw(spriteBatch, new Vector2(200, 200));
                     break;
                     #endregion
             }
-            
+
             spriteBatch.End();
             base.Draw(gameTime);
         }
         protected Vector2 getXYtoDrawMenu()
         {
-            
+
             int a = GraphicsDevice.Viewport.Height;
             screenHeight = GraphicsDevice.Viewport.Height;
             screenWidth = GraphicsDevice.Viewport.Width;

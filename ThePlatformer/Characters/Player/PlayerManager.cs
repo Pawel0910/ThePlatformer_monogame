@@ -11,22 +11,23 @@ namespace ThePlatformer.Characters.Player
 {
     class PlayerManager
     {
-        Camera camera;
-        MarcoPlayer marcoPlayer;
-        MapManager mapManager = MapManager.getInstance();
-        public void LoadContent(ContentManager Content,GraphicsDevice graphics)
-        {
-           // camera = new Camera(graphics.Viewport);
+        private Camera camera;
+        private MarcoPlayer marcoPlayer;
+        private MapManager mapManager = MapManager.getInstance();
 
+        public void LoadContent(ContentManager Content,Viewport viewport)
+        {
+            camera = new Camera(viewport);
+    
             marcoPlayer = new MarcoPlayer(mapManager.getMapWidth(), mapManager.getMapHeight());
             marcoPlayer.Load(Content);
+
         }
 
         public void Update(GameTime gameTime, GraphicsDevice graphics)
         {
             marcoPlayer.Update(gameTime, graphics);
-           // camera.Update(marcoPlayer.Position, mapManager.getMapWidth(), mapManager.getMapHeight());
-
+            collisionWithMap();
         }
 
         public void collisionWithMap()
@@ -34,6 +35,8 @@ namespace ThePlatformer.Characters.Player
             foreach (CollisionTile tile in mapManager.getMap().CollisionTiles)
             {
                 marcoPlayer.Collision(tile.Rectangle, mapManager.getMapWidth(), mapManager.getMapHeight());
+                camera.Update(marcoPlayer.Position, mapManager.getMapWidth(), mapManager.getMapHeight());
+
             }
         }
         public MarcoPlayer getPlayer()
@@ -48,11 +51,12 @@ namespace ThePlatformer.Characters.Player
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin(SpriteSortMode.Deferred,
+                       BlendState.AlphaBlend,
+                       null, null, null, null,
+                       camera.Transform);
             marcoPlayer.Draw(spriteBatch);
-            //spriteBatch.Begin(SpriteSortMode.Deferred,
-            //           BlendState.AlphaBlend,
-            //           null, null, null, null,
-            //           camera.Transform);
+
         }
     }
 }

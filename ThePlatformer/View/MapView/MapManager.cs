@@ -1,17 +1,22 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThePlatformer.Characters.Player;
+using ThePlatformer.Treasures;
 
 namespace ThePlatformer
 {
     class MapManager
     {
         private static MapManager mapManager;
-        private  MapManager() { }
+        private BaseTreasureAbstract treasureChest;
+
+        private MapManager() { }
         public static MapManager getInstance()
         {
            
@@ -25,6 +30,8 @@ namespace ThePlatformer
         public void Initialize()
         {
             map = new Map();
+            treasureChest = new TreasureChest();
+
         }
         public void LoadContent(ContentManager Content)
         {
@@ -41,6 +48,20 @@ namespace ThePlatformer
                 {2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2},
                 {2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2},
            }, 80);
+            treasureChest.Load(Content, "idle2");
+
+        }
+        public void collisions()
+        {
+            foreach (CollisionTile tile in mapManager.getMap().CollisionTiles)
+            {
+                treasureChest.CollisionMap(tile.Rectangle, mapManager.getMapWidth(), mapManager.getMapHeight());
+            }
+        }
+        public void Update(GameTime gameTime,PlayerManager playerManager)
+        {
+            treasureChest.Update(gameTime, playerManager.getPlayer());
+            collisions();
         }
         public int getMapWidth()
         {
@@ -57,6 +78,8 @@ namespace ThePlatformer
         public void Draw(SpriteBatch spriteBatch)
         {
             map.Draw(spriteBatch);
+            treasureChest.Draw(spriteBatch);
+
         }
     }
 }
