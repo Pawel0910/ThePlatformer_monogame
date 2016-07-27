@@ -10,6 +10,17 @@ namespace ThePlatformer
 {
     class MapManager
     {
+        private static MapManager mapManager;
+        private  MapManager() { }
+        public static MapManager getInstance()
+        {
+           
+            if (mapManager == null)
+            {
+                mapManager = new MapManager();
+            }
+            return mapManager;
+        }
         Map map;
         public void Initialize()
         {

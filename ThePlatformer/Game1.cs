@@ -10,6 +10,7 @@ using ThePlatformer.View.Menu;
 using System.Collections.Generic;
 using ThePlatformer.Treasures;
 using ThePlatformer.Characters.Enemies.EnemiesManager;
+using ThePlatformer.Characters.Player;
 
 namespace ThePlatformer
 {
@@ -24,11 +25,11 @@ namespace ThePlatformer
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Camera camera;
-        MapManager mapManager = new MapManager();
+        MapManager mapManager = MapManager.getInstance();
         private Player player;
         private PlayerTexturePackerTest playerTxtPacker;
         private MainMenu mainMenu;
-        MarcoPlayer marcoPlayer;
+        PlayerManager playerManager = new PlayerManager();
         private BaseTreasureAbstract treasureChest;
         SpriteSheet spriteSheet;
         SpriteRender spriteRender;
@@ -73,11 +74,10 @@ namespace ThePlatformer
             mainMenu = new MainMenu();
             camera = new Camera(GraphicsDevice.Viewport);
             #region Map initialize
-            mapManager.LoadContent(Content);
+           mapManager.LoadContent(Content);
             #endregion
            
-            marcoPlayer = new MarcoPlayer(mapManager.getMapWidth(),mapManager.getMapHeight());
-            marcoPlayer.Load(Content);
+            playerManager.LoadContent(Content);
             enemiesManager.LoadContent(Content);
 
             treasureChest.Load(Content, "idle2");
@@ -136,21 +136,21 @@ namespace ThePlatformer
                         pause = true;
                         CurrentGameState = GameState.Pause;
                     }
-                    marcoPlayer.Update(gameTime,GraphicsDevice);
+                    playerManager.Update(gameTime,GraphicsDevice);
+                    playerManager.collisionWithMap();
+
                     enemiesManager.Update(gameTime);
                     enemiesManager.CollisionsWithMap(mapManager.getMap());
-
                     foreach (CollisionTile tile in mapManager.getMap().CollisionTiles)
                     {
-                        marcoPlayer.Collision(tile.Rectangle, mapManager.getMapWidth(), mapManager.getMapHeight());
                        
                         treasureChest.CollisionMap(tile.Rectangle, mapManager.getMapWidth(), mapManager.getMapHeight());
-                        camera.Update(marcoPlayer.Position, mapManager.getMapWidth(), mapManager.getMapHeight());
+                        camera.Update(playerManager.getPlayer().Position, mapManager.getMapWidth(), mapManager.getMapHeight());
                     }
-                        treasureChest.Update(gameTime,marcoPlayer);
+                        treasureChest.Update(gameTime, playerManager.getPlayer());
 
                     player.Update(gameTime);
-                    enemiesManager.collisionsWithPlayer(marcoPlayer);
+                    enemiesManager.collisionsWithPlayer(playerManager.getPlayer());
                     #region Bullet collisiona with Player
                     
                    // marcoPlayer.allCollisionsWithEnemies(enemy);!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -178,7 +178,7 @@ namespace ThePlatformer
                     if (backToGameButton.isClicked == true)
                     {
                         enemiesManager.restartEnemies();
-                        marcoPlayer = null;
+                        playerManager.restart();
                         camera = null;
                         Initialize();
                         LoadContent();
@@ -249,7 +249,7 @@ namespace ThePlatformer
                        camera.Transform);
                     treasureChest.Draw(spriteBatch);
                     mapManager.Draw(spriteBatch);
-                    marcoPlayer.Draw(spriteBatch);
+                    playerManager.Draw(spriteBatch);
                     enemiesManager.Draw(spriteBatch);
                     player.Draw(spriteBatch, new Vector2(200, 200));
                     break;
