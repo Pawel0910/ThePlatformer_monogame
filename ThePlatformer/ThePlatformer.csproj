@@ -132,6 +132,7 @@
     <Compile Include="Treasures\BaseTreasureAbstract.cs" />
     <Compile Include="Treasures\TreasureChest.cs" />
     <Compile Include="View\Menu\MainMenu.cs" />
+    <Compile Include="View\Menu\MenuViewManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

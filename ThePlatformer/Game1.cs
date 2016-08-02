@@ -27,6 +27,7 @@ namespace ThePlatformer
         private MapManager mapManager = MapManager.getInstance();
         private Player player;
         private PlayerTexturePackerTest playerTxtPacker;
+        private MenuViewManager menuManager= new MenuViewManager();
         private MainMenu mainMenu;
         private PlayerManager playerManager = new PlayerManager();
         SpriteSheet spriteSheet;
@@ -67,7 +68,8 @@ namespace ThePlatformer
             Texture2D texturePlayer = Content.Load<Texture2D>("Images/idle");
             player = new Player(texturePlayer, 1, 4);
             playerTxtPacker = new PlayerTexturePackerTest(texturePlayer, 1, 4);
-            mainMenu = new MainMenu();
+            //mainMenu = new MainMenu();
+            menuManager.LoadContent(Content);
             #region Map initialize
             mapManager.LoadContent(Content);
             #endregion
@@ -112,11 +114,11 @@ namespace ThePlatformer
                     if (touchPanelState.Count >= 1)
                     {
                         CurrentGameState = GameState.Playing;
-
                     }
                     if (btnPlay.isClicked == true) CurrentGameState = GameState.Playing;
                     btnPlay.Update(mouse);
-                    mainMenu.Update(gameTime);
+                    //mainMenu.Update(gameTime);
+                    menuManager.Update(gameTime, GraphicsDevice);
                     // camera.Update(new Vector2(screenWidth/2, screenHight/2), map.Width, map.Height);
                     break;
                 #endregion
@@ -193,7 +195,8 @@ namespace ThePlatformer
                     Vector2 vector = getXYtoDrawMenu();
 
                     // mainMenu.Draw(this.spriteRender, this.spriteSheet);
-                    spriteBatch.Draw(Content.Load<Texture2D>("mainMenu"), new Rectangle((int)vector.Y, (int)vector.X, 800, 600), Color.White);
+                    // spriteBatch.Draw(Content.Load<Texture2D>("mainMenu"), new Rectangle((int)vector.Y, (int)vector.X, 800, 600), Color.White);
+                    menuManager.DrawBegin(spriteBatch);
                     //playerTxtPacker.DrawMoja(this.spriteRender, this.spriteSheet);
 
                     btnPlay.setPosition(new Vector2(330 + (int)vector.Y, 300 + (int)vector.X));

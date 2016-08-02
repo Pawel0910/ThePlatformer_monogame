@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace ThePlatformer.View.Menu
 {
     class MainMenu
     {
-        public Texture2D Texture { get; set; }
+        public Texture2D texture { get; set; }
         private int currentFrame;
         private int totalFrames;
         //slow down frame animation
@@ -22,6 +23,10 @@ namespace ThePlatformer.View.Menu
         {
             currentFrame = 0;
             totalFrames = PlayerAnimationLists.drawMenuStart().Count-1;
+        }
+        public void LoadContent(ContentManager Content)
+        {
+            texture = Content.Load<Texture2D>("mainMenu");
         }
         
         public void Update(GameTime gameTime)
@@ -39,6 +44,10 @@ namespace ThePlatformer.View.Menu
                     currentFrame = 0;
                 }
             }
+        }
+        public void Draw(SpriteBatch spriteBatch, Vector2 position)
+        {
+            spriteBatch.Draw(texture, new Rectangle((int)position.Y, (int)position.X, 800, 600), Color.White);
         }
         public void Draw(SpriteRender spriteRender, SpriteSheet spriteSheet)
         {
