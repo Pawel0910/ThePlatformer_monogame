@@ -87,8 +87,7 @@ namespace ThePlatformer
                 #region MainMen update
                 case GameState.MainMenu:
                     playerTxtPacker.Update(gameTime);
-
-                    IsMouseVisible = true;
+                   
                     menuManager.Update(gameTime, GraphicsDevice);
                     menuManager.UpdateMainMenu(gameTime);
                     break;
@@ -96,13 +95,16 @@ namespace ThePlatformer
                 #region Playing update
                 case GameState.Playing:
                     IsMouseVisible = false;
+
                     menuManager.UpdatePlaying();
+
                     playerManager.Update(gameTime, GraphicsDevice);
 
                     enemiesManager.Update(gameTime);
                     enemiesManager.CollisionsWithMap(mapManager.getMap());
                     
                     enemiesManager.collisionsWithPlayer(playerManager.getPlayer());
+
                     mapManager.Update(gameTime,playerManager);
 
                     player.Update(gameTime);
@@ -110,13 +112,11 @@ namespace ThePlatformer
                 #endregion
                 #region Pause update
                 case GameState.Pause:
-                    IsMouseVisible = true;
                     menuManager.UpdatePause(gameTime);
                     break;
                 #endregion
                 #region DeadMenu update
                 case GameState.DeadMenu:
-                    IsMouseVisible = true;
                     menuManager.UpdateDeadMenu(gameTime);
                     break;
                     #endregion

@@ -34,6 +34,7 @@ namespace ThePlatformer.View.Menu
         }
         public void UpdateMainMenu(GameTime gameTime)
         {
+            game.IsMouseVisible = true;
             mainMenu.Update(gameTime);
             MouseState mouse = Mouse.GetState();
             var touchPanelState = TouchPanel.GetState();
@@ -48,25 +49,38 @@ namespace ThePlatformer.View.Menu
         public void UpdatePause(GameTime gameTime)
         {
             MouseState mouse = Mouse.GetState();
+            game.IsMouseVisible=true;
             if (backToGameButton.isClicked == true)
             {
                 pause = false;
                 Game1.CurrentGameState = Game1.GameState.Playing;
+                backToGameButton.isClicked = false;
             }
-            backToGameButton.Update(mouse);
-            if (exitButton.isClicked == true) game.Exit();
-            exitButton.Update(mouse);
+            else
+            {
+                backToGameButton.Update(mouse);
+            }
+            if (exitButton.isClicked == true) { game.Exit(); }
+            else { exitButton.Update(mouse); }
         }
         public void UpdateDeadMenu(GameTime gameTime)
         {
             MouseState mouse = Mouse.GetState();
+            game.IsMouseVisible = true;
             if (backToGameButton.isClicked == true)
             {
                 game.restart();
             }
-            backToGameButton.Update(mouse);
-            if (exitButton.isClicked == true) game.Exit();
-            exitButton.Update(mouse);
+            else
+            {
+                backToGameButton.Update(mouse);
+            }
+            if (exitButton.isClicked == true)
+            {
+                game.Exit();
+            }
+            else { exitButton.Update(mouse); }
+
         }
         public void UpdatePlaying()
         {

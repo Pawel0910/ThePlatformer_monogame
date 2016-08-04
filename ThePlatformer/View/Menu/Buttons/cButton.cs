@@ -14,9 +14,8 @@ namespace ThePlatformer
         private Texture2D texture;
         private Vector2 position;
         private Rectangle rectangle;
-        public Vector2 size;
 
-        Color colour = new Color(255, 255, 255, 255);
+        private Color colour = new Color(255, 255, 255, 255);
 
         
         public cButton(Texture2D newTexture)
@@ -27,6 +26,10 @@ namespace ThePlatformer
         public bool isClicked;
         public void Update(MouseState mouse)
         {
+            if (isClicked)
+            {
+                isClicked = false;
+            }
             rectangle = new Rectangle((int)position.X, (int)position.Y,
                 texture.Width,texture.Height);
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
@@ -37,6 +40,7 @@ namespace ThePlatformer
                 if (down) colour.A += 3;
                     else colour.A -= 3;
                 if (mouse.LeftButton == ButtonState.Pressed) isClicked = true;
+               
             }else if (colour.A < 255)
             {
                 colour.A += 3;
