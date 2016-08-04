@@ -11,27 +11,24 @@ namespace ThePlatformer
 {
     class cButton
     {
-        Texture2D texture;
-        Vector2 position;
-        Rectangle rectangle;
+        private Texture2D texture;
+        private Vector2 position;
+        private Rectangle rectangle;
+        public Vector2 size;
 
         Color colour = new Color(255, 255, 255, 255);
 
-        public Vector2 size;
         
-        public cButton(Texture2D newTexture, GraphicsDevice graphics)
+        public cButton(Texture2D newTexture)
         {
             texture = newTexture;
-
-
-            size = new Vector2(graphics.Viewport.Width / 8, graphics.Viewport.Height / 30);
         }
         bool down;
         public bool isClicked;
         public void Update(MouseState mouse)
         {
             rectangle = new Rectangle((int)position.X, (int)position.Y,
-                (int)size.X, (int)size.Y);
+                texture.Width,texture.Height);
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
             if (mouseRectangle.Intersects(rectangle))
             {
@@ -54,6 +51,10 @@ namespace ThePlatformer
         public void Draw(SpriteBatch spriteBach)
         {
             spriteBach.Draw(texture, rectangle, colour);
+        }
+        public void Draw(SpriteBatch spriteBatch, Vector2 position)
+        {
+
         }
     }
 }

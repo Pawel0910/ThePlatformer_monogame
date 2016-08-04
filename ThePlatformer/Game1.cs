@@ -20,21 +20,18 @@ namespace ThePlatformer
     /// </summary>
     public class Game1 : Game
     {
-        private EnemiesManager enemiesManager = new EnemiesManager();
         private Texture2D background;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private MapManager mapManager = MapManager.getInstance();
+        SpriteSheet spriteSheet;
+        SpriteRender spriteRender;
         private Player player;
         private PlayerTexturePackerTest playerTxtPacker;
         private MenuViewManager menuManager= new MenuViewManager();
-        private MainMenu mainMenu;
         private PlayerManager playerManager = new PlayerManager();
-        SpriteSheet spriteSheet;
-        SpriteRender spriteRender;
-        bool pause = false;
+        private EnemiesManager enemiesManager = new EnemiesManager();
+        private MapManager mapManager = MapManager.getInstance();
         int screenWidth, screenHeight;
-        int score;
 
         public enum GameState
         {
@@ -45,9 +42,7 @@ namespace ThePlatformer
             DeadMenu
         }
         public static GameState CurrentGameState;
-
-        cButton btnPlay;
-        cButton backToGameButton, exitButton;
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -68,8 +63,7 @@ namespace ThePlatformer
             Texture2D texturePlayer = Content.Load<Texture2D>("Images/idle");
             player = new Player(texturePlayer, 1, 4);
             playerTxtPacker = new PlayerTexturePackerTest(texturePlayer, 1, 4);
-            //mainMenu = new MainMenu();
-            menuManager.LoadContent(Content);
+            menuManager.LoadContent(Content,this);
             #region Map initialize
             mapManager.LoadContent(Content);
             #endregion
@@ -82,27 +76,12 @@ namespace ThePlatformer
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
             this.spriteRender = new SpriteRender(this.spriteBatch);
             //graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            Debug.Write(graphics.PreferredBackBufferWidth);
             // graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             graphics.IsFullScreen = true;
             // graphics.ApplyChanges();
-            // IsMouseVisible = true;
-
-            btnPlay = new cButton(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
-            backToGameButton = new cButton(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
-            exitButton = new cButton(Content.Load<Texture2D>("button"), graphics.GraphicsDevice);
-
         }
-
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
-
         protected override void Update(GameTime gameTime)
         {
-            MouseState mouse = Mouse.GetState();
-
             switch (CurrentGameState)
             {
                 #region MainMen update
@@ -110,27 +89,14 @@ namespace ThePlatformer
                     playerTxtPacker.Update(gameTime);
 
                     IsMouseVisible = true;
-                    var touchPanelState = TouchPanel.GetState();
-                    if (touchPanelState.Count >= 1)
-                    {
-                        CurrentGameState = GameState.Playing;
-                    }
-                    if (btnPlay.isClicked == true) CurrentGameState = GameState.Playing;
-                    btnPlay.Update(mouse);
-                    //mainMenu.Update(gameTime);
                     menuManager.Update(gameTime, GraphicsDevice);
-                    // camera.Update(new Vector2(screenWidth/2, screenHight/2), map.Width, map.Height);
+                    menuManager.UpdateMainMenu(gameTime);
                     break;
                 #endregion
                 #region Playing update
                 case GameState.Playing:
                     IsMouseVisible = false;
-                    Mouse.SetPosition(0, 0);
-                    if (Keyboard.GetState().IsKeyDown(Keys.P) && pause == false)
-                    {
-                        pause = true;
-                        CurrentGameState = GameState.Pause;
-                    }
+                    menuManager.UpdatePlaying();
                     playerManager.Update(gameTime, GraphicsDevice);
 
                     enemiesManager.Update(gameTime);
@@ -140,41 +106,18 @@ namespace ThePlatformer
                     mapManager.Update(gameTime,playerManager);
 
                     player.Update(gameTime);
-
-                    #region Bullet collisiona with Player
-
-                    // marcoPlayer.allCollisionsWithEnemies(enemy);!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-                    #endregion
                     break;
                 #endregion
                 #region Pause update
                 case GameState.Pause:
                     IsMouseVisible = true;
-                    if (backToGameButton.isClicked == true)
-                    {
-                        pause = false;
-                        CurrentGameState = GameState.Playing;
-                    }
-                    backToGameButton.Update(mouse);
-                    if (exitButton.isClicked == true) Exit();
-                    exitButton.Update(mouse);
+                    menuManager.UpdatePause(gameTime);
                     break;
                 #endregion
                 #region DeadMenu update
                 case GameState.DeadMenu:
                     IsMouseVisible = true;
-                    if (backToGameButton.isClicked == true)
-                    {
-                        enemiesManager.restartEnemies();
-                        playerManager.restart();
-                        Initialize();
-                        LoadContent();
-                    }
-                    backToGameButton.Update(mouse);
-                    if (exitButton.isClicked == true) Exit();
-                    exitButton.Update(mouse);
+                    menuManager.UpdateDeadMenu(gameTime);
                     break;
                     #endregion
             }
@@ -192,42 +135,21 @@ namespace ThePlatformer
                 case GameState.MainMenu:
                     GraphicsDevice.Clear(Color.White);
                     spriteBatch.Begin();
-                    Vector2 vector = getXYtoDrawMenu();
-
-                    // mainMenu.Draw(this.spriteRender, this.spriteSheet);
-                    // spriteBatch.Draw(Content.Load<Texture2D>("mainMenu"), new Rectangle((int)vector.Y, (int)vector.X, 800, 600), Color.White);
                     menuManager.DrawBegin(spriteBatch);
-                    //playerTxtPacker.DrawMoja(this.spriteRender, this.spriteSheet);
-
-                    btnPlay.setPosition(new Vector2(330 + (int)vector.Y, 300 + (int)vector.X));
-                    btnPlay.Draw(spriteBatch);
-                    //this.spriteSheet.Sprite(PlayerAnimationLists.drawMenuStart(), new Vector2(200, 200));
                     break;
                 #endregion
                 #region Pause Draw
                 case GameState.Pause:
                     GraphicsDevice.Clear(Color.White);
                     spriteBatch.Begin();
-                    Vector2 vector1 = getXYtoDrawMenu();
-                    backToGameButton.setPosition(new Vector2(330 + (int)vector1.Y, 300 + (int)vector1.X));
-
-                    backToGameButton.Draw(spriteBatch);
-                    exitButton.setPosition(new Vector2(330 + (int)vector1.Y, 350 + (int)vector1.X));
-
-                    exitButton.Draw(spriteBatch);
+                    menuManager.DrawPause(spriteBatch);
                     break;
                 #endregion
                 #region DeadMenu Draw
                 case GameState.DeadMenu:
                     GraphicsDevice.Clear(Color.White);
                     spriteBatch.Begin();
-                    Vector2 vector2 = getXYtoDrawMenu();
-                    backToGameButton.setPosition(new Vector2(330 + (int)vector2.Y, 300 + (int)vector2.X));
-
-                    backToGameButton.Draw(spriteBatch);
-                    exitButton.setPosition(new Vector2(330 + (int)vector2.Y, 350 + (int)vector2.X));
-
-                    exitButton.Draw(spriteBatch);
+                    menuManager.DrawDeadMenu(spriteBatch);
                     break;
                 #endregion
                 #region Playing Draw
@@ -244,25 +166,12 @@ namespace ThePlatformer
             spriteBatch.End();
             base.Draw(gameTime);
         }
-        protected Vector2 getXYtoDrawMenu()
+        public void restart()
         {
-
-            int a = GraphicsDevice.Viewport.Height;
-            screenHeight = GraphicsDevice.Viewport.Height;
-            screenWidth = GraphicsDevice.Viewport.Width;
-            Vector2 vector = new Vector2();
-            if (screenHeight > 600)
-            {
-                vector.X = (screenHeight - 600) / 2;
-            }
-            else vector.X = 0;
-            if (screenWidth > 800)
-            {
-                vector.Y = (screenWidth - 800) / 2;
-            }
-            else
-                vector.Y = 0;
-            return vector;
+            enemiesManager.restartEnemies();
+            playerManager.restart();
+            Initialize();
+            LoadContent();
         }
     }
 }
