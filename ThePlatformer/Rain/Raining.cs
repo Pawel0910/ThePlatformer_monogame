@@ -11,25 +11,28 @@ namespace ThePlatformer.Rain
 {
     public class Raining
     {
-        private Texture2D texture;
-        private Vector2 position;
-
-
-        public void Load(ContentManager Content)
+        private static Texture2D texture;
+        public Vector2 position{ get; set; }
+        public float rotation { get; set; }
+        public Vector2 velocity;
+        
+        public static void Load(ContentManager Content)
         {
             texture = Content.Load<Texture2D>("drop_rain");
         }
 
         public void Update(GameTime gameTime)
         {
-            position = new Vector2(20, 30);
+            velocity.X = 0.2f;
+            velocity.Y = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 24;
+            //velocity = new Vector2((float)gameTime.ElapsedGameTime.TotalMilliseconds / 4, velocity.Y + 0.4f);
+
+            position += velocity;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
-
-            //spriteBatch.Draw(texture, new Rectangle((int)position.Y, (int)position.X, 800, 600), Color.White);
+            spriteBatch.Draw(texture, position, null, Color.White, 35f, Vector2.Zero, 0.05f, SpriteEffects.None, 0);
         }
     }
 }

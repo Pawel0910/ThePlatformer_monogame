@@ -25,7 +25,7 @@ namespace ThePlatformer
         private EnemiesManager enemiesManager = new EnemiesManager();
         private MapManager mapManager = MapManager.getInstance();
         //TEST
-        private Raining rain;
+        private RainManager rainManager = new RainManager();
         public enum GameState
         {
             MainMenu,
@@ -52,8 +52,7 @@ namespace ThePlatformer
 
         protected override void LoadContent()
         {
-            rain = new Raining();
-            rain.Load(Content);
+            rainManager.Load(Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D texturePlayer = Content.Load<Texture2D>("Images/idle");
             player = new Player(texturePlayer, 1, 4);
@@ -78,7 +77,7 @@ namespace ThePlatformer
         protected override void Update(GameTime gameTime)
         {
             //TEST
-            rain.Update(gameTime);
+            rainManager.Update(gameTime);
             //TEST
             switch (CurrentGameState)
             {
@@ -158,7 +157,7 @@ namespace ThePlatformer
                     enemiesManager.Draw(spriteBatch);
                     player.Draw(spriteBatch, new Vector2(200, 200));
                     //TEST
-                    rain.Draw(spriteBatch);
+                    rainManager.Draw(spriteBatch);
                     //TEST
                     break;
                     #endregion
