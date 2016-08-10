@@ -58,7 +58,8 @@ namespace ThePlatformer
         }
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-
+            spriteBatch.Draw(texture, new Rectangle((int)position.Y, (int)position.X, texture.Width, texture.Height)
+                ,colour);
         }
     }
 }

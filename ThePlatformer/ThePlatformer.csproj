@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="Characters\Enemies\EnemiesManager\EnemiesManager.cs" />
     <Compile Include="Characters\Player\PlayerManager.cs" />
+    <Compile Include="Rain\Raining.cs" />
     <Compile Include="View\Camera\Camera.cs" />
     <Compile Include="View\MapView\MapManager.cs" />
     <Compile Include="View\Menu\Buttons\cButton.cs" />
@@ -149,6 +150,7 @@
     <Content Include="Content\bulletSmall.png" />
     <Content Include="Content\capGuyDemo.png" />
     <Content Include="Content\capGuyDemo.txt" />
+    <Content Include="Content\drop_rain.png" />
     <Content Include="Content\healthBar.png" />
     <Content Include="Content\healthContainer.png" />
     <Content Include="Content\idle1.png" />

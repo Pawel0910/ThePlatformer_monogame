@@ -97,29 +97,30 @@ namespace ThePlatformer.View.Menu
         }
         public void DrawBegin(SpriteBatch spriteBatch)
         {
-            mainMenu.Draw(spriteBatch,getXYtoDrawMenu());
-            Vector2 vector = getXYtoDrawMenu();
-            btnPlay.setPosition(new Vector2(330 + (int)vector.Y, 300 + (int)vector.X));
+            Vector2 position = getXYtoDrawMenu();
+
+            mainMenu.Draw(spriteBatch, position);
+            btnPlay.setPosition(new Vector2(330 + (int)position.Y, 300 + (int)position.X));
             btnPlay.Draw(spriteBatch);
         }
 
         public void DrawPause(SpriteBatch spriteBatch)
         {
-            Vector2 vector1 = getXYtoDrawMenu();
+            Vector2 position = getXYtoDrawMenu();
 
-            backToGameButton.setPosition(new Vector2(330 + (int)vector1.Y, 300 + (int)vector1.X));
+            backToGameButton.setPosition(new Vector2(330 + (int)position.Y, 300 + (int)position.X));
             backToGameButton.Draw(spriteBatch);
 
-            exitButton.setPosition(new Vector2(330 + (int)vector1.Y, 350 + (int)vector1.X));
+            exitButton.setPosition(new Vector2(330 + (int)position.Y, 350 + (int)position.X));
             exitButton.Draw(spriteBatch);
         }
         public void DrawDeadMenu(SpriteBatch spriteBatch)
         {
-            Vector2 vector2 = getXYtoDrawMenu();
-            backToGameButton.setPosition(new Vector2(330 + (int)vector2.Y, 300 + (int)vector2.X));
+            Vector2 position = getXYtoDrawMenu();
+            backToGameButton.setPosition(new Vector2(330 + (int)position.Y, 300 + (int)position.X));
 
             backToGameButton.Draw(spriteBatch);
-            exitButton.setPosition(new Vector2(330 + (int)vector2.Y, 350 + (int)vector2.X));
+            exitButton.setPosition(new Vector2(330 + (int)position.Y, 350 + (int)position.X));
 
             exitButton.Draw(spriteBatch);
         }

@@ -1,17 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
-using System.Diagnostics;
 using TexturePackerLoader;
-using ThePlatformer.Enemies;
-using ThePlatformer.Health;
 using ThePlatformer.View.Menu;
-using System.Collections.Generic;
-using ThePlatformer.Treasures;
 using ThePlatformer.Characters.Enemies.EnemiesManager;
 using ThePlatformer.Characters.Player;
-
+using ThePlatformer.Rain;
 namespace ThePlatformer
 {
 
@@ -31,8 +24,8 @@ namespace ThePlatformer
         private PlayerManager playerManager = new PlayerManager();
         private EnemiesManager enemiesManager = new EnemiesManager();
         private MapManager mapManager = MapManager.getInstance();
-        int screenWidth, screenHeight;
-
+        //TEST
+        private Raining rain;
         public enum GameState
         {
             MainMenu,
@@ -59,6 +52,8 @@ namespace ThePlatformer
 
         protected override void LoadContent()
         {
+            rain = new Raining();
+            rain.Load(Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D texturePlayer = Content.Load<Texture2D>("Images/idle");
             player = new Player(texturePlayer, 1, 4);
@@ -82,6 +77,9 @@ namespace ThePlatformer
         }
         protected override void Update(GameTime gameTime)
         {
+            //TEST
+            rain.Update(gameTime);
+            //TEST
             switch (CurrentGameState)
             {
                 #region MainMen update
@@ -159,6 +157,9 @@ namespace ThePlatformer
                     mapManager.Draw(spriteBatch);
                     enemiesManager.Draw(spriteBatch);
                     player.Draw(spriteBatch, new Vector2(200, 200));
+                    //TEST
+                    rain.Draw(spriteBatch);
+                    //TEST
                     break;
                     #endregion
             }
