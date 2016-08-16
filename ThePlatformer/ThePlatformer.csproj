@@ -104,6 +104,7 @@
     <Compile Include="Characters\Player\PlayerManager.cs" />
     <Compile Include="Rain\Raining.cs" />
     <Compile Include="Rain\RainManager.cs" />
+    <Compile Include="Rain\UpdateLoop.cs" />
     <Compile Include="View\Camera\Camera.cs" />
     <Compile Include="View\MapView\MapManager.cs" />
     <Compile Include="View\Menu\Buttons\cButton.cs" />

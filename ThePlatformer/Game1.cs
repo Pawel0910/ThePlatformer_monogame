@@ -5,6 +5,9 @@ using ThePlatformer.View.Menu;
 using ThePlatformer.Characters.Enemies.EnemiesManager;
 using ThePlatformer.Characters.Player;
 using ThePlatformer.Rain;
+using System.Threading;
+using System.Threading.Tasks;
+
 namespace ThePlatformer
 {
 
@@ -24,8 +27,10 @@ namespace ThePlatformer
         private PlayerManager playerManager = new PlayerManager();
         private EnemiesManager enemiesManager = new EnemiesManager();
         private MapManager mapManager = MapManager.getInstance();
+        private Raining rain;
         //TEST
         private RainManager rainManager = new RainManager();
+        private RainManager rainManagerTest = new RainManager();
         public enum GameState
         {
             MainMenu,
@@ -48,11 +53,17 @@ namespace ThePlatformer
             enemiesManager.Initialize();
             base.Initialize();
             CurrentGameState = GameState.MainMenu;
+
+            Task.Factory.StartNew(() =>
+            {
+                var gl = new UpdateLoop(rainManagerTest);
+                gl.Loop();
+            });
         }
 
         protected override void LoadContent()
         {
-            rainManager.Load(Content);
+            rainManagerTest.Load(Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D texturePlayer = Content.Load<Texture2D>("Images/idle");
             player = new Player(texturePlayer, 1, 4);
@@ -61,7 +72,7 @@ namespace ThePlatformer
             #region Map initialize
             mapManager.LoadContent(Content);
             #endregion
-
+            
             playerManager.LoadContent(Content, GraphicsDevice.Viewport);
             enemiesManager.LoadContent(Content);
 
@@ -76,9 +87,7 @@ namespace ThePlatformer
         }
         protected override void Update(GameTime gameTime)
         {
-            //TEST
-            rainManager.Update(gameTime);
-            //TEST
+            
             switch (CurrentGameState)
             {
                 #region MainMen update
@@ -92,7 +101,9 @@ namespace ThePlatformer
                 #region Playing update
                 case GameState.Playing:
                     IsMouseVisible = false;
-
+                    //TEST
+                   // rainManager.Update(gameTime);
+                    //TEST
                     menuManager.UpdatePlaying();
 
                     playerManager.Update(gameTime, GraphicsDevice);
@@ -105,6 +116,7 @@ namespace ThePlatformer
                     mapManager.Update(gameTime,playerManager);
 
                     player.Update(gameTime);
+                    //rainManagerTest.resetEvents();
                     break;
                 #endregion
                 #region Pause update
@@ -119,7 +131,7 @@ namespace ThePlatformer
                     #endregion
             }
 
-            base.Update(gameTime);
+           // base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -153,18 +165,20 @@ namespace ThePlatformer
                 case GameState.Playing:
                     playerManager.Draw(spriteBatch);//to musi być pierwsze bo kamera używa begin by się dodać
                     //a to moze byc wywolane tylko raz
+                   // rainManagerTest.DrawOrigin(spriteBatch);
+
                     mapManager.Draw(spriteBatch);
                     enemiesManager.Draw(spriteBatch);
                     player.Draw(spriteBatch, new Vector2(200, 200));
                     //TEST
-                    rainManager.Draw(spriteBatch);
+                    //rainManager.DrawOrigin(spriteBatch);
                     //TEST
                     break;
                     #endregion
             }
 
             spriteBatch.End();
-            base.Draw(gameTime);
+            //base.Draw(gameTime);
         }
         public void restart()
         {
