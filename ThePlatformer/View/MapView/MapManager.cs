@@ -77,6 +77,7 @@ namespace ThePlatformer
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+
             map.Draw(spriteBatch);
             treasureChest.Draw(spriteBatch);
 

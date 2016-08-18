@@ -16,13 +16,20 @@ namespace ThePlatformer.Rain
         private ManualResetEvent blockIfMainThreadFirst;//w przypadku gdyby thread RainManagera uzyskał dostęp
         //jako pierwszy musi być ustawiony event który to zdarzenie obsłuży i zablokuje wątek
         private AutoResetEvent waitForComputing;//zatrzymuje główny wątek gdyby ten skończy pracę pierwszy
-        private Raining rain;
+
+        private ManualResetEvent startDrawing;
+        private ManualResetEvent waitForEndDrawing;
+        private ManualResetEvent buffor;
+        private Raining rainTest = new Raining();
         public RainManager()
         {
-            rain = new Raining();
             endComputing = new ManualResetEvent(true);
             waitForComputing = new AutoResetEvent(false);
             blockIfMainThreadFirst = new ManualResetEvent(false);
+
+            startDrawing = new ManualResetEvent(false);
+            waitForEndDrawing = new ManualResetEvent(false);
+            buffor = new ManualResetEvent(false);
         }
         public void Load(ContentManager Content)
         {
@@ -47,20 +54,6 @@ namespace ThePlatformer.Rain
             }
             EndFrame();
         }
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            foreach (Raining rain in rainList)
-            {
-                rain.Draw(spriteBatch);
-            }
-        }
-        public void DrawOrigin(SpriteBatch spriteBatch)
-        {
-            foreach (Raining rain in rainList)
-            {
-                rain.Draw(spriteBatch);
-            }
-        }
         public void EndFrame()
         {
             blockIfMainThreadFirst.WaitOne();
@@ -71,17 +64,49 @@ namespace ThePlatformer.Rain
         }
         public void waitForEndOfUpdate()
         {
-
             blockIfMainThreadFirst.Set();
             waitForComputing.WaitOne();
             endComputing.Set();
         }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            foreach (Raining rain in rainList)
+            {
+                rain.Draw(spriteBatch);
+            }
+        }
+        public void DrawOrigin(SpriteBatch spriteBatch)
+        {
+            startDrawing.WaitOne();
+            startDrawing.Reset();
+
+            foreach (Raining rain in rainList)
+            {
+                rain.Draw(spriteBatch);
+            }
+            endDraw();
+        }
+        public void endDraw()//currentThread
+        {
+            waitForEndDrawing.Set();
+        }
+        public void waitForEndDraw()//mainThread
+        {
+            waitForEndDrawing.WaitOne();
+            waitForEndDrawing.Reset();
+        }
+        public void resetDrawEvent()
+        {
+            startDrawing.Set();
+        }
+        
+       
         private void loadList()
         {
             if (rainList.Count < 10000)
             {
                 int size = rainList.Count;
-                for(int i = 0; i < 10000 - size; i++)
+                for (int i = 0; i < 10000 - size; i++)
                 {
                     Raining rain = new Raining();
                     rain.position = new Vector2(randInt(20, 200), randInt(-100, 20));
@@ -89,6 +114,7 @@ namespace ThePlatformer.Rain
                 }
             }
         }
+       
         private int randInt(int minRange,int maxRange)
         {
             return random.Next(minRange, maxRange);

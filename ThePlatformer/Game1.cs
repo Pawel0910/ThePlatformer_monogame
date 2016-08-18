@@ -58,12 +58,17 @@ namespace ThePlatformer
                 var gl = new UpdateLoop(rainManager);
                 gl.Loop();
             });
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            Task.Factory.StartNew(() =>
+            {
+                var updateLoop = new UpdateLoop(rainManager);
+                updateLoop.LoopDraw(spriteBatch);
+            });
         }
 
         protected override void LoadContent()
         {
             rainManager.Load(Content);
-            spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D texturePlayer = Content.Load<Texture2D>("Images/idle");
             player = new Player(texturePlayer, 1, 4);
             playerTxtPacker = new PlayerTexturePackerTest(texturePlayer, 1, 4);
@@ -164,13 +169,16 @@ namespace ThePlatformer
                 case GameState.Playing:
                     playerManager.Draw(spriteBatch);//to musi być pierwsze bo kamera używa begin by się dodać
                     //a to moze byc wywolane tylko raz
-                   // rainManagerTest.DrawOrigin(spriteBatch);
+                    rainManager.resetDrawEvent();
+                    rainManager.waitForEndDraw();
+
+                    // rainManagerTest.DrawOrigin(spriteBatch);
 
                     mapManager.Draw(spriteBatch);
                     enemiesManager.Draw(spriteBatch);
                     player.Draw(spriteBatch, new Vector2(200, 200));
                     //TEST
-                    rainManager.DrawOrigin(spriteBatch);
+                   // rainManager.DrawOrigin(spriteBatch);
                     //TEST
                     break;
                     #endregion
