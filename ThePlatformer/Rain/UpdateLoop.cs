@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -26,6 +27,13 @@ namespace ThePlatformer.Rain
             while (true)
             {
                 Update();
+            }
+        }
+        public void LoopDraw(SpriteBatch spriteBatch)
+        {
+            while (true)
+            {
+                rainManager.DrawOrigin(spriteBatch);
             }
         }
 
