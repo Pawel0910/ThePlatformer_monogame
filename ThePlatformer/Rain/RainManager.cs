@@ -21,8 +21,10 @@ namespace ThePlatformer.Rain
         private ManualResetEvent waitForEndDrawing;
         private ManualResetEvent buffor;
         private Raining rainTest = new Raining();
+
         public RainManager()
         {
+
             endComputing = new ManualResetEvent(true);
             waitForComputing = new AutoResetEvent(false);
             blockIfMainThreadFirst = new ManualResetEvent(false);
@@ -34,24 +36,21 @@ namespace ThePlatformer.Rain
         public void Load(ContentManager Content)
         {
             Raining.Load(Content);
-        }    
-        public void Update(GameTime gameTime)
-        {
-            
             loadList();
-            foreach (Raining rain in rainList)
-            {
-                rain.Update(gameTime);
-            }
 
         }
+
         public void UpdateTest(long elapsedTime)
         {
-            loadList();
-            foreach (Raining rain in rainList)
+            for(int i = 0; i < rainList.Count; i++)
             {
-                rain.Update(elapsedTime);
+                rainList[i].Update(elapsedTime);
+                if (rainList[i].isCollisionWithPlayer())
+                {
+                    rainList.RemoveAt(i);
+                }
             }
+
             EndFrame();
         }
         public void EndFrame()
@@ -70,10 +69,14 @@ namespace ThePlatformer.Rain
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Raining rain in rainList)
+            for (int i = 0; i < rainList.Count; i++)
             {
-                rain.Draw(spriteBatch);
+                rainList[i].Draw(spriteBatch);
             }
+            //foreach (Raining rain in rainList)
+            //{
+            //    rain.Draw(spriteBatch);
+            //}
         }
         public void DrawOrigin(SpriteBatch spriteBatch)
         {
@@ -103,13 +106,13 @@ namespace ThePlatformer.Rain
        
         private void loadList()
         {
-            if (rainList.Count < 10000)
+            if (rainList.Count < 1000)
             {
                 int size = rainList.Count;
-                for (int i = 0; i < 10000 - size; i++)
+                for (int i = 0; i < 1000 - size; i++)
                 {
                     Raining rain = new Raining();
-                    rain.position = new Vector2(randInt(20, 200), randInt(-100, 20));
+                    rain.position = new Vector2(randInt(200, 2000), randInt(-1000, 20));
                     rainList.Add(rain);
                 }
             }

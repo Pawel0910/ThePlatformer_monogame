@@ -59,11 +59,11 @@ namespace ThePlatformer
                 gl.Loop();
             });
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Task.Factory.StartNew(() =>
-            {
-                var updateLoop = new UpdateLoop(rainManager);
-                updateLoop.LoopDraw(spriteBatch);
-            });
+            //Task.Factory.StartNew(() =>
+            //{
+            //    var updateLoop = new UpdateLoop(rainManager);
+            //    updateLoop.LoopDraw(spriteBatch);
+            //});
         }
 
         protected override void LoadContent()
@@ -169,16 +169,16 @@ namespace ThePlatformer
                 case GameState.Playing:
                     playerManager.Draw(spriteBatch);//to musi być pierwsze bo kamera używa begin by się dodać
                     //a to moze byc wywolane tylko raz
-                    rainManager.resetDrawEvent();
-                    rainManager.waitForEndDraw();
-
+                    //rainManager.resetDrawEvent();
+                    //rainManager.waitForEndDraw();
+                    rainManager.Draw(spriteBatch);
                     // rainManagerTest.DrawOrigin(spriteBatch);
 
                     mapManager.Draw(spriteBatch);
                     enemiesManager.Draw(spriteBatch);
                     player.Draw(spriteBatch, new Vector2(200, 200));
                     //TEST
-                   // rainManager.DrawOrigin(spriteBatch);
+                    // rainManager.DrawOrigin(spriteBatch);
                     //TEST
                     break;
                     #endregion

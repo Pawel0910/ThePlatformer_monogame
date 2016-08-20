@@ -29,13 +29,13 @@ namespace ThePlatformer.Rain
                 Update();
             }
         }
-        public void LoopDraw(SpriteBatch spriteBatch)
-        {
-            while (true)
-            {
-                rainManager.DrawOrigin(spriteBatch);
-            }
-        }
+        //public void LoopDraw(SpriteBatch spriteBatch)
+        //{
+        //    while (true)
+        //    {
+        //        rainManager.DrawOrigin(spriteBatch);
+        //    }
+        //}
 
         private void Update()
         {
