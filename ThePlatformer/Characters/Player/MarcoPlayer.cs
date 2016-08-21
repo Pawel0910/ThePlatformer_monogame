@@ -16,7 +16,7 @@ namespace ThePlatformer
     public class MarcoPlayer
     {
         private TouchCollection touchCollection = TouchPanel.GetState();
-        private Texture2D texture;
+        public Texture2D texture{ get; set; }
         //private static Vector2 position;
         public Vector2 position;
         public Vector2 velocity;
@@ -25,7 +25,8 @@ namespace ThePlatformer
         private bool isLeft = false, isRight = true;
         public int bulletDistance = 200;
         public static Rectangle rectangle;
-        public static int mapWidth, mapHeight;
+        public int mapWidth{ get; set; }
+        public int mapHeight { get; set; }
         public bool hasJumped = false, dead = false;
         public List<Bullet> bulletList = new List<Bullet>();
         public float startTime = 0, delayBetweenBulletShots = 100;
@@ -49,9 +50,7 @@ namespace ThePlatformer
         {
             get { return position; }
         }
-        public MarcoPlayer(int mapWidth1, int mapHeight1) {
-            mapHeight = mapHeight1;
-            mapWidth = mapWidth1;
+        public MarcoPlayer() {
             currentLifeNumber = lives;
         }
 

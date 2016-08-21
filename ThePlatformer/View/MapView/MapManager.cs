@@ -11,7 +11,7 @@ using ThePlatformer.Treasures;
 
 namespace ThePlatformer
 {
-    class MapManager
+    public class MapManager
     {
         private static MapManager mapManager;
         private BaseTreasureAbstract treasureChest;

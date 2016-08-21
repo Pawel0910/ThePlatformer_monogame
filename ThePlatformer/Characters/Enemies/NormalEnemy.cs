@@ -17,7 +17,7 @@ namespace ThePlatformer
 
         public override void Update(GameTime gameTime)
         {
-            if (position.Y > MarcoPlayer.mapHeight - rectangle.Height)
+            if (position.Y > mapManager.getMapHeight() - rectangle.Height)
             {
                 position.X = MarcoPlayer.rectangle.X + 300;
                 position.Y = -20;

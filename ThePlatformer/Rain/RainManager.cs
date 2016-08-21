@@ -22,9 +22,12 @@ namespace ThePlatformer.Rain
         private ManualResetEvent buffor;
         private Raining rainTest = new Raining();
 
-        public RainManager()
-        {
+        public static bool TEST = false;
 
+        private MarcoPlayer player;
+        public RainManager(MarcoPlayer player)
+        {
+            this.player = player;
             endComputing = new ManualResetEvent(true);
             waitForComputing = new AutoResetEvent(false);
             blockIfMainThreadFirst = new ManualResetEvent(false);
@@ -47,8 +50,13 @@ namespace ThePlatformer.Rain
                 rainList[i].Update(elapsedTime);
                 if (rainList[i].isCollisionWithPlayer())
                 {
-                    rainList.RemoveAt(i);
+                    rainList[i].collision(player);
                 }
+                //rainList[i].collision(player);
+                //if (rainList[i].isCollisionWithPlayer())
+                //{
+                //    rainList.RemoveAt(i);
+                //}
             }
 
             EndFrame();

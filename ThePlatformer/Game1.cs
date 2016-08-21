@@ -23,13 +23,13 @@ namespace ThePlatformer
         SpriteRender spriteRender;
         private Player player;
         private PlayerTexturePackerTest playerTxtPacker;
+        private MapManager mapManager = MapManager.getInstance();
         private MenuViewManager menuManager= new MenuViewManager();
         private PlayerManager playerManager = new PlayerManager();
         private EnemiesManager enemiesManager = new EnemiesManager();
-        private MapManager mapManager = MapManager.getInstance();
         private Raining rain;
         //TEST
-        private RainManager rainManager = new RainManager();
+        private RainManager rainManager;
         public enum GameState
         {
             MainMenu,
@@ -49,6 +49,9 @@ namespace ThePlatformer
         protected override void Initialize()
         {
             mapManager.Initialize();
+
+            playerManager.Initialize();
+            rainManager = new RainManager(playerManager.getPlayer());
             enemiesManager.Initialize();
             base.Initialize();
             CurrentGameState = GameState.MainMenu;
@@ -172,6 +175,14 @@ namespace ThePlatformer
                     //rainManager.resetDrawEvent();
                     //rainManager.waitForEndDraw();
                     rainManager.Draw(spriteBatch);
+                    if (RainManager.TEST)
+                    {
+                        GraphicsDevice.Clear(Color.Red);
+                    }
+                //    else
+                //    {
+                 //       GraphicsDevice.Clear(Color.White);
+                   // }
                     // rainManagerTest.DrawOrigin(spriteBatch);
 
                     mapManager.Draw(spriteBatch);

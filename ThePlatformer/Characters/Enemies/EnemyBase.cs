@@ -22,6 +22,7 @@ namespace ThePlatformer.Enemies
         public int livePoints;
         public HealthBar healthBar;
         public bool isDead = false;
+        public MapManager mapManager = MapManager.getInstance();
         public enum LiveStatus
         {
             alive,

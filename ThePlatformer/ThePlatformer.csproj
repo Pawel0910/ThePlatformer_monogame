@@ -152,6 +152,7 @@
     <Content Include="Content\bulletSmall.png" />
     <Content Include="Content\capGuyDemo.png" />
     <Content Include="Content\capGuyDemo.txt" />
+    <Content Include="Content\CustomDrop.png" />
     <Content Include="Content\drop_rain.png" />
     <Content Include="Content\healthBar.png" />
     <Content Include="Content\healthContainer.png" />

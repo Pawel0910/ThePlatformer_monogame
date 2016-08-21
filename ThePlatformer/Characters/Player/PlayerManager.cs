@@ -9,17 +9,22 @@ using System.Threading.Tasks;
 
 namespace ThePlatformer.Characters.Player
 {
-    class PlayerManager
+    public class PlayerManager
     {
         private Camera camera;
         private MarcoPlayer marcoPlayer;
         private MapManager mapManager = MapManager.getInstance();
+     
+        public void Initialize()
+        {
+            marcoPlayer = new MarcoPlayer();
 
+        }
         public void LoadContent(ContentManager Content,Viewport viewport)
         {
             camera = new Camera(viewport);
-    
-            marcoPlayer = new MarcoPlayer(mapManager.getMapWidth(), mapManager.getMapHeight());
+            marcoPlayer.mapHeight = mapManager.getMapHeight();
+            marcoPlayer.mapWidth = mapManager.getMapWidth();
             marcoPlayer.Load(Content);
 
         }
