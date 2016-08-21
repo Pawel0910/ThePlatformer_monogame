@@ -17,7 +17,7 @@ namespace ThePlatformer.Characters.Player
      
         public void Initialize()
         {
-            marcoPlayer = new MarcoPlayer();
+            marcoPlayer = new MarcoPlayer(new Vector2(16, 38));
 
         }
         public void LoadContent(ContentManager Content,Viewport viewport)

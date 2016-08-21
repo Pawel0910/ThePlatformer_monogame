@@ -20,7 +20,7 @@ namespace ThePlatformer.Rain
         private ManualResetEvent startDrawing;
         private ManualResetEvent waitForEndDrawing;
         private ManualResetEvent buffor;
-        private Raining rainTest = new Raining();
+       // private Raining rainTest = new Raining();
 
         public static bool TEST = false;
 
@@ -48,9 +48,9 @@ namespace ThePlatformer.Rain
             for(int i = 0; i < rainList.Count; i++)
             {
                 rainList[i].Update(elapsedTime);
-                if (rainList[i].isCollisionWithPlayer())
+                if (rainList[i].isCollisionWithPlayer() && player.Collision(rainList[i]))
                 {
-                    rainList[i].collision(player);
+                    rainList.RemoveAt(i);
                 }
                 //rainList[i].collision(player);
                 //if (rainList[i].isCollisionWithPlayer())
@@ -119,8 +119,8 @@ namespace ThePlatformer.Rain
                 int size = rainList.Count;
                 for (int i = 0; i < 1000 - size; i++)
                 {
-                    Raining rain = new Raining();
-                    rain.position = new Vector2(randInt(200, 2000), randInt(-1000, 20));
+                    Raining rain = new Raining(new Vector2(randInt(200, 2000), randInt(-1000, 20)));
+                    //rain.position = new Vector2(randInt(200, 2000), randInt(-1000, 20));
                     rainList.Add(rain);
                 }
             }

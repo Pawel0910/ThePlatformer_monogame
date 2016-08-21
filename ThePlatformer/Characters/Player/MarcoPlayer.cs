@@ -13,12 +13,12 @@ using ThePlatformer.Health;
 
 namespace ThePlatformer
 {
-    public class MarcoPlayer
+    public class MarcoPlayer : SpriteCollision
     {
         private TouchCollection touchCollection = TouchPanel.GetState();
-        public Texture2D texture{ get; set; }
+       // public Texture2D texture{ get; set; }
         //private static Vector2 position;
-        public Vector2 position;
+        //public Vector2 position;
         public Vector2 velocity;
         private Vector2 origin;
         private SpriteEffects flip;
@@ -50,15 +50,16 @@ namespace ThePlatformer
         {
             get { return position; }
         }
-        public MarcoPlayer() {
+        public MarcoPlayer(Vector2 position)
+        :base(position){
             currentLifeNumber = lives;
         }
 
         public void Load(ContentManager Content)
         {
-            position = new Vector2(16, 38);
-            texture = Content.Load<Texture2D>("idle1");
-
+            // position = new Vector2(16, 38);
+            //texture = Content.Load<Texture2D>("TestPixelCollision2");
+            base.LoadContent(Content, "TestPixelCollision2");
             Bullet bullet1 = new Bullet();
             bullet1.Load(Content);
             healthBar = new HealthBar(Content);
@@ -70,6 +71,7 @@ namespace ThePlatformer
             updateScreenInfo(graphics);
             isCrossedMap();
             updatePosition();
+            base.Update();
             Input(gameTime);
             gravity();
             checkpointManager();

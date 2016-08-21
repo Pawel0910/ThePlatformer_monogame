@@ -12,12 +12,18 @@ namespace ThePlatformer.Rain
 {
     public class Raining
     {
-        private static Texture2D texture;
+        public static Texture2D texture;
         public Vector2 position{ get; set; }
         public float rotation { get; set; }
         public Vector2 velocity;
-        private Rectangle rectangle;
+        public Rectangle rectangle;
         private float scale = 1f;
+
+        public Raining(Vector2 position) 
+        {
+            this.position = position;
+        }
+
         public static void Load(ContentManager Content)
         {
             texture = Content.Load<Texture2D>("CustomDrop");
@@ -25,9 +31,10 @@ namespace ThePlatformer.Rain
 
         public void Update(long elapsedTime)
         {
+           
             velocity.X = 0.01f;
-            velocity.Y = (float)elapsedTime / 48;
-
+            velocity.Y = (float)elapsedTime / 96;
+            
             rectangle = new Rectangle((int)position.X, (int)position.Y, (int)(texture.Width),
                 (int)(texture.Height));
 
@@ -38,12 +45,12 @@ namespace ThePlatformer.Rain
         {
             var intersects = perPixelCollision(player);
 
-            RainManager.TEST = intersects;
 
             return intersects;
         }
         private bool perPixelCollision(MarcoPlayer player)
         {
+            
             var sourceColors = new Color[rectangle.Width * rectangle.Height];
             texture.GetData(sourceColors);
 
@@ -83,7 +90,7 @@ namespace ThePlatformer.Rain
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.White, 35f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
         }
     }
 }

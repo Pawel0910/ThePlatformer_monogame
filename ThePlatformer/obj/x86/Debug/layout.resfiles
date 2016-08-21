@@ -29,6 +29,8 @@ Content\menu\mainMenu.txt
 Content\PlayerAnimation\IdlePlayer.png
 Content\PlayerAnimation\IdlePlayer.txt
 Content\sprite.png
+Content\TestPixelCollision.png
+Content\TestPixelCollision2.png
 Content\tile1.png
 Content\tile2.png
 Properties\Default.rd.xml

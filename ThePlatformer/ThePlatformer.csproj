@@ -105,6 +105,7 @@
     <Compile Include="Rain\Raining.cs" />
     <Compile Include="Rain\RainManager.cs" />
     <Compile Include="Rain\UpdateLoop.cs" />
+    <Compile Include="SpriteCollision.cs" />
     <Compile Include="View\Camera\Camera.cs" />
     <Compile Include="View\MapView\MapManager.cs" />
     <Compile Include="View\Menu\Buttons\cButton.cs" />
@@ -168,6 +169,8 @@
     <Content Include="Content\PlayerAnimation\IdlePlayer.png" />
     <Content Include="Content\PlayerAnimation\IdlePlayer.txt" />
     <Content Include="Content\sprite.png" />
+    <Content Include="Content\TestPixelCollision.png" />
+    <Content Include="Content\TestPixelCollision2.png" />
     <Content Include="Content\tile1.png" />
     <Content Include="Content\tile2.png" />
     <Content Include="Properties\Default.rd.xml" />
