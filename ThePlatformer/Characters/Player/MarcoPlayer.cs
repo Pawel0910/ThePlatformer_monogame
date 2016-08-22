@@ -16,9 +16,10 @@ namespace ThePlatformer
     public class MarcoPlayer : SpriteCollision
     {
         private TouchCollection touchCollection = TouchPanel.GetState();
-       // public Texture2D texture{ get; set; }
+        // public Texture2D texture{ get; set; }
         //private static Vector2 position;
         //public Vector2 position;
+        private Texture2D _rectangleTexture;
         public Vector2 velocity;
         private Vector2 origin;
         private SpriteEffects flip;
@@ -55,23 +56,40 @@ namespace ThePlatformer
             currentLifeNumber = lives;
         }
 
-        public void Load(ContentManager Content)
+        public void Load(ContentManager Content,GraphicsDevice graphicsDevice)
         {
             // position = new Vector2(16, 38);
             //texture = Content.Load<Texture2D>("TestPixelCollision2");
+            Color color = Color.Black;
             base.LoadContent(Content, "TestPixelCollision2");
             Bullet bullet1 = new Bullet();
             bullet1.Load(Content);
             healthBar = new HealthBar(Content);
             livePoints = healthBar.fullHealth;
             font = Content.Load<SpriteFont>("healthsFont");
+            var colors = new Color[texture.Width * texture.Height];
+
+            colors[0] = color;
+            colors[1] = color;
+            colors[texture.Width - 1] = color;
+            colors[texture.Width - 2] = color;
+            colors[(texture.Width * texture.Height) - texture.Width] = color;
+            colors[(texture.Width * texture.Height) - texture.Width+1] = color;
+
+
+            colors[(texture.Width * texture.Height) - 1] = color;
+            colors[(texture.Width * texture.Height) - 2] = color;
+
+
+            _rectangleTexture = new Texture2D(graphicsDevice, texture.Width, texture.Height);
+            _rectangleTexture.SetData(colors);
         }
         public void Update(GameTime gameTime, GraphicsDevice graphics)
         {
             updateScreenInfo(graphics);
             isCrossedMap();
             updatePosition();
-            base.Update();
+            base.Update(gameTime);
             Input(gameTime);
             gravity();
             checkpointManager();
@@ -278,7 +296,8 @@ namespace ThePlatformer
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position,null, Color.White,0f,Vector2.Zero,1,flip,0);
+            spriteBatch.Draw(texture, position,null, Color.White,angle,origin,scale,flip,0);
+            spriteBatch.Draw(_rectangleTexture,null, rectangleBase,null,null,0,null,Color.White);
             healthBar.Draw(spriteBatch,setHealthBarPosition());
             spriteBatch.DrawString(font, "Lifes: " + lives, setFontPosition(30,60), Color.Black);
             spriteBatch.DrawString(font, "Score: " + score, setFontPosition(30,90), Color.Black);

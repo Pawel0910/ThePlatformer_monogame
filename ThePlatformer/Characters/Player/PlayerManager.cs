@@ -20,12 +20,12 @@ namespace ThePlatformer.Characters.Player
             marcoPlayer = new MarcoPlayer(new Vector2(16, 38));
 
         }
-        public void LoadContent(ContentManager Content,Viewport viewport)
+        public void LoadContent(ContentManager Content,Viewport viewport, GraphicsDevice graphicsDevice)
         {
             camera = new Camera(viewport);
             marcoPlayer.mapHeight = mapManager.getMapHeight();
             marcoPlayer.mapWidth = mapManager.getMapWidth();
-            marcoPlayer.Load(Content);
+            marcoPlayer.Load(Content, graphicsDevice);
 
         }
 

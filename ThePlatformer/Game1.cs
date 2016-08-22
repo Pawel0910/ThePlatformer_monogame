@@ -80,7 +80,7 @@ namespace ThePlatformer
             mapManager.LoadContent(Content);
             #endregion
             
-            playerManager.LoadContent(Content, GraphicsDevice.Viewport);
+            playerManager.LoadContent(Content, GraphicsDevice.Viewport, GraphicsDevice);
             enemiesManager.LoadContent(Content);
 
             SpriteSheetLoader spriteSheetLoader = new SpriteSheetLoader(this.Content);
