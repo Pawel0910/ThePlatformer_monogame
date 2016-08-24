@@ -20,7 +20,7 @@ namespace ThePlatformer.Enemies
 
         public override void Update(GameTime gameTime)
         {
-            playerPosX = MarcoPlayer.rectangle.X;
+            playerPosX = MarcoPlayer.rectangleStatic.X;
             base.Update(gameTime);
             rotation();
             shooting(gameTime);

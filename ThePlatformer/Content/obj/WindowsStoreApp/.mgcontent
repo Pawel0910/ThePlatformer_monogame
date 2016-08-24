@@ -5,5 +5,12 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/healthsFont.spritefont</File>
+    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/arrow1.png</File>
+    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/arrow2.png</File>
+    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/arrow3.png</File>
+    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/marco1.png</File>
+    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/marco2.png</File>
+    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/marco3.png</File>
+    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/marco4.png</File>
   </SourceFiles>
 </SourceFileCollection>

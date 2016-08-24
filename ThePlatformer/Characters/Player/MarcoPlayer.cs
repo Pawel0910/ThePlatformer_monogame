@@ -13,19 +13,18 @@ using ThePlatformer.Health;
 
 namespace ThePlatformer
 {
-    public class MarcoPlayer : SpriteCollision
+    public class MarcoPlayer : CustomSprite
     {
         private TouchCollection touchCollection = TouchPanel.GetState();
         // public Texture2D texture{ get; set; }
         //private static Vector2 position;
         //public Vector2 position;
-        private Texture2D _rectangleTexture;
         public Vector2 velocity;
         private Vector2 origin;
         private SpriteEffects flip;
         private bool isLeft = false, isRight = true;
         public int bulletDistance = 200;
-        public static Rectangle rectangle;
+        public static Rectangle rectangleStatic;
         public int mapWidth{ get; set; }
         public int mapHeight { get; set; }
         public bool hasJumped = false, dead = false;
@@ -37,7 +36,9 @@ namespace ThePlatformer
         public int currentLifeNumber { get; set; }
         public int lives = 3;
         public int livePoints;// pkt życia w jednym życiu :P
-      
+                              //do testu:::
+        private readonly Color _rectangleColor = Color.Black;
+        private Texture2D _rectangleTexture;
         public static HealthBar healthBar;
         enum Checkpoint
         {
@@ -58,10 +59,8 @@ namespace ThePlatformer
 
         public void Load(ContentManager Content,GraphicsDevice graphicsDevice)
         {
-            // position = new Vector2(16, 38);
-            //texture = Content.Load<Texture2D>("TestPixelCollision2");
             Color color = Color.Black;
-            base.LoadContent(Content, "TestPixelCollision2");
+            base.LoadContent(Content, "idle1");
             Bullet bullet1 = new Bullet();
             bullet1.Load(Content);
             healthBar = new HealthBar(Content);
@@ -128,7 +127,8 @@ namespace ThePlatformer
         private void updatePosition()
         {
             position += velocity;
-            rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+            rectangleStatic = Rectangle;
+            //rectangleStatic = new Rectangle((int)position.X, (int)position.Y, texture.Width/2, texture.Height/2);
         }
         private void checkpointManager()
         {
@@ -172,6 +172,7 @@ namespace ThePlatformer
                 if (isLeft)
                 {
                     flip = SpriteEffects.None;
+                    rotation = MathHelper.TwoPi;
                 }
 
                 velocity.X = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 4;
@@ -182,7 +183,8 @@ namespace ThePlatformer
             {
                 if (isRight)
                 {
-                    flip = SpriteEffects.FlipHorizontally;
+                    flip = SpriteEffects.FlipVertically;
+                    rotation = MathHelper.Pi;
                     
                 }
                 velocity.X = -(float)gameTime.ElapsedGameTime.TotalMilliseconds / 4;
@@ -240,7 +242,9 @@ namespace ThePlatformer
         {
             if (rectangle.TouchTopOf(newRectangle))
             {
-                rectangle.Y = newRectangle.Y - rectangle.Height;
+                //var cos = new Rectangle(3, 5, 10, 15);
+                //if(!hasJumped)
+                rectangle.Y =  newRectangle.Y - rectangle.Height;
                 velocity.Y = 0f;
                 hasJumped = false;
             }
@@ -296,8 +300,12 @@ namespace ThePlatformer
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position,null, Color.White,angle,origin,scale,flip,0);
-            spriteBatch.Draw(_rectangleTexture,null, rectangleBase,null,null,0,null,Color.White);
+            //spriteBatch.Draw(texture, position,null, Color.White,angle,origin,scale,flip,0);
+            spriteBatch.Draw(_rectangleTexture, null, Rectangle, null, null, 0, null, Color.White);
+
+            spriteBatch.Draw(texture, position, null, null, base.origin, rotation, scaleVector, Color.White, flip);
+
+            // spriteBatch.Draw(_rectangleTexture,null, rectangleBase,null,null,0,null,Color.White);
             healthBar.Draw(spriteBatch,setHealthBarPosition());
             spriteBatch.DrawString(font, "Lifes: " + lives, setFontPosition(30,60), Color.Black);
             spriteBatch.DrawString(font, "Score: " + score, setFontPosition(30,90), Color.Black);

@@ -58,16 +58,16 @@ namespace ThePlatformer.Treasures
 
         public void treasureCollectCollision(MarcoPlayer player)
         {
-            if (MarcoPlayer.rectangle.TouchTopOf(this.rectangle))
+            if (MarcoPlayer.rectangleStatic.TouchTopOf(this.rectangle))
             {
                 player.velocity += new Vector2(0, -2);
                 destroyTreasure();
             }
-            else if (MarcoPlayer.rectangle.TouchLeftOf(this.rectangle))
+            else if (MarcoPlayer.rectangleStatic.TouchLeftOf(this.rectangle))
             {
                 player.position.X = position.X - rectangle.Width - 2;
             }
-            else if (MarcoPlayer.rectangle.TouchRightOf(this.rectangle))
+            else if (MarcoPlayer.rectangleStatic.TouchRightOf(this.rectangle))
             {
                 player.position.X = position.X + rectangle.Width + 2;
             }

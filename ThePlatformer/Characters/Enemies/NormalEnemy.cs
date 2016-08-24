@@ -19,10 +19,10 @@ namespace ThePlatformer
         {
             if (position.Y > mapManager.getMapHeight() - rectangle.Height)
             {
-                position.X = MarcoPlayer.rectangle.X + 300;
+                position.X = MarcoPlayer.rectangleStatic.X + 300;
                 position.Y = -20;
             }
-            if (rectangle.X - MarcoPlayer.rectangle.X < distanceToPlayer)
+            if (rectangle.X - MarcoPlayer.rectangleStatic.X < distanceToPlayer)
             {
                 position += new Vector2(4, 0);
             }

@@ -102,11 +102,14 @@
     </Compile>
     <Compile Include="Characters\Enemies\EnemiesManager\EnemiesManager.cs" />
     <Compile Include="Characters\Player\PlayerManager.cs" />
-    <Compile Include="MathEx.cs" />
+    <Compile Include="SpriteBase\DebugSprite.cs" />
+    <Compile Include="SpriteBase\MathEx.cs" />
     <Compile Include="Rain\Raining.cs" />
     <Compile Include="Rain\RainManager.cs" />
     <Compile Include="Rain\UpdateLoop.cs" />
-    <Compile Include="SpriteCollision.cs" />
+    <Compile Include="SpriteBase\Animation\Animation.cs" />
+    <Compile Include="SpriteBase\RectangleTransform.cs" />
+    <Compile Include="SpriteBase\CustomSprite.cs" />
     <Compile Include="View\Camera\Camera.cs" />
     <Compile Include="View\MapView\MapManager.cs" />
     <Compile Include="View\Menu\Buttons\cButton.cs" />

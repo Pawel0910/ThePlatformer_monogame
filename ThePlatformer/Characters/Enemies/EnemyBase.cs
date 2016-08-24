@@ -141,7 +141,7 @@ namespace ThePlatformer.Enemies
                 if (player.lives > 0)
                     player.playerGotHurt(bulletStrengthHit);
             }
-            if (MarcoPlayer.rectangle.Intersects(this.rectangle))
+            if (MarcoPlayer.rectangleStatic.Intersects(this.rectangle))
             {
                 player.playerGotHurt(bulletStrengthHit);
                 player.knockBack(position);
@@ -156,7 +156,7 @@ namespace ThePlatformer.Enemies
         {
             for (int i = 0; i < bulletList.Count; i++)
             {
-                if (bulletList[i].rectangle.Intersects(MarcoPlayer.rectangle))
+                if (bulletList[i].rectangle.Intersects(MarcoPlayer.rectangleStatic))
                 {
                     bulletList.RemoveAt(i);
                     

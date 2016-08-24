@@ -41,7 +41,6 @@ namespace ThePlatformer.Characters.Player
             {
                 marcoPlayer.Collision(tile.Rectangle, mapManager.getMapWidth(), mapManager.getMapHeight());
                 camera.Update(marcoPlayer.Position, mapManager.getMapWidth(), mapManager.getMapHeight());
-
             }
         }
         public MarcoPlayer getPlayer()

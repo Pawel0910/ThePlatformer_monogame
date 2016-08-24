@@ -43,46 +43,46 @@ namespace ThePlatformer.Rain
         }
         public bool collision(MarcoPlayer player)
         {
-            var intersects = perPixelCollision(player);
+          //  var intersects = perPixelCollision(player);
 
 
-            return intersects;
-        }
-        private bool perPixelCollision(MarcoPlayer player)
-        {
-            
-            var sourceColors = new Color[rectangle.Width * rectangle.Height];
-            texture.GetData(sourceColors);
-
-            var targetColors = new Color[player.texture.Width*player.texture.Height];
-            player.texture.GetData(targetColors);
-
-            var left = Math.Max(rectangle.Left, MarcoPlayer.rectangle.Left);
-            var top = Math.Max(rectangle.Top, MarcoPlayer.rectangle.Top);
-            var width = Math.Min(rectangle.Right, MarcoPlayer.rectangle.Right) - left;
-            var height = Math.Min(rectangle.Bottom, MarcoPlayer.rectangle.Bottom) - top;
-
-            var intersectingRectangle = new Rectangle(left, top, width, height);
-
-            for (var x = intersectingRectangle.Left; x < intersectingRectangle.Right; x++)
-            {
-                for (var y = intersectingRectangle.Top; y < intersectingRectangle.Bottom; y++)
-                {
-                    var sourceColor = sourceColors[(x - rectangle.Left) + (y - rectangle.Top) * rectangle.Width];
-                    var targetColor = targetColors[(x - MarcoPlayer.rectangle.Left) + (y - MarcoPlayer.rectangle.Top) * player.texture.Width];
-
-                    if (sourceColor.A > 0 && targetColor.A > 0)
-                    {
-                        return true;
-                    }
-                }
-            }
             return false;
         }
+        //private bool perPixelCollision(MarcoPlayer player)
+        //{
+            
+        //    var sourceColors = new Color[rectangle.Width * rectangle.Height];
+        //    texture.GetData(sourceColors);
+
+        //    var targetColors = new Color[player.texture.Width*player.texture.Height];
+        //    player.texture.GetData(targetColors);
+
+        //    var left = Math.Max(rectangle.Left, MarcoPlayer.rectangle.Left);
+        //    var top = Math.Max(rectangle.Top, MarcoPlayer.rectangle.Top);
+        //    var width = Math.Min(rectangle.Right, MarcoPlayer.rectangle.Right) - left;
+        //    var height = Math.Min(rectangle.Bottom, MarcoPlayer.rectangle.Bottom) - top;
+
+        //    var intersectingRectangle = new Rectangle(left, top, width, height);
+
+        //    for (var x = intersectingRectangle.Left; x < intersectingRectangle.Right; x++)
+        //    {
+        //        for (var y = intersectingRectangle.Top; y < intersectingRectangle.Bottom; y++)
+        //        {
+        //            var sourceColor = sourceColors[(x - rectangle.Left) + (y - rectangle.Top) * rectangle.Width];
+        //            var targetColor = targetColors[(x - MarcoPlayer.rectangle.Left) + (y - MarcoPlayer.rectangle.Top) * player.texture.Width];
+
+        //            if (sourceColor.A > 0 && targetColor.A > 0)
+        //            {
+        //                return true;
+        //            }
+        //        }
+        //    }
+        //    return false;
+        //}
 
         public bool isCollisionWithPlayer()
         {
-            if (this.rectangle.Intersects(MarcoPlayer.rectangle))
+            if (this.rectangle.Intersects(MarcoPlayer.rectangleStatic))
             {
                 return true;
             }
