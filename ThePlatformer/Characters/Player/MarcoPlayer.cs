@@ -20,7 +20,6 @@ namespace ThePlatformer
         //private static Vector2 position;
         //public Vector2 position;
         public Vector2 velocity;
-        private Vector2 origin;
         private SpriteEffects flip;
         private bool isLeft = false, isRight = true;
         public int bulletDistance = 200;
@@ -303,7 +302,7 @@ namespace ThePlatformer
             //spriteBatch.Draw(texture, position,null, Color.White,angle,origin,scale,flip,0);
             spriteBatch.Draw(_rectangleTexture, null, Rectangle, null, null, 0, null, Color.White);
 
-            spriteBatch.Draw(texture, position, null, null, base.origin, rotation, scaleVector, Color.White, flip);
+            spriteBatch.Draw(texture, position, null, null, origin, rotation, scaleVector, Color.White, flip);
 
             // spriteBatch.Draw(_rectangleTexture,null, rectangleBase,null,null,0,null,Color.White);
             healthBar.Draw(spriteBatch,setHealthBarPosition());
