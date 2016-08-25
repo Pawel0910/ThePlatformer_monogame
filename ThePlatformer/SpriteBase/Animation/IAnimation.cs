@@ -8,7 +8,7 @@ namespace ThePlatformer.SpriteBase.Animation
     /// <summary>
     /// Loads all images found by prefix and create a animiation by a specified params.
     /// </summary>
-    interface IAnimation
+    public interface IAnimation
     {
         void LoadConent(ContentManager content);
 

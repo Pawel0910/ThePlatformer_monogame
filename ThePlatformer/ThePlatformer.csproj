@@ -110,7 +110,7 @@
     <Compile Include="Rain\Raining.cs" />
     <Compile Include="Rain\RainManager.cs" />
     <Compile Include="Rain\UpdateLoop.cs" />
-    <Compile Include="SpriteBase\Animation\Animation.cs" />
+    <Compile Include="SpriteBase\Animation\AnimationImpl.cs" />
     <Compile Include="SpriteBase\RectangleTransform.cs" />
     <Compile Include="SpriteBase\CustomSprite.cs" />
     <Compile Include="View\Camera\Camera.cs" />

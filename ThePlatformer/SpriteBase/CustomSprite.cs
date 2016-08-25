@@ -22,7 +22,7 @@ namespace ThePlatformer
         public Texture2D texture;
         public Matrix transform;
         public Vector2 origin;
-        public Animation animation;
+        public IAnimation animation;
         private bool moveAble;
         //private List<Texture2D> textureList;
         public SpriteEffects spriteEffect = SpriteEffects.None;
@@ -35,7 +35,7 @@ namespace ThePlatformer
             this.scale = scale;
             this.moveAble = moveAble;
             scaleVector = new Vector2(scale, scale);
-            animation = new Animation(200, "marco", "arrow");
+            animation = new AnimationImpl(200,this, "marco", "arrow");
 
 
             velocity = new Vector2((float)(speed * Math.Cos(angle)), (float)(speed * Math.Sin(angle)));
