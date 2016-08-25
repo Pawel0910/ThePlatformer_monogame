@@ -249,11 +249,11 @@ namespace ThePlatformer
             }
             if (rectangle.TouchLeftOf(newRectangle))
             {
-                position.X = newRectangle.X - rectangle.Width - 2;
+                position.X = newRectangle.X - rectangle.Width/2 - 2;
             }
             if (rectangle.TouchRightOf(newRectangle))
             {   
-                position.X = newRectangle.X + newRectangle.Width + 2;
+                position.X = newRectangle.X + newRectangle.Width+newRectangle.Width/4 - 2;
             }
             if (rectangle.TouchBottomOf(newRectangle))
             {
