@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="Characters\Enemies\EnemiesManager\EnemiesManager.cs" />
     <Compile Include="Characters\Player\PlayerManager.cs" />
+    <Compile Include="SpriteBase\Animation\Events\EventizerAnimationImpl.cs" />
     <Compile Include="SpriteBase\Animation\Events\IEventizerAnimation.cs" />
     <Compile Include="SpriteBase\DebugSprite.cs" />
     <Compile Include="SpriteBase\MathEx.cs" />
