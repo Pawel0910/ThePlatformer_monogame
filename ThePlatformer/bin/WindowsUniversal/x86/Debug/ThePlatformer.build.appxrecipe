@@ -519,6 +519,12 @@
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\marco4.xnb">
       <PackagePath>Content\marco4.xnb</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Background\scrollingBackground11.xnb">
+      <PackagePath>Content\Background\scrollingBackground11.xnb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Background\scrollingBackground12.xnb">
+      <PackagePath>Content\Background\scrollingBackground12.xnb</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\ThePlatformer.xr.xml">
       <PackagePath>ThePlatformer.xr.xml</PackagePath>
     </AppxPackagedFile>

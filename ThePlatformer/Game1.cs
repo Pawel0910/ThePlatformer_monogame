@@ -8,6 +8,7 @@ using ThePlatformer.Rain;
 using System.Threading;
 using System.Threading.Tasks;
 using ThePlatformer.SpriteBase;
+using ThePlatformer.View.Background;
 
 namespace ThePlatformer
 {
@@ -17,7 +18,6 @@ namespace ThePlatformer
     /// </summary>
     public class Game1 : Game
     {
-        private Texture2D background;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteSheet spriteSheet;
@@ -28,7 +28,6 @@ namespace ThePlatformer
         private MenuViewManager menuManager= new MenuViewManager();
         private PlayerManager playerManager = new PlayerManager();
         private EnemiesManager enemiesManager = new EnemiesManager();
-        private Raining rain;
        // private DebugSprite _arrow1;
         //TEST
         private RainManager rainManager;
@@ -52,7 +51,6 @@ namespace ThePlatformer
         {
           //  _arrow1 = new DebugSprite(new Vector2(20, 30), Color.White, 10, 0, 0, MathHelper.ToRadians(-2.0f), 1f,true);
             mapManager.Initialize();
-
             playerManager.Initialize();
             rainManager = new RainManager(playerManager.getPlayer());
             enemiesManager.Initialize();
@@ -114,7 +112,7 @@ namespace ThePlatformer
                 case GameState.Playing:
                     IsMouseVisible = false;
                     //TEST
-                   // rainManager.Update(gameTime);
+                    // rainManager.Update(gameTime);
                     //TEST
                     menuManager.UpdatePlaying();
 
@@ -180,15 +178,15 @@ namespace ThePlatformer
                                                     //a to moze byc wywolane tylko raz
                                                     //rainManager.resetDrawEvent();
                                                     //rainManager.waitForEndDraw();
-                //    _arrow1.Draw(spriteBatch);
-                //    if (_arrow1.Collided )
-                    //{
-                    //    GraphicsDevice.Clear(Color.Red);
-                    //}
-                    //else
-                    //{
-                    //    GraphicsDevice.Clear(Color.White);
-                    //}
+                                                    //    _arrow1.Draw(spriteBatch);
+                                                    //    if (_arrow1.Collided )
+                                                    //{
+                                                    //    GraphicsDevice.Clear(Color.Red);
+                                                    //}
+                                                    //else
+                                                    //{
+                                                    //    GraphicsDevice.Clear(Color.White);
+                                                    //}
                     rainManager.Draw(spriteBatch);
                     if (RainManager.TEST)
                     {

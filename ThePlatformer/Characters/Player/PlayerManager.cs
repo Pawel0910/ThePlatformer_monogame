@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThePlatformer.View.Background;
 
 namespace ThePlatformer.Characters.Player
 {
@@ -14,10 +15,12 @@ namespace ThePlatformer.Characters.Player
         private Camera camera;
         private MarcoPlayer marcoPlayer;
         private MapManager mapManager = MapManager.getInstance();
-     
+        private BackgroundManager background;
+
         public void Initialize()
         {
             marcoPlayer = new MarcoPlayer(new Vector2(16, 38));
+            background = new BackgroundManager();
 
         }
         public void LoadContent(ContentManager Content,Viewport viewport, GraphicsDevice graphicsDevice)
@@ -26,12 +29,16 @@ namespace ThePlatformer.Characters.Player
             marcoPlayer.mapHeight = mapManager.getMapHeight();
             marcoPlayer.mapWidth = mapManager.getMapWidth();
             marcoPlayer.Load(Content, graphicsDevice);
+            background.LoadContent(Content,
+            graphicsDevice.Viewport.Width,
+                graphicsDevice.Viewport.Height);
 
         }
 
         public void Update(GameTime gameTime, GraphicsDevice graphics)
         {
             marcoPlayer.Update(gameTime, graphics);
+            background.Update(gameTime, marcoPlayer._position);
             collisionWithMap();
         }
 
@@ -59,6 +66,8 @@ namespace ThePlatformer.Characters.Player
                        BlendState.AlphaBlend,
                        null, null, null, null,
                        camera.Transform);
+            background.Draw(spriteBatch);
+
             marcoPlayer.Draw(spriteBatch);
 
         }

@@ -647,3 +647,5 @@ C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanows
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Content\marco3.xnb
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Content\marco4.xnb
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\obj\x86\Debug\ThePlatformer.csprojResolveAssemblyReference.cache
+C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Content\Background\scrollingBackground11.xnb
+C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Content\Background\scrollingBackground12.xnb
