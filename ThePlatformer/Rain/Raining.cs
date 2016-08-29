@@ -3,42 +3,51 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ThePlatformer.SpriteBase.Animation;
 
 namespace ThePlatformer.Rain
 {
-    public class Raining
+    public class Raining : CustomSprite
     {
-        public static Texture2D texture;
+        private static Texture2D texture { get; set; }
+        private IAnimation animation;
         public Vector2 position{ get; set; }
         public float rotation { get; set; }
         public Vector2 velocity;
-        public Rectangle rectangle;
         private float scale = 1f;
 
-        public Raining(Vector2 position) 
+        public Raining(Vector2 position)
+            :base(position)
         {
             this.position = position;
+            animation = new AnimationImpl(200, this, "CustomDrop");
         }
 
         public static void Load(ContentManager Content)
         {
             texture = Content.Load<Texture2D>("CustomDrop");
         }
-
-        public void Update(long elapsedTime)
+        public new void LoadContent(ContentManager Content, GraphicsDevice graphics)
+        {
+            //animation.LoadConent(Content);
+            base.LoadStaticContent(texture, Content, graphics);
+            // base.OnContentLoaded(Content, graphics);
+        }
+        public void Update(long totalGameTime, long elapsedGameTime)
         {
            
             velocity.X = 0.01f;
-            velocity.Y = (float)elapsedTime / 96;
-            
-            rectangle = new Rectangle((int)position.X, (int)position.Y, (int)(texture.Width),
-                (int)(texture.Height));
+            velocity.Y = 0.1f;
+         
+            _position += velocity;
+            GameTime gameTime1 = new GameTime(new TimeSpan(totalGameTime), TimeSpan.FromMilliseconds(elapsedGameTime));
+            base.Update(gameTime1, animation.changeTextureOnAnimation(gameTime1));
 
-            position += velocity;
 
         }
         public bool collision(MarcoPlayer player)
@@ -80,17 +89,17 @@ namespace ThePlatformer.Rain
         //    return false;
         //}
 
-        public bool isCollisionWithPlayer()
+        public bool isCollisionWithPlayer(MarcoPlayer player)
         {
-            if (this.rectangle.Intersects(MarcoPlayer.rectangleStatic))
+            if (player.Collision(this))
             {
                 return true;
             }
             return false;
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            base.Draw(spriteBatch);
         }
     }
 }

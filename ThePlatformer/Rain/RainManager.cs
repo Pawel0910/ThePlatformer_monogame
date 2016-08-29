@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 
 namespace ThePlatformer.Rain
@@ -28,6 +29,8 @@ namespace ThePlatformer.Rain
         public RainManager(MarcoPlayer player)
         {
             this.player = player;
+            loadList();
+
             endComputing = new ManualResetEvent(true);
             waitForComputing = new AutoResetEvent(false);
             blockIfMainThreadFirst = new ManualResetEvent(false);
@@ -36,27 +39,29 @@ namespace ThePlatformer.Rain
             waitForEndDrawing = new ManualResetEvent(false);
             buffor = new ManualResetEvent(false);
         }
-        public void Load(ContentManager Content)
+        public void Load(ContentManager Content, GraphicsDevice graphics)
         {
             Raining.Load(Content);
-            loadList();
+            for (int i = 0; i < rainList.Count; i++)
+            {
+                rainList[i].LoadContent(Content,graphics);
+                // if (rainList[i].isCollisionWithPlayer())// && player.Collision(rainList[i]))
+                // {
+                //     rainList.RemoveAt(i);
+                // }
+            }
 
         }
 
-        public void UpdateTest(long elapsedTime)
+        public void UpdateTest(long totalGameTime, long elapsedGameTime)
         {
             for(int i = 0; i < rainList.Count; i++)
             {
-                rainList[i].Update(elapsedTime);
-                if (rainList[i].isCollisionWithPlayer())// && player.Collision(rainList[i]))
+                rainList[i].Update( totalGameTime, elapsedGameTime);
+                if (rainList[i].isCollisionWithPlayer(player))
                 {
                     rainList.RemoveAt(i);
                 }
-                //rainList[i].collision(player);
-                //if (rainList[i].isCollisionWithPlayer())
-                //{
-                //    rainList.RemoveAt(i);
-                //}
             }
 
             EndFrame();
@@ -81,10 +86,6 @@ namespace ThePlatformer.Rain
             {
                 rainList[i].Draw(spriteBatch);
             }
-            //foreach (Raining rain in rainList)
-            //{
-            //    rain.Draw(spriteBatch);
-            //}
         }
         public void DrawOrigin(SpriteBatch spriteBatch)
         {

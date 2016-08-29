@@ -26,6 +26,6 @@ namespace ThePlatformer.SpriteBase.Animation
         /// Returns null if the frame has not change.
         /// </summary>
         /// <returns></returns>
-        Texture2D proceedAnimation(GameTime gameTime);
+        Texture2D changeTextureOnAnimation(GameTime gameTime);
     }
 }

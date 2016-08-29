@@ -35,12 +35,12 @@ namespace ThePlatformer.SpriteBase
             base.OnContentLoaded(content, graphicsDevice);
         }
 
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+       public override void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(_rectangleTexture, null, Rectangle, null, null, 0, null, Color.White);
            // spriteBatch.Draw(Texture, Position, null, null, Vector2.Zero, 0, null, Color.Black * 0.1f);
 
-            base.Draw(spriteBatch, gameTime);
+            base.Draw(spriteBatch);
         }
     }
 }

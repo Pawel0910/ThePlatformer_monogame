@@ -99,7 +99,7 @@ namespace ThePlatformer.SpriteBase.Animation
             currentAnimationName = textureDict.FirstOrDefault(x => x.Value == currentAnimation).Key;
             elapsedTime = delayBeetwenFrames + 1;
         }
-        public Texture2D proceedAnimation(GameTime gameTime)
+        public Texture2D changeTextureOnAnimation(GameTime gameTime)
         {
 
             elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;

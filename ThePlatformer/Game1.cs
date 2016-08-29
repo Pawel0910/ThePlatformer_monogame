@@ -29,7 +29,7 @@ namespace ThePlatformer
         private PlayerManager playerManager = new PlayerManager();
         private EnemiesManager enemiesManager = new EnemiesManager();
         private Raining rain;
-        private DebugSprite _arrow1;
+       // private DebugSprite _arrow1;
         //TEST
         private RainManager rainManager;
         public enum GameState
@@ -50,7 +50,7 @@ namespace ThePlatformer
 
         protected override void Initialize()
         {
-            _arrow1 = new DebugSprite(new Vector2(20, 30), Color.White, 10, 0, 0, MathHelper.ToRadians(-2.0f), 1f,true);
+          //  _arrow1 = new DebugSprite(new Vector2(20, 30), Color.White, 10, 0, 0, MathHelper.ToRadians(-2.0f), 1f,true);
             mapManager.Initialize();
 
             playerManager.Initialize();
@@ -74,8 +74,8 @@ namespace ThePlatformer
 
         protected override void LoadContent()
         {
-            _arrow1.LoadContent(Content, "arrow1");
-            rainManager.Load(Content);
+           // _arrow1.LoadContent(Content, "arrow1");
+            rainManager.Load(Content, GraphicsDevice);
             Texture2D texturePlayer = Content.Load<Texture2D>("Images/idle");
             player = new Player(texturePlayer, 1, 4);
             playerTxtPacker = new PlayerTexturePackerTest(texturePlayer, 1, 4);
@@ -98,7 +98,7 @@ namespace ThePlatformer
         }
         protected override void Update(GameTime gameTime)
         {
-            _arrow1.Update(gameTime);
+           // _arrow1.Update(gameTime);
     
             switch (CurrentGameState)
             {
@@ -129,7 +129,7 @@ namespace ThePlatformer
 
                     player.Update(gameTime);
                     rainManager.waitForEndOfUpdate();
-                    _arrow1.Collision(playerManager.getPlayer());
+             //       _arrow1.Collision(playerManager.getPlayer());
                     break;
                 #endregion
                 #region Pause update
@@ -180,15 +180,15 @@ namespace ThePlatformer
                                                     //a to moze byc wywolane tylko raz
                                                     //rainManager.resetDrawEvent();
                                                     //rainManager.waitForEndDraw();
-                    _arrow1.Draw(spriteBatch, gameTime);
-                    if (_arrow1.Collided )
-                    {
-                        GraphicsDevice.Clear(Color.Red);
-                    }
-                    else
-                    {
-                        GraphicsDevice.Clear(Color.White);
-                    }
+                //    _arrow1.Draw(spriteBatch);
+                //    if (_arrow1.Collided )
+                    //{
+                    //    GraphicsDevice.Clear(Color.Red);
+                    //}
+                    //else
+                    //{
+                    //    GraphicsDevice.Clear(Color.White);
+                    //}
                     rainManager.Draw(spriteBatch);
                     if (RainManager.TEST)
                     {

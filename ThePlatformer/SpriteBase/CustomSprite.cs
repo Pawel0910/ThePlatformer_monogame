@@ -17,85 +17,103 @@ namespace ThePlatformer
         private readonly float angularVelocity;
         public float scale;
         public Vector2 scaleVector;
-        public Vector2 position;
-        public Rectangle rectangle;
-        public Texture2D texture;
+        public Vector2 _position;
+        public Rectangle _rectangle;
+        public Texture2D _texture;
         public Matrix transform;
-        public Vector2 origin;
-        public IAnimation animation;
+        public Vector2 _origin;
+        ///public IAnimation animation;
         private bool moveAble;
         //private List<Texture2D> textureList;
         public SpriteEffects spriteEffect = SpriteEffects.None;
         public int currentFrame = 0;
         public CustomSprite(Vector2 position, float speed = 0, float angle = 0, float rotation = 0, float angularVelocity = 0, float scale = 1.0f,bool moveAble=false)
         {
-            this.position = position;
+            this._position = position;
             this.angle = 0;
             this.angularVelocity = 0;
             this.scale = scale;
             this.moveAble = moveAble;
             scaleVector = new Vector2(scale, scale);
-            animation = new AnimationImpl(200,this, "marco", "arrow");
+            //animation = new AnimationImpl(200,this, "marco", "arrow");
 
 
             velocity = new Vector2((float)(speed * Math.Cos(angle)), (float)(speed * Math.Sin(angle)));
 
-            texture = null;
+            _texture = null;
             color = Color.White;
         }
 
-        protected Texture2D Texture => texture;
+        protected Texture2D Texture => _texture;
 
-        public Vector2 Position => position;
-        public Rectangle Rectangle => rectangle;
+        public Vector2 Position => _position;
+        public Rectangle Rectangle => _rectangle;
 
         public bool Collided { get; private set; }
-
         public void LoadContent(ContentManager content, string assetName)
         {
-            texture = content.Load<Texture2D>(assetName);
-            animation.LoadConent(content);
-            if (!moveAble)
-                animation.setCurrentAnimation("marco");
-            else
-                animation.setCurrentAnimation("arrow");
+            _texture = content.Load<Texture2D>(assetName);
+          //  animation.LoadConent(content);
+          //  animation.setCurrentAnimation(assetName);
             OnContentLoaded(content);
         }
-
         protected void OnContentLoaded(ContentManager content)
         {
-            origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
+            _origin = new Vector2(_texture.Width / 2.0f, _texture.Height / 2.0f);
             UpdateTransformMatrix();
             UpdateRectangle();
         }
         protected virtual void OnContentLoaded(ContentManager content, GraphicsDevice graphicsDevice)
         {
-            origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
+            _origin = new Vector2(_texture.Width / 2.0f, _texture.Height / 2.0f);
             UpdateTransformMatrix();
             UpdateRectangle();
+        }
+        public void LoadStaticContent(Texture2D texture, ContentManager content, GraphicsDevice graphicsDevice)
+        {
+            this._texture = texture;
+            //animation.LoadConent(content);
+            //effect = content.Load<SoundEffect>("grenade");
+            //if (moveAble)
+            //    animation.setCurrentAnimation("marco");
+
+            OnContentLoaded(content, graphicsDevice);
         }
 
         private void UpdateRectangle()
         {
-            Rectangle rectangle = new Rectangle(0, 0, texture.Width, texture.Height);
+            Rectangle rectangle = new Rectangle(0, 0, _texture.Width, _texture.Height);
 
-            this.rectangle = rectangle.Transform(transform);
+            this._rectangle = rectangle.Transform(transform);
         }
 
         public virtual void Unload()
         {
-            texture.Dispose();
+            _texture.Dispose();
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            //UpdatePosition(gameTime);
-
             UpdateRotation(gameTime);
             UpdatePosition(gameTime);
             UpdateTransformMatrix();
             UpdateRectangle();
-            texture = animation.proceedAnimation(gameTime) ?? texture;
+           // _texture = animation.changeTextureOnAnimation(gameTime) ?? _texture;
+        }
+        public virtual void Update(GameTime gameTime, Texture2D newTexture)
+        {
+            UpdatePosition(gameTime);
+            UpdateOrigin();
+            UpdateRotation(gameTime);
+            UpdateTransformMatrix();
+            UpdateRectangle();
+
+
+            _texture = newTexture ?? _texture;
+        }
+        public void UpdateOrigin()
+        {
+            _origin = new Vector2(_texture.Width / 2.0f, _texture.Height / 2.0f);
         }
         private void UpdatePosition(GameTime gameTime)
         {
@@ -103,19 +121,19 @@ namespace ThePlatformer
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Left))
                 {
-                    position += new Vector2(-2, 0);
+                    _position += new Vector2(-2, 0);
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.Right))
                 {
-                    position += new Vector2(2, 0);
+                    _position += new Vector2(2, 0);
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.Up))
                 {
-                    position += new Vector2(0, -2);
+                    _position += new Vector2(0, -2);
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 {
-                    position += new Vector2(0, 2);
+                    _position += new Vector2(0, 2);
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.R))
                 {
@@ -130,11 +148,11 @@ namespace ThePlatformer
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.Q))
                 {
-                    animation.setCurrentAnimation("arrow");
+                //    animation.setCurrentAnimation("arrow");
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.E))
                 {
-                    animation.setCurrentAnimation("marco");
+              //      animation.setCurrentAnimation("marco");
                 }
             }
         }
@@ -142,14 +160,14 @@ namespace ThePlatformer
         {
             if (moveAble)
             {
-                transform = Matrix.CreateTranslation(new Vector3(-origin, 0)) *
+                transform = Matrix.CreateTranslation(new Vector3(-_origin, 0)) *
                Matrix.CreateRotationZ(rotation) *
                Matrix.CreateScale(scale) *
                Matrix.CreateTranslation(new Vector3(Position, 0));
             }
             else
             {
-                transform = Matrix.CreateTranslation(new Vector3(-origin, 0)) *
+                transform = Matrix.CreateTranslation(new Vector3(-_origin, 0)) *
                Matrix.CreateRotationY(rotation) *
                Matrix.CreateScale(scale) *
                Matrix.CreateTranslation(new Vector3(Position, 0));
@@ -176,15 +194,17 @@ namespace ThePlatformer
 
         public bool Collision(CustomSprite target)
         {
-            Color[,] sourceColor = TextureTo2DArray(this);
-            Color[,] targetColor = TextureTo2DArray(target);
-            var collides = rectangle.Intersects(target.rectangle) && TexturesCollide(sourceColor, transform, targetColor, target.transform);
+            
+            var collides = _rectangle.Intersects(target._rectangle) && TexturesCollide(transform, target.transform, target);
             Collided = collides;
             target.Collided = collides;
             return collides;
         }
-        private bool TexturesCollide(Color[,] tex1, Matrix mat1, Color[,] tex2, Matrix mat2)
+        private bool TexturesCollide( Matrix mat1, Matrix mat2,CustomSprite target)
         {
+            Color[,] tex1 = TextureTo2DArray(this);
+            Color[,] tex2 = TextureTo2DArray(target);
+
             Matrix mat1to2 = mat1 * Matrix.Invert(mat2);
             int width1 = tex1.GetLength(0);
             int height1 = tex1.GetLength(1);
@@ -220,21 +240,21 @@ namespace ThePlatformer
         }
         private Color[,] TextureTo2DArray(CustomSprite sprite)
         {
-            Color[] colors1D = new Color[sprite.texture.Width * sprite.texture.Height];
-            sprite.texture.GetData(colors1D);
+            Color[] colors1D = new Color[sprite._texture.Width * sprite._texture.Height];
+            sprite._texture.GetData(colors1D);
 
-            Color[,] colors2D = new Color[sprite.texture.Width, sprite.texture.Height];
-            for (int x = 0; x < sprite.texture.Width; x++)
-                for (int y = 0; y < sprite.texture.Height; y++)
-                    colors2D[x, y] = colors1D[x + y * sprite.texture.Width];
+            Color[,] colors2D = new Color[sprite._texture.Width, sprite._texture.Height];
+            for (int x = 0; x < sprite._texture.Width; x++)
+                for (int y = 0; y < sprite._texture.Height; y++)
+                    colors2D[x, y] = colors1D[x + y * sprite._texture.Width];
 
             return colors2D;
         }
 
 
-        public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, null,origin, rotation, scaleVector, color, spriteEffect);
+            spriteBatch.Draw(_texture, _position, null, null,_origin, rotation, scaleVector, color, spriteEffect);
 
         }
     }

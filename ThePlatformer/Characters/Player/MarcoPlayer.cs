@@ -49,7 +49,7 @@ namespace ThePlatformer
         Checkpoint currentCheckpoint = Checkpoint.Checkpoint1;
         public Vector2 Position
         {
-            get { return position; }
+            get { return _position; }
         }
         public MarcoPlayer(Vector2 position)
         :base(position){
@@ -65,21 +65,21 @@ namespace ThePlatformer
             healthBar = new HealthBar(Content);
             livePoints = healthBar.fullHealth;
             font = Content.Load<SpriteFont>("healthsFont");
-            var colors = new Color[texture.Width * texture.Height];
+            var colors = new Color[_texture.Width * _texture.Height];
 
             colors[0] = color;
             colors[1] = color;
-            colors[texture.Width - 1] = color;
-            colors[texture.Width - 2] = color;
-            colors[(texture.Width * texture.Height) - texture.Width] = color;
-            colors[(texture.Width * texture.Height) - texture.Width+1] = color;
+            colors[_texture.Width - 1] = color;
+            colors[_texture.Width - 2] = color;
+            colors[(_texture.Width * _texture.Height) - _texture.Width] = color;
+            colors[(_texture.Width * _texture.Height) - _texture.Width+1] = color;
 
 
-            colors[(texture.Width * texture.Height) - 1] = color;
-            colors[(texture.Width * texture.Height) - 2] = color;
+            colors[(_texture.Width * _texture.Height) - 1] = color;
+            colors[(_texture.Width * _texture.Height) - 2] = color;
 
 
-            _rectangleTexture = new Texture2D(graphicsDevice, texture.Width, texture.Height);
+            _rectangleTexture = new Texture2D(graphicsDevice, _texture.Width, _texture.Height);
             _rectangleTexture.SetData(colors);
         }
         public void Update(GameTime gameTime, GraphicsDevice graphics)
@@ -121,11 +121,11 @@ namespace ThePlatformer
         }
         private Vector2 setHealthBarPosition()
         {
-            return new Vector2(-screenWidth / 2 + position.X + 10, -screenHeight / 2 + position.Y + 20);  // dzielnik 2 bo camera ma zooma : )
+            return new Vector2(-screenWidth / 2 + _position.X + 10, -screenHeight / 2 + _position.Y + 20);  // dzielnik 2 bo camera ma zooma : )
         }
         private void updatePosition()
         {
-            position += velocity;
+            _position += velocity;
             rectangleStatic = Rectangle;
             //rectangleStatic = new Rectangle((int)position.X, (int)position.Y, texture.Width/2, texture.Height/2);
         }
@@ -193,7 +193,7 @@ namespace ThePlatformer
             else velocity.X = 0f;
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && hasJumped == false)
             {
-                position.Y -= 5f;
+                _position.Y -= 5f;
                 velocity.Y = -9f;
                 hasJumped = true;
             }
@@ -204,7 +204,7 @@ namespace ThePlatformer
                 if (startTime > delayBetweenBulletShots)
                 {
                     
-                    Bullet bullet = new Bullet(position,isLeft);
+                    Bullet bullet = new Bullet(_position,isLeft);
                     bulletList.Add(bullet);
                     startTime = 0;
                 }
@@ -239,35 +239,35 @@ namespace ThePlatformer
         }
         public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
-            if (rectangle.TouchTopOf(newRectangle))
+            if (_rectangle.TouchTopOf(newRectangle))
             {
                 //var cos = new Rectangle(3, 5, 10, 15);
                 //if(!hasJumped)
-                rectangle.Y =  newRectangle.Y - rectangle.Height;
+                //position.Y = newRectangle.Y - rectangle.Height;
                 velocity.Y = 0f;
                 hasJumped = false;
             }
-            if (rectangle.TouchLeftOf(newRectangle))
+            if (_rectangle.TouchLeftOf(newRectangle))
             {
-                position.X = newRectangle.X - rectangle.Width/2 - 2;
+                _position.X = newRectangle.X - _rectangle.Width/2 - 2;
             }
-            if (rectangle.TouchRightOf(newRectangle))
+            if (_rectangle.TouchRightOf(newRectangle))
             {   
-                position.X = newRectangle.X + newRectangle.Width+newRectangle.Width/4 - 2;
+                _position.X = newRectangle.X + newRectangle.Width+newRectangle.Width/4 - 2;
             }
-            if (rectangle.TouchBottomOf(newRectangle))
+            if (_rectangle.TouchBottomOf(newRectangle))
             {
                 velocity.Y = 1f;
             }
-            if (position.X < 0) position.X = 0;
-            if (position.X > xOffset - rectangle.Width) position.X = xOffset - rectangle.Width;
+            if (_position.X < 0) _position.X = 0;
+            if (_position.X > xOffset - _rectangle.Width) _position.X = xOffset - _rectangle.Width;
             // if (position.Y < 0) velocity.Y = 1f;
             //isCrossedMap(xOffset,yOffset);
             // if (position.Y > yOffset - rectangle.Height) position.Y = yOffset - rectangle.Height;
         }
         public void isCrossedMap()
         {
-            if (position.Y > mapHeight - rectangle.Height)
+            if (_position.Y > mapHeight - _rectangle.Height)
             {
                 restartPosition();
                 lives--;
@@ -279,12 +279,12 @@ namespace ThePlatformer
         }
         private void restartPosition()
         {
-            position.Y = 20;
-            position.X = 38;
+            _position.Y = 20;
+            _position.X = 38;
         }
         public void knockBack(Vector2 enemyPosition)
         {
-            if (enemyPosition.X > position.X)
+            if (enemyPosition.X > _position.X)
             {
                 velocity += new Vector2(-80, 0);
             }
@@ -295,14 +295,14 @@ namespace ThePlatformer
         }
         private Vector2 setFontPosition(int shiftX,int shiftY)
         {
-            return new Vector2(-screenWidth / 2 + position.X + shiftX, -screenHeight / 2 + position.Y + shiftY);
+            return new Vector2(-screenWidth / 2 + _position.X + shiftX, -screenHeight / 2 + _position.Y + shiftY);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(texture, position,null, Color.White,angle,origin,scale,flip,0);
             spriteBatch.Draw(_rectangleTexture, null, Rectangle, null, null, 0, null, Color.White);
 
-            spriteBatch.Draw(texture, position, null, null, origin, rotation, scaleVector, Color.White, flip);
+            spriteBatch.Draw(_texture, _position, null, null, _origin, rotation, scaleVector, Color.White, flip);
 
             // spriteBatch.Draw(_rectangleTexture,null, rectangleBase,null,null,0,null,Color.White);
             healthBar.Draw(spriteBatch,setHealthBarPosition());

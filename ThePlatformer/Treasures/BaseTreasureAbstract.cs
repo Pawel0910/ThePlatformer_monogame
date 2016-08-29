@@ -65,11 +65,11 @@ namespace ThePlatformer.Treasures
             }
             else if (MarcoPlayer.rectangleStatic.TouchLeftOf(this.rectangle))
             {
-                player.position.X = position.X - rectangle.Width - 2;
+                player._position.X = position.X - rectangle.Width - 2;
             }
             else if (MarcoPlayer.rectangleStatic.TouchRightOf(this.rectangle))
             {
-                player.position.X = position.X + rectangle.Width + 2;
+                player._position.X = position.X + rectangle.Width + 2;
             }
         }
         private void destroyTreasure()
