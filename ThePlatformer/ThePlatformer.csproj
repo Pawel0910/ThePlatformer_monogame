@@ -113,6 +113,8 @@
     <Compile Include="SpriteBase\Animation\AnimationImpl.cs" />
     <Compile Include="SpriteBase\RectangleTransform.cs" />
     <Compile Include="SpriteBase\CustomSprite.cs" />
+    <Compile Include="View\Background\Background.cs" />
+    <Compile Include="View\Background\Scrolling.cs" />
     <Compile Include="View\Camera\Camera.cs" />
     <Compile Include="View\MapView\MapManager.cs" />
     <Compile Include="View\Menu\Buttons\cButton.cs" />
