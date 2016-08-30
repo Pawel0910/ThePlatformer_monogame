@@ -13,9 +13,9 @@ namespace ThePlatformer.Enemies
     public abstract class EnemyBase : CustomSprite
     {
         public float scale = 0.2f;
-        public Rectangle rectangle;
+       // public Rectangle _rectangle;
         public Texture2D texture;
-        public Vector2 velocity, position = new Vector2(10, 10);
+        public Vector2 velocity;//, _position = new Vector2(10, 10);
         public bool hasJumped = false, canTeleport = false;
         public List<Bullet> bulletList = new List<Bullet>();
         public int bulletStrengthHit;
@@ -38,12 +38,13 @@ namespace ThePlatformer.Enemies
         public void Load(ContentManager Content,String path)
         {
             texture = Content.Load<Texture2D>(path);
+            base.LoadContent(Content, path);
         }
         public void Load(ContentManager Content,String path, Vector2 startPosition)
         {
                     Load(Content, path);
-                    this.position = startPosition;
-                    rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+                    this._position = startPosition;
+                    //_rectangle = new Rectangle((int)_position.X, (int)_position.Y, texture.Width, texture.Height);
                     bulletStrengthHit = (int)((double)MarcoPlayer.healthBar.fullHealth / 5);
                     healthBar = new HealthBar(Content);
                     livePoints = healthBar.fullHealth;
@@ -55,8 +56,9 @@ namespace ThePlatformer.Enemies
                 case LiveStatus.alive:
                     myPosition();
                     gravity();
+                    base.Update(gameTime);
                     int healthBarShift = (int)((double)healthBar.fullHealth / 2 * scale);
-                    healthBar.Update(new Vector2(rectangle.X + (texture.Width / 2) - healthBarShift, rectangle.Y - 15));
+                    healthBar.Update(new Vector2(_rectangle.X + (texture.Width / 2) - healthBarShift, _rectangle.Y - 15));
                     checkCurrentHealthStatus();
                     break;
                 case LiveStatus.dead:
@@ -70,8 +72,8 @@ namespace ThePlatformer.Enemies
 
         private void myPosition()
         {
-            position += velocity;
-            rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+            _position += velocity;
+            _rectangle = new Rectangle((int)_position.X, (int)_position.Y, texture.Width, texture.Height);
         }
         private void gravity()
         {
@@ -90,39 +92,39 @@ namespace ThePlatformer.Enemies
         }
         public void CollisionMap(Rectangle newRectangle, int xOffset, int yOffset)
         {
-            if (rectangle.TouchTopOf(newRectangle))
+            if (_rectangle.TouchTopOf(newRectangle))
             {
-                rectangle.Y = newRectangle.Y - rectangle.Height;
+               // _rectangle.Y = newRectangle.Y - _rectangle.Height;
                 velocity.Y = 0f;
                 canTeleport = false;
                 hasJumped = false;
             }
-            else if (rectangle.TouchLeftOf(newRectangle))
+            else if (_rectangle.TouchLeftOf(newRectangle))
             {
-                position.X = newRectangle.X - rectangle.Width - 2;
+                _position.X = newRectangle.X - _rectangle.Width - 2;
                 if (hasJumped == false)
                 {
-                    position.Y -= 5f;
+                    _position.Y -= 5f;
                     velocity.Y = -12f;
                     hasJumped = true;
                 }
             }
-            else if (rectangle.TouchBottomOf(newRectangle))
+            else if (_rectangle.TouchBottomOf(newRectangle))
             {
                 velocity.Y = 1f;
             }
-            if (!rectangle.TouchTopOf(newRectangle))
+            if (!_rectangle.TouchTopOf(newRectangle))
             {
                 canTeleport = true;
             }
-            if (position.X < 0) position.X = 0;
-            if (position.X > xOffset - rectangle.Width) position.X = xOffset - rectangle.Width;
+            if (_position.X < 0) _position.X = 0;
+            if (_position.X > xOffset - _rectangle.Width) _position.X = xOffset - _rectangle.Width;
         }
         virtual public void restart()
         {
-            position = new Vector2(10, 10);
+            _position = new Vector2(10, 10);
             this.velocity = new Vector2();
-            this.rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+            //this._rectangle = new Rectangle((int)_position.X, (int)_position.Y, texture.Width, texture.Height);
             hasJumped = false;
             canTeleport = false;
             bulletList = new List<Bullet>();
@@ -133,7 +135,9 @@ namespace ThePlatformer.Enemies
             switch (liveStatus)
             {
                 case LiveStatus.alive:
-                    spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
+                   // spriteBatch.Draw(texture, _position, null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    spriteBatch.Draw(_texture, _position, null, null, _origin, rotation, scaleVector, Color.White, SpriteEffects.None);
+
                     healthBar.Draw(spriteBatch, scale);
                     break;
                 case LiveStatus.dead:
@@ -147,10 +151,10 @@ namespace ThePlatformer.Enemies
                 if (player.lives > 0)
                     player.playerGotHurt(bulletStrengthHit);
             }
-            if (MarcoPlayer.rectangleStatic.Intersects(this.rectangle))
+            if (MarcoPlayer.rectangleStatic.Intersects(this._rectangle))
             {
                 player.playerGotHurt(bulletStrengthHit);
-                player.knockBack(position);
+                player.knockBack(_position);
             }
         }
         public void enemyGotHurt(int hurtAmount)

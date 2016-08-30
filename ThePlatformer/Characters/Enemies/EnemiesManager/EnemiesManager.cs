@@ -17,10 +17,14 @@ namespace ThePlatformer.Characters.Enemies.EnemiesManager
         public EnemiesManager()
         {
         }
+        public List<EnemyBase> getEnemies()
+        {
+            return enemiesList;
+        }
         public void Initialize()
         {
             enemiesList.Add(new NormalEnemy(new Vector2(150, 10)));
-            enemiesList.Add(new ShootingEnemy(new Vector2(140, 10)));
+            enemiesList.Add(new ShootingEnemy(new Vector2(150, 10)));
         }
 
         public void LoadContent(ContentManager content)

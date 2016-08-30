@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using ThePlatformer.Characters.Enemies.EnemiesManager;
 
 namespace ThePlatformer.Rain
 {
@@ -26,9 +27,11 @@ namespace ThePlatformer.Rain
         public static bool TEST = false;
 
         private MarcoPlayer player;
-        public RainManager(MarcoPlayer player)
+        private EnemiesManager enemyManager;
+        public RainManager(MarcoPlayer player, EnemiesManager enemyManager)
         {
             this.player = player;
+            this.enemyManager = enemyManager;
             loadList();
 
             endComputing = new ManualResetEvent(true);
@@ -58,9 +61,16 @@ namespace ThePlatformer.Rain
             for(int i = 0; i < rainList.Count; i++)
             {
                 rainList[i].Update( totalGameTime, elapsedGameTime);
-                if (rainList[i].isCollisionWithSprite(player))
+                if (rainList[i].isCollisionWithSprite(player))//jesli kolizja z playerem
                 {
                     rainList.RemoveAt(i);
+                }
+                foreach (var enemy in enemyManager.getEnemies())//kolizja deszczu z przeciwnikiem
+                {
+                    if (rainList[i].isCollisionWithSprite(enemy))
+                    {
+                        rainList.RemoveAt(i);
+                    }
                 }
             }
 

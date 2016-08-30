@@ -22,14 +22,14 @@ namespace ThePlatformer
 
         public override void Update(GameTime gameTime)
         {
-            if (position.Y > mapManager.getMapHeight() - rectangle.Height)
+            if (_position.Y > mapManager.getMapHeight() - _rectangle.Height)
             {
-                position.X = MarcoPlayer.rectangleStatic.X + 300;
-                position.Y = -20;
+                _position.X = MarcoPlayer.rectangleStatic.X + 300;
+                _position.Y = -20;
             }
-            if (rectangle.X - MarcoPlayer.rectangleStatic.X < distanceToPlayer)
+            if (_rectangle.X - MarcoPlayer.rectangleStatic.X < distanceToPlayer)
             {
-                position += new Vector2(4, 0);
+                _position += new Vector2(4, 0);
             }
             
             base.Update(gameTime);

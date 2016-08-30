@@ -47,12 +47,12 @@ namespace ThePlatformer.Enemies
             }
             startTime += gameTime.ElapsedGameTime.Milliseconds;
 
-            if (rectangle.X - distanceToSeePlayer < playerPosX && playerPosX < rectangle.X ||
-                playerPosX > rectangle.X && rectangle.X + distanceToSeePlayer > playerPosX)
+            if (_rectangle.X - distanceToSeePlayer < playerPosX && playerPosX < _rectangle.X ||
+                playerPosX > _rectangle.X && _rectangle.X + distanceToSeePlayer > playerPosX)
             {
                 if (startTime > delayBetweenBulletShots && bulletList.Count < maxBulletCount)
                 {
-                    Bullet bullet = new Bullet(position, isLeft);
+                    Bullet bullet = new Bullet(_position, isLeft);
                     bulletList.Add(bullet);
                     startTime = 0;
                 }
@@ -61,16 +61,16 @@ namespace ThePlatformer.Enemies
 
         private new void rotateEnemy()
         {
-            if (rectangle.X < playerPosX)
+            if (_rectangle.X < playerPosX)
             {
                 flip = SpriteEffects.None;
-                rotation = MathHelper.Pi;
+                rotation = MathHelper.TwoPi;
                 isLeft = false;
             }
             else
             {
-                flip = SpriteEffects.FlipHorizontally;
-                rotation = MathHelper.TwoPi;
+                flip = SpriteEffects.FlipVertically;
+                rotation = MathHelper.Pi;
                 isLeft = true;
             }
         }
@@ -79,7 +79,9 @@ namespace ThePlatformer.Enemies
             switch (liveStatus)
             {
                 case LiveStatus.alive:
-                    spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1, flip, 0);
+                   // spriteBatch.Draw(texture, _position, null, Color.White, 0f, Vector2.Zero, 1, flip, 0);
+                    spriteBatch.Draw(_texture, _position, null, null, _origin, rotation, scaleVector, Color.White, flip);
+
                     healthBar.Draw(spriteBatch, scale);
                     break;
                 case LiveStatus.dead:

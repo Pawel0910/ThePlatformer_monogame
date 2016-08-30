@@ -41,8 +41,8 @@ namespace ThePlatformer.Rain
         public void Update(long totalGameTime, long elapsedGameTime)
         {
            
-            velocity.X = 0.01f;
-            velocity.Y = 0.1f;
+            velocity.X = -0.5f;
+            velocity.Y = 0.5f;
          
             _position += velocity;
             GameTime gameTime1 = new GameTime(new TimeSpan(totalGameTime), TimeSpan.FromMilliseconds(elapsedGameTime));

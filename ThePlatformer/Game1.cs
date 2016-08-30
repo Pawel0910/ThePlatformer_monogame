@@ -54,8 +54,9 @@ namespace ThePlatformer
 
             mapManager.Initialize();
             playerManager.Initialize();
-            rainManager = new RainManager(playerManager.getPlayer());
             enemiesManager.Initialize();
+
+            rainManager = new RainManager(playerManager.getPlayer(), enemiesManager);
             base.Initialize();
 
             CurrentGameState = GameState.MainMenu;

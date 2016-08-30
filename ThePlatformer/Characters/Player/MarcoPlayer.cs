@@ -223,7 +223,7 @@ namespace ThePlatformer
         {
             for (int i = 0; i < bulletList.Count; i++)
             {
-                if (bulletList[i].rectangle.Intersects(enemy.rectangle))
+                if (bulletList[i].rectangle.Intersects(enemy._rectangle))
                 {
                     bulletList.RemoveAt(i);
                     return true;

@@ -99,7 +99,7 @@ namespace ThePlatformer
         {
             UpdatePosition(gameTime);
             UpdateOrigin();
-            UpdateRotation(gameTime);
+           // UpdateRotation(gameTime);
             UpdateTransformMatrix();
             UpdateRectangle();
 
