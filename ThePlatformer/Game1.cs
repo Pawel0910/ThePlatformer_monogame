@@ -22,8 +22,8 @@ namespace ThePlatformer
         SpriteBatch spriteBatch;
         SpriteSheet spriteSheet;
         SpriteRender spriteRender;
-        private Player player;
-        private PlayerTexturePackerTest playerTxtPacker;
+        //private Player player;
+        //private PlayerTexturePackerTest playerTxtPacker;
         private MapManager mapManager = MapManager.getInstance();
         private MenuViewManager menuManager= new MenuViewManager();
         private PlayerManager playerManager = new PlayerManager();
@@ -49,12 +49,15 @@ namespace ThePlatformer
 
         protected override void Initialize()
         {
-          //  _arrow1 = new DebugSprite(new Vector2(20, 30), Color.White, 10, 0, 0, MathHelper.ToRadians(-2.0f), 1f,true);
+            //  _arrow1 = new DebugSprite(new Vector2(20, 30), Color.White, 10, 0, 0, MathHelper.ToRadians(-2.0f), 1f,true);
+            // 
+
             mapManager.Initialize();
             playerManager.Initialize();
             rainManager = new RainManager(playerManager.getPlayer());
             enemiesManager.Initialize();
             base.Initialize();
+
             CurrentGameState = GameState.MainMenu;
 
             Task.Factory.StartNew(() =>
@@ -75,8 +78,8 @@ namespace ThePlatformer
            // _arrow1.LoadContent(Content, "arrow1");
             rainManager.Load(Content, GraphicsDevice);
             Texture2D texturePlayer = Content.Load<Texture2D>("Images/idle");
-            player = new Player(texturePlayer, 1, 4);
-            playerTxtPacker = new PlayerTexturePackerTest(texturePlayer, 1, 4);
+           // player = new Player(texturePlayer, 1, 4);
+           // playerTxtPacker = new PlayerTexturePackerTest(texturePlayer, 1, 4);
             menuManager.LoadContent(Content,this);
             #region Map initialize
             mapManager.LoadContent(Content);
@@ -102,7 +105,7 @@ namespace ThePlatformer
             {
                 #region MainMen update
                 case GameState.MainMenu:
-                    playerTxtPacker.Update(gameTime);
+                    //playerTxtPacker.Update(gameTime);
                    
                     menuManager.Update(gameTime, GraphicsDevice);
                     menuManager.UpdateMainMenu(gameTime);
@@ -125,7 +128,7 @@ namespace ThePlatformer
 
                     mapManager.Update(gameTime,playerManager);
 
-                    player.Update(gameTime);
+                  //  player.Update(gameTime);
                     rainManager.waitForEndOfUpdate();
              //       _arrow1.Collision(playerManager.getPlayer());
                     break;
@@ -200,7 +203,7 @@ namespace ThePlatformer
 
                     mapManager.Draw(spriteBatch);
                     enemiesManager.Draw(spriteBatch);
-                    player.Draw(spriteBatch, new Vector2(200, 200));
+                 //   player.Draw(spriteBatch, new Vector2(200, 200));
                     //TEST
                     // rainManager.DrawOrigin(spriteBatch);
                     //TEST

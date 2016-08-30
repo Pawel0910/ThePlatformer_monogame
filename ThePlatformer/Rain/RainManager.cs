@@ -58,7 +58,7 @@ namespace ThePlatformer.Rain
             for(int i = 0; i < rainList.Count; i++)
             {
                 rainList[i].Update( totalGameTime, elapsedGameTime);
-                if (rainList[i].isCollisionWithPlayer(player))
+                if (rainList[i].isCollisionWithSprite(player))
                 {
                     rainList.RemoveAt(i);
                 }

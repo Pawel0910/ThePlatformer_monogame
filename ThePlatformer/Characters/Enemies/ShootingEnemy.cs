@@ -18,11 +18,16 @@ namespace ThePlatformer.Enemies
         public float startTime = 0, delayBetweenBulletShots = 1000;
         public int maxBulletCount = 3;
 
+        public ShootingEnemy(Vector2 position)
+            : base(position)
+        {
+        }
+
         public override void Update(GameTime gameTime)
         {
             playerPosX = MarcoPlayer.rectangleStatic.X;
             base.Update(gameTime);
-            rotation();
+            rotateEnemy();
             shooting(gameTime);
             for (int i = 0; i < bulletList.Count; i++)
             {
@@ -42,10 +47,10 @@ namespace ThePlatformer.Enemies
             }
             startTime += gameTime.ElapsedGameTime.Milliseconds;
 
-            if (rectangle.X-distanceToSeePlayer<playerPosX&&playerPosX<rectangle.X||
-                playerPosX>rectangle.X&&rectangle.X+distanceToSeePlayer>playerPosX)
+            if (rectangle.X - distanceToSeePlayer < playerPosX && playerPosX < rectangle.X ||
+                playerPosX > rectangle.X && rectangle.X + distanceToSeePlayer > playerPosX)
             {
-                if (startTime > delayBetweenBulletShots && bulletList.Count< maxBulletCount)
+                if (startTime > delayBetweenBulletShots && bulletList.Count < maxBulletCount)
                 {
                     Bullet bullet = new Bullet(position, isLeft);
                     bulletList.Add(bullet);
@@ -53,17 +58,19 @@ namespace ThePlatformer.Enemies
                 }
             }
         }
-        
-        private void rotation()
+
+        private new void rotateEnemy()
         {
-            if(rectangle.X<playerPosX)
+            if (rectangle.X < playerPosX)
             {
                 flip = SpriteEffects.None;
+                rotation = MathHelper.Pi;
                 isLeft = false;
             }
             else
             {
                 flip = SpriteEffects.FlipHorizontally;
+                rotation = MathHelper.TwoPi;
                 isLeft = true;
             }
         }
@@ -82,7 +89,7 @@ namespace ThePlatformer.Enemies
             {
                 bullet.Draw(spriteBatch);
             }
-            
+
         }
     }
 }

@@ -15,6 +15,11 @@ namespace ThePlatformer
         private int distanceToPlayer = 100;
         private float startTime = 0, endTime = 0;
 
+        public NormalEnemy(Vector2 position)
+            : base(position)
+        {
+        }
+
         public override void Update(GameTime gameTime)
         {
             if (position.Y > mapManager.getMapHeight() - rectangle.Height)

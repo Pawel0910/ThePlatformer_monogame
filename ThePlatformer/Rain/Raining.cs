@@ -89,9 +89,9 @@ namespace ThePlatformer.Rain
         //    return false;
         //}
 
-        public bool isCollisionWithPlayer(MarcoPlayer player)
+        public bool isCollisionWithSprite(CustomSprite sprite)
         {
-            if (player.Collision(this))
+            if (sprite.Collision(this))
             {
                 return true;
             }

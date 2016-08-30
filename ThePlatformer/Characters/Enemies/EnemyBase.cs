@@ -10,7 +10,7 @@ using ThePlatformer.Health;
 
 namespace ThePlatformer.Enemies
 {
-    public abstract class EnemyBase
+    public abstract class EnemyBase : CustomSprite
     {
         public float scale = 0.2f;
         public Rectangle rectangle;
@@ -29,6 +29,12 @@ namespace ThePlatformer.Enemies
             dead
         }
         public LiveStatus liveStatus = LiveStatus.alive;
+
+        public EnemyBase(Vector2 position)
+            : base(position)
+        {
+        }
+
         public void Load(ContentManager Content,String path)
         {
             texture = Content.Load<Texture2D>(path);

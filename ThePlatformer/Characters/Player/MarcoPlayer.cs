@@ -165,7 +165,6 @@ namespace ThePlatformer
         }
         private void Input(GameTime gameTime)
         {
-            //Console.Writeline("witaj");
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 if (isLeft)
@@ -297,7 +296,7 @@ namespace ThePlatformer
         {
             return new Vector2(-screenWidth / 2 + _position.X + shiftX, -screenHeight / 2 + _position.Y + shiftY);
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public new void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(texture, position,null, Color.White,angle,origin,scale,flip,0);
             spriteBatch.Draw(_rectangleTexture, null, Rectangle, null, null, 0, null, Color.White);

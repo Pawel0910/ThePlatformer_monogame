@@ -19,8 +19,8 @@ namespace ThePlatformer.Characters.Enemies.EnemiesManager
         }
         public void Initialize()
         {
-            enemiesList.Add(new NormalEnemy());
-            enemiesList.Add(new ShootingEnemy());
+            enemiesList.Add(new NormalEnemy(new Vector2(150, 10)));
+            enemiesList.Add(new ShootingEnemy(new Vector2(140, 10)));
         }
 
         public void LoadContent(ContentManager content)

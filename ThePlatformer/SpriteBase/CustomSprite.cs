@@ -72,11 +72,6 @@ namespace ThePlatformer
         public void LoadStaticContent(Texture2D texture, ContentManager content, GraphicsDevice graphicsDevice)
         {
             this._texture = texture;
-            //animation.LoadConent(content);
-            //effect = content.Load<SoundEffect>("grenade");
-            //if (moveAble)
-            //    animation.setCurrentAnimation("marco");
-
             OnContentLoaded(content, graphicsDevice);
         }
 
@@ -172,12 +167,6 @@ namespace ThePlatformer
                Matrix.CreateScale(scale) *
                Matrix.CreateTranslation(new Vector3(Position, 0));
             }
-                
-           
-               // _transform = Matrix.CreateTranslation(new Vector3(-_origin, 0)) *
-               //Matrix.CreateRotationZ(_rotation) *
-               //Matrix.CreateScale(_scale) *
-               //Matrix.CreateTranslation(new Vector3(Position, 0));
         }
 
         private void UpdateRotation(GameTime gameTime)
