@@ -42,7 +42,7 @@ namespace ThePlatformer.Rain
             var elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
             var elapsed = elapsedMilliseconds - lastElapsed;
             lastElapsed = elapsedMilliseconds;
-            rainManager.UpdateTest(stopwatch.ElapsedMilliseconds,elapsed);
+            rainManager.UpdateTest(stopwatch.ElapsedMilliseconds, elapsed);
         }
     }
 }

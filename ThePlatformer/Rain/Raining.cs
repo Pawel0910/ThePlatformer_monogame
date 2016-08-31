@@ -16,78 +16,80 @@ namespace ThePlatformer.Rain
     {
         private static Texture2D texture { get; set; }
         private IAnimation animation;
-        public Vector2 position{ get; set; }
+        public Vector2 position { get; set; }
         public float rotation { get; set; }
         public Vector2 velocity;
         private float scale = 1f;
-
-        public Raining(Vector2 position)
-            :base(position)
+        public int delay = 100;
+        public int dustWinds;
+        public Raining(Vector2 position, float scale = 0.7f)
+            : base(position, 0, 0, 0, 0, scale)
         {
             this.position = position;
-            animation = new AnimationImpl(200, this, "CustomDrop");
+            animation = new AnimationImpl(200, this, "Drop1");
         }
 
         public static void Load(ContentManager Content)
         {
             texture = Content.Load<Texture2D>("CustomDrop");
         }
-        public new void LoadContent(ContentManager Content, GraphicsDevice graphics)
+        public void LoadContent(ContentManager Content, GraphicsDevice graphics)
         {
+            delay += (int)_position.X;
+
             //animation.LoadConent(Content);
             base.LoadStaticContent(texture, Content, graphics);
             // base.OnContentLoaded(Content, graphics);
         }
         public void Update(long totalGameTime, long elapsedGameTime)
         {
-           
-            velocity.X = -0.5f;
-            velocity.Y = 0.5f;
-         
+
+            velocity.X = 2f;
+            velocity.Y = 8f;
+
             _position += velocity;
             GameTime gameTime1 = new GameTime(new TimeSpan(totalGameTime), TimeSpan.FromMilliseconds(elapsedGameTime));
-            base.Update(gameTime1, animation.changeTextureOnAnimation(gameTime1));
+            base.Update(gameTime1);
+
+
+        }
+        public bool outOfBound(Rectangle screenBound, Vector2 middleScreen)
+        {
+            int xStart = (int)(middleScreen.X - screenBound.Width / 2);
+            int xEnd = xStart + screenBound.Width;
+            int yStart = (int)(middleScreen.Y - screenBound.Height / 2);
+            int yEnd = yStart + screenBound.Height;
+
+            if (_position.X < xStart - screenBound.Width / 4)//lewa strona
+            {
+                return true;
+            }
+            else if (_position.X > xEnd + screenBound.Width / 4)//prawa strona
+            {
+                return true;
+            }
+            else if (_position.Y < yStart - screenBound.Height / 4)//- screenBound.Height/4 buffor na krople spadajace od gory :) 
+            {
+                return true;
+            }
+            else if (_position.Y > yEnd)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
 
         }
         public bool collision(MarcoPlayer player)
         {
-          //  var intersects = perPixelCollision(player);
+            //  var intersects = perPixelCollision(player);
 
 
             return false;
         }
-        //private bool perPixelCollision(MarcoPlayer player)
-        //{
-            
-        //    var sourceColors = new Color[rectangle.Width * rectangle.Height];
-        //    texture.GetData(sourceColors);
-
-        //    var targetColors = new Color[player.texture.Width*player.texture.Height];
-        //    player.texture.GetData(targetColors);
-
-        //    var left = Math.Max(rectangle.Left, MarcoPlayer.rectangle.Left);
-        //    var top = Math.Max(rectangle.Top, MarcoPlayer.rectangle.Top);
-        //    var width = Math.Min(rectangle.Right, MarcoPlayer.rectangle.Right) - left;
-        //    var height = Math.Min(rectangle.Bottom, MarcoPlayer.rectangle.Bottom) - top;
-
-        //    var intersectingRectangle = new Rectangle(left, top, width, height);
-
-        //    for (var x = intersectingRectangle.Left; x < intersectingRectangle.Right; x++)
-        //    {
-        //        for (var y = intersectingRectangle.Top; y < intersectingRectangle.Bottom; y++)
-        //        {
-        //            var sourceColor = sourceColors[(x - rectangle.Left) + (y - rectangle.Top) * rectangle.Width];
-        //            var targetColor = targetColors[(x - MarcoPlayer.rectangle.Left) + (y - MarcoPlayer.rectangle.Top) * player.texture.Width];
-
-        //            if (sourceColor.A > 0 && targetColor.A > 0)
-        //            {
-        //                return true;
-        //            }
-        //        }
-        //    }
-        //    return false;
-        //}
 
         public bool isCollisionWithSprite(CustomSprite sprite)
         {

@@ -1,11 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using ThePlatformer.Characters.Enemies.EnemiesManager;
+using ThePlatformer.Enemies;
 
 namespace ThePlatformer.Rain
 {
@@ -22,18 +24,23 @@ namespace ThePlatformer.Rain
         private ManualResetEvent startDrawing;
         private ManualResetEvent waitForEndDrawing;
         private ManualResetEvent buffor;
-       // private Raining rainTest = new Raining();
+        // private Raining rainTest = new Raining();
 
         public static bool TEST = false;
 
         private MarcoPlayer player;
         private EnemiesManager enemyManager;
+        private MapManager mapManager = MapManager.getInstance();
+
+        private GraphicsDevice graphics;
+        private ContentManager Content;
+        private int dropAmount = 300;
+        private Stopwatch stopwatch;
         public RainManager(MarcoPlayer player, EnemiesManager enemyManager)
         {
             this.player = player;
             this.enemyManager = enemyManager;
-            loadList();
-
+            stopwatch = new Stopwatch();
             endComputing = new ManualResetEvent(true);
             waitForComputing = new AutoResetEvent(false);
             blockIfMainThreadFirst = new ManualResetEvent(false);
@@ -44,34 +51,51 @@ namespace ThePlatformer.Rain
         }
         public void Load(ContentManager Content, GraphicsDevice graphics)
         {
+            this.graphics = graphics;
             Raining.Load(Content);
+            this.Content = Content;
+            loadList();
+
             for (int i = 0; i < rainList.Count; i++)
             {
-                rainList[i].LoadContent(Content,graphics);
-                // if (rainList[i].isCollisionWithPlayer())// && player.Collision(rainList[i]))
-                // {
-                //     rainList.RemoveAt(i);
-                // }
+                rainList[i].LoadContent(Content, graphics);
             }
 
         }
 
         public void UpdateTest(long totalGameTime, long elapsedGameTime)
         {
-            for(int i = 0; i < rainList.Count; i++)
+            if (Keyboard.GetState().IsKeyDown(Keys.T))
             {
-                rainList[i].Update( totalGameTime, elapsedGameTime);
+                stopwatch.Start();
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.U))
+            {
+                stopwatch.Stop();
+                stopwatch.Reset();
+            }
+            for (int i = 0; i < rainList.Count; i++)
+            {
+                if (stopwatch.ElapsedMilliseconds > 0)
+                    createWind(rainList[i], stopwatch.ElapsedMilliseconds);
+
+                rainList[i].Update(totalGameTime, elapsedGameTime);
                 if (rainList[i].isCollisionWithSprite(player))//jesli kolizja z playerem
                 {
                     rainList.RemoveAt(i);
+                    addOne();
                 }
-                foreach (var enemy in enemyManager.getEnemies())//kolizja deszczu z przeciwnikiem
+
+                for (int j = 0; j < enemyManager.getEnemies().Count; j++)
                 {
-                    if (rainList[i].isCollisionWithSprite(enemy))
+                    EnemyBase enemy = enemyManager.getEnemies()[j];
+                    if (enemy != null && rainList[i].isCollisionWithSprite(enemy))
                     {
                         rainList.RemoveAt(i);
+                        addOne();
                     }
                 }
+
             }
 
             EndFrame();
@@ -84,6 +108,22 @@ namespace ThePlatformer.Rain
             waitForComputing.Set();
             endComputing.WaitOne();
         }
+        public void createWind(Raining drop, long gameTime)
+        {
+            // var stop = stopwatch.ElapsedMilliseconds - currentTime;
+            //// if (stop<1000)
+            //// {
+            //     drop._position.X +=3-stop;
+            // //}
+
+            if (gameTime > drop.delay && drop.dustWinds < 10)
+            {
+                drop._position.X += 10f;
+                drop._position.Y += 1f;
+                drop.dustWinds++;
+
+            }
+        }
         public void waitForEndOfUpdate()
         {
             blockIfMainThreadFirst.Set();
@@ -94,7 +134,14 @@ namespace ThePlatformer.Rain
         {
             for (int i = 0; i < rainList.Count; i++)
             {
-                rainList[i].Draw(spriteBatch);
+                try
+                {
+                    rainList[i].Draw(spriteBatch);
+                }
+                catch (Exception e)
+                {
+
+                }
             }
         }
         public void DrawOrigin(SpriteBatch spriteBatch)
@@ -121,23 +168,37 @@ namespace ThePlatformer.Rain
         {
             startDrawing.Set();
         }
-        
-       
+
+
         private void loadList()
         {
-            if (rainList.Count < 1000)
+            int xStart = (int)(player._position.X - graphics.Viewport.Width / 2);
+            int xEnd = xStart + graphics.Viewport.Width;
+            int yStart = (int)(player._position.Y - graphics.Viewport.Height / 2) + (graphics.Viewport.Height - 700);
+            int yEnd = yStart + graphics.Viewport.Height;
+            if (rainList.Count < dropAmount)
             {
                 int size = rainList.Count;
-                for (int i = 0; i < 1000 - size; i++)
+                for (int i = 0; i < dropAmount - size; i++)
                 {
-                    Raining rain = new Raining(new Vector2(randInt(200, 2000), randInt(-1000, 20)));
-                    //rain.position = new Vector2(randInt(200, 2000), randInt(-1000, 20));
+                    Raining rain = new Raining(new Vector2(randInt(xStart, xEnd), randInt(yStart, yEnd)));
+                    rain.LoadContent(Content, graphics);
                     rainList.Add(rain);
                 }
             }
         }
-       
-        private int randInt(int minRange,int maxRange)
+        private void addOne()
+        {
+            int xStart = (int)(player._position.X - graphics.Viewport.Width / 2);
+            int xEnd = xStart + graphics.Viewport.Width;
+            int yStart = (int)(player._position.Y - graphics.Viewport.Height);
+            int yEnd = yStart + graphics.Viewport.Height / 2;
+            Raining rain = new Raining(new Vector2(randInt(xStart - graphics.Viewport.Width / 4, xEnd + graphics.Viewport.Width / 4), randInt(yStart, yEnd)));
+            rain.LoadContent(Content, graphics);
+            rainList.Add(rain);
+        }
+
+        private int randInt(int minRange, int maxRange)
         {
             return random.Next(minRange, maxRange);
         }
