@@ -95,7 +95,15 @@ namespace ThePlatformer.Rain
                         addOne();
                     }
                 }
-
+                foreach (CollisionTile tile in mapManager.getMap().CollisionTiles)
+                {
+                    if (rainList[i]._rectangle.Intersects(tile.Rectangle))
+                    {
+                        rainList.RemoveAt(i);
+                        addOne();
+                    }
+                }
+               
             }
 
             EndFrame();
