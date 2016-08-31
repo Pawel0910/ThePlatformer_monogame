@@ -13,10 +13,14 @@ namespace ThePlatformer.View.Background
     {
         Scrolling scrolling1;
         Scrolling scrolling2;
+        private MarcoPlayer player;
+        int screenWidth;
+        int screenHeight;
 
         /// Song song;
-        public BackgroundManager()
+        public BackgroundManager(MarcoPlayer marcoPlayer)
         {
+            player = marcoPlayer;
             scrolling1 = new Scrolling();
             scrolling2 = new Scrolling();
         }
@@ -26,7 +30,10 @@ namespace ThePlatformer.View.Background
         }
         public void LoadContent(ContentManager Content, int screenWidth, int screenHeight)
         {
-            scrolling1.LoadContent(Content, "Background/ScrollingBackground12", new Rectangle(0, -screenHeight/2, screenWidth, screenHeight));
+            this.screenHeight = screenHeight;
+            this.screenWidth = screenWidth;
+            scrolling1.LoadContent(Content, "Background/ScrollingBackground12", new Rectangle((int)player._position.X - screenWidth / 2,
+                ((int)player._position.Y - screenHeight / 2), screenWidth + 100, screenHeight + 100));
             scrolling2.LoadContent(Content, "Background/ScrollingBackground11", new Rectangle(screenWidth, -screenHeight / 2, screenWidth, screenHeight));
             // song = Content.Load<Song>("Sounds/Background/Chainsaw");
 
@@ -34,11 +41,11 @@ namespace ThePlatformer.View.Background
             // MediaPlayer.Volume = 0.2f;
             // MediaPlayer.IsRepeating = true;
         }
-        public void Update(GameTime gameTime,Vector2 position)
+        public void Update(GameTime gameTime, Vector2 position)
         {
             continueBackgrounding();
-            scrolling1.Update();
-            scrolling2.Update();
+            scrolling1.Update(player._position, screenWidth, screenHeight);
+            scrolling2.Update(player._position, screenWidth, screenHeight);
         }
         public void Draw(SpriteBatch spriteBatch)
         {

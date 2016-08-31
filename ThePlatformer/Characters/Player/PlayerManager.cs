@@ -20,10 +20,10 @@ namespace ThePlatformer.Characters.Player
         public void Initialize()
         {
             marcoPlayer = new MarcoPlayer(new Vector2(16, 38));
-            background = new BackgroundManager();
+            background = new BackgroundManager(marcoPlayer);
 
         }
-        public void LoadContent(ContentManager Content,Viewport viewport, GraphicsDevice graphicsDevice)
+        public void LoadContent(ContentManager Content, Viewport viewport, GraphicsDevice graphicsDevice)
         {
             camera = new Camera(viewport);
             marcoPlayer.mapHeight = mapManager.getMapHeight();
@@ -65,7 +65,7 @@ namespace ThePlatformer.Characters.Player
             spriteBatch.Begin(SpriteSortMode.Deferred,
                        BlendState.AlphaBlend,
                        null, null, null, null,
-                       camera.Transform);
+                       camera.get_transformation());
             background.Draw(spriteBatch);
 
             marcoPlayer.Draw(spriteBatch);
