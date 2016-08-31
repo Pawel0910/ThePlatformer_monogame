@@ -24,7 +24,7 @@ namespace ThePlatformer
         private bool isLeft = false, isRight = true;
         public int bulletDistance = 200;
         public static Rectangle rectangleStatic;
-        public int mapWidth{ get; set; }
+        public int mapWidth { get; set; }
         public int mapHeight { get; set; }
         public bool hasJumped = false, dead = false;
         public List<Bullet> bulletList = new List<Bullet>();
@@ -52,11 +52,12 @@ namespace ThePlatformer
             get { return _position; }
         }
         public MarcoPlayer(Vector2 position)
-        :base(position){
+        : base(position)
+        {
             currentLifeNumber = lives;
         }
 
-        public void Load(ContentManager Content,GraphicsDevice graphicsDevice)
+        public void Load(ContentManager Content, GraphicsDevice graphicsDevice)
         {
             Color color = Color.Black;
             base.LoadContent(Content, "idle1");
@@ -72,7 +73,7 @@ namespace ThePlatformer
             colors[_texture.Width - 1] = color;
             colors[_texture.Width - 2] = color;
             colors[(_texture.Width * _texture.Height) - _texture.Width] = color;
-            colors[(_texture.Width * _texture.Height) - _texture.Width+1] = color;
+            colors[(_texture.Width * _texture.Height) - _texture.Width + 1] = color;
 
 
             colors[(_texture.Width * _texture.Height) - 1] = color;
@@ -92,11 +93,11 @@ namespace ThePlatformer
             gravity();
             checkpointManager();
             destroyBullet();
-            
+
             checkCurrentLifeStatus();
 
         }
-        
+
         private void checkCurrentLifeStatus()
         {
             if (livePoints <= 0 && lives > 0)
@@ -183,7 +184,7 @@ namespace ThePlatformer
                 {
                     flip = SpriteEffects.FlipVertically;
                     rotation = MathHelper.Pi;
-                    
+
                 }
                 velocity.X = -(float)gameTime.ElapsedGameTime.TotalMilliseconds / 4;
                 isRight = false;
@@ -202,12 +203,12 @@ namespace ThePlatformer
             {
                 if (startTime > delayBetweenBulletShots)
                 {
-                    
-                    Bullet bullet = new Bullet(_position,isLeft);
+
+                    Bullet bullet = new Bullet(_position, isLeft);
                     bulletList.Add(bullet);
                     startTime = 0;
                 }
-               
+
             }
         }
         public void allCollisionsWithEnemies(EnemyBase enemy)
@@ -248,11 +249,11 @@ namespace ThePlatformer
             }
             if (_rectangle.TouchLeftOf(newRectangle))
             {
-                _position.X = newRectangle.X - _rectangle.Width/2 - 2;
+                _position.X = newRectangle.X - _rectangle.Width / 2 - 2;
             }
             if (_rectangle.TouchRightOf(newRectangle))
-            {   
-                _position.X = newRectangle.X + newRectangle.Width+newRectangle.Width/4 - 2;
+            {
+                _position.X = newRectangle.X + newRectangle.Width + newRectangle.Width / 4 - 2;
             }
             if (_rectangle.TouchBottomOf(newRectangle))
             {
@@ -292,7 +293,7 @@ namespace ThePlatformer
                 velocity += new Vector2(80, 0);
             }
         }
-        private Vector2 setFontPosition(int shiftX,int shiftY)
+        private Vector2 setFontPosition(int shiftX, int shiftY)
         {
             return new Vector2(-screenWidth / 2 + _position.X + shiftX, -screenHeight / 2 + _position.Y + shiftY);
         }
@@ -304,10 +305,10 @@ namespace ThePlatformer
             spriteBatch.Draw(_texture, _position, null, null, _origin, rotation, scaleVector, Color.White, flip);
 
             // spriteBatch.Draw(_rectangleTexture,null, rectangleBase,null,null,0,null,Color.White);
-            healthBar.Draw(spriteBatch,setHealthBarPosition());
-            spriteBatch.DrawString(font, "Lifes: " + lives, setFontPosition(30,60), Color.Black);
-            spriteBatch.DrawString(font, "Score: " + score, setFontPosition(30,90), Color.Black);
-            foreach(Bullet bullet in bulletList)
+            healthBar.Draw(spriteBatch, setHealthBarPosition());
+            spriteBatch.DrawString(font, "Lifes: " + lives, setFontPosition(30, 60), Color.Black);
+            spriteBatch.DrawString(font, "Score: " + score, setFontPosition(30, 90), Color.Black);
+            foreach (Bullet bullet in bulletList)
             {
                 bullet.Draw(spriteBatch);
             }
