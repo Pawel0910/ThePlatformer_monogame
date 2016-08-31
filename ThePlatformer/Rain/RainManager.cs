@@ -103,7 +103,12 @@ namespace ThePlatformer.Rain
                         addOne();
                     }
                 }
-               
+                if (rainList[i].outOfBound(graphics.Viewport.Bounds, player._position))
+                {
+                    rainList.RemoveAt(i);
+                    addOne();
+                }
+
             }
 
             EndFrame();
