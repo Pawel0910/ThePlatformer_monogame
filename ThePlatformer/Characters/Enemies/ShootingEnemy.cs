@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
+using ThePlatformer.SpriteBase.Animation;
 
 namespace ThePlatformer.Enemies
 {
@@ -18,8 +19,8 @@ namespace ThePlatformer.Enemies
         public float startTime = 0, delayBetweenBulletShots = 1000;
         public int maxBulletCount = 3;
 
-        public ShootingEnemy(Vector2 position)
-            : base(position)
+        public ShootingEnemy(Vector2 position, IAnimation animation)
+            : base(position, animation)
         {
         }
 

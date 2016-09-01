@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ThePlatformer.Enemies;
+using ThePlatformer.SpriteBase.Animation;
 
 namespace ThePlatformer.Characters.Enemies.EnemiesManager
 {
@@ -15,27 +16,18 @@ namespace ThePlatformer.Characters.Enemies.EnemiesManager
     {
         public List<EnemyBase> enemiesList = new List<EnemyBase>();
         private Random random = new Random();
-
+        private IAnimation enemyAnimations;
         private MapManager mapManager = MapManager.getInstance();
         private long elapsed, nextWave = 3000;
         public int wave = 1, waveMultipier = 2;
         public EnemiesManager()
         {
+            enemyAnimations = new AnimationImpl(200, this, "marco", "arrow");
+
         }
-        //public void spawnEnemies()
-        //{
-        //    if (enemiesList.Count < enemiesAmountOnMap)
-        //    {
-        //        int size = enemiesList.Count;
-        //        for (int i = 0; i < enemiesAmountOnMap-size; i++)
-        //        {
-        //            EnemyBase enemy = new ShootingEnemy(new Vector2(randInt(0, mapManager.getMapWidth()),10));
-        //        }
-        //    }
-        //}
         public void addEnemy()
         {
-            EnemyBase enemy = new ShootingEnemy(new Vector2(randInt(0, mapManager.getMapWidth() - 200), -500));
+            EnemyBase enemy = new ShootingEnemy(new Vector2(randInt(0, mapManager.getMapWidth() - 200), -500), enemyAnimations);
             enemy.Load(EnemyTextures.idle);
             enemiesList.Add(enemy);
         }
@@ -46,8 +38,8 @@ namespace ThePlatformer.Characters.Enemies.EnemiesManager
         public void Restart()
         {
             restartEnemies();
-            enemiesList.Add(new RunningEnemy(new Vector2(150, 10)));
-            enemiesList.Add(new ShootingEnemy(new Vector2(190, 10)));
+            enemiesList.Add(new RunningEnemy(new Vector2(150, 10), enemyAnimations));
+            enemiesList.Add(new ShootingEnemy(new Vector2(190, 10), enemyAnimations));
             foreach (EnemyBase enemy in enemiesList)
             {
                 enemy.Load(EnemyTextures.idle);
@@ -59,14 +51,15 @@ namespace ThePlatformer.Characters.Enemies.EnemiesManager
         }
         public void Initialize()
         {
-            enemiesList.Add(new RunningEnemy(new Vector2(150, -20)));
-            enemiesList.Add(new ShootingEnemy(new Vector2(150, -500)));
+            enemiesList.Add(new RunningEnemy(new Vector2(150, -20), enemyAnimations));
+            enemiesList.Add(new ShootingEnemy(new Vector2(150, -500), enemyAnimations));
         }
 
         public void LoadContent(ContentManager content)
         {
             EnemyTextures.Load(content);
             EnemyBase.setContent(content);
+            enemyAnimations.LoadConent(content);
             foreach (EnemyBase enemy in enemiesList)
             {
                 enemy.Load(EnemyTextures.idle);

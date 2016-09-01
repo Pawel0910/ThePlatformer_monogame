@@ -39,10 +39,11 @@ namespace ThePlatformer.Enemies
         {
 
         }
-        public EnemyBase(Vector2 position)
+        public EnemyBase(Vector2 position, IAnimation animation)
             : base(position)
         {
-            animation = new AnimationImpl(200, this, "marco", "arrow");
+            // animation = new AnimationImpl(200, this, "marco", "arrow");
+            this.animation = animation;
         }
 
         public void Load(ContentManager Content, String path)
@@ -64,10 +65,13 @@ namespace ThePlatformer.Enemies
             EnemyBase.Content = Content;
 
         }
+        public void LoadAnimation(ContentManager Content)
+        {
 
+        }
         public void Load(Texture2D texture)
         {
-            animation.LoadConent(Content);
+            //animation.LoadConent(Content);
             bulletStrengthHit = (int)((double)MarcoPlayer.healthBar.fullHealth / 5);
             healthBar = new HealthBar(Content);
             livePoints = healthBar.fullHealth;

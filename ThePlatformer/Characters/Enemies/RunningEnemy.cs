@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ThePlatformer.Characters.Enemies;
 using ThePlatformer.Enemies;
+using ThePlatformer.SpriteBase.Animation;
 using ThePlatformer.Treasures;
 
 namespace ThePlatformer
@@ -17,8 +18,8 @@ namespace ThePlatformer
         private int distanceToPlayer = 100;
         private float startTime = 0, endTime = 0;
 
-        public RunningEnemy(Vector2 position)
-            : base(position)
+        public RunningEnemy(Vector2 position, IAnimation animation)
+            : base(position, animation)
         {
         }
         public override void Update(GameTime gameTime)
