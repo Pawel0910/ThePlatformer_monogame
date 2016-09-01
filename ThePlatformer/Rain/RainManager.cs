@@ -51,6 +51,7 @@ namespace ThePlatformer.Rain
         }
         public void Load(ContentManager Content, GraphicsDevice graphics)
         {
+
             this.graphics = graphics;
             Raining.Load(Content);
             this.Content = Content;
@@ -65,15 +66,15 @@ namespace ThePlatformer.Rain
 
         public void UpdateTest(long totalGameTime, long elapsedGameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.T))
-            {
-                stopwatch.Start();
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.U))
-            {
-                stopwatch.Stop();
-                stopwatch.Reset();
-            }
+            //if (Keyboard.GetState().IsKeyDown(Keys.T))
+            //{
+            //    stopwatch.Start();
+            //}
+            //if (Keyboard.GetState().IsKeyDown(Keys.U))
+            //{
+            //    stopwatch.Stop();
+            //    stopwatch.Reset();
+            //}
             for (int i = 0; i < rainList.Count; i++)
             {
                 if (stopwatch.ElapsedMilliseconds > 0)
@@ -103,6 +104,14 @@ namespace ThePlatformer.Rain
                         addOne();
                     }
                 }
+                //for (int tile = 0; tile < mapManager.getMap().CollisionTiles.Count; tile++)
+                //{
+                //    if (rainList[i]._rectangle.Intersects(mapManager.getMap().CollisionTiles[tile].Rectangle))
+                //    {
+                //        rainList.RemoveAt(i);
+                //        addOne();
+                //    }
+                //}
                 if (rainList[i].outOfBound(graphics.Viewport.Bounds, player._position))
                 {
                     rainList.RemoveAt(i);

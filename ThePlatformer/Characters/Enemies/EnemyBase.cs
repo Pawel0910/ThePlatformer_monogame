@@ -6,15 +6,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThePlatformer.Characters.Enemies;
 using ThePlatformer.Health;
+using ThePlatformer.SpriteBase.Animation;
 
 namespace ThePlatformer.Enemies
 {
     public abstract class EnemyBase : CustomSprite
     {
         public float scale = 0.2f;
-       // public Rectangle _rectangle;
-        public Texture2D texture;
+        // public Rectangle _rectangle;
+        // public Texture2D texture;
         public Vector2 velocity;//, _position = new Vector2(10, 10);
         public bool hasJumped = false, canTeleport = false;
         public List<Bullet> bulletList = new List<Bullet>();
@@ -23,6 +25,9 @@ namespace ThePlatformer.Enemies
         public HealthBar healthBar;
         public bool isDead = false;
         public MapManager mapManager = MapManager.getInstance();
+        private static ContentManager Content;
+        private bool parachute = true;
+        public IAnimation animation;
         public enum LiveStatus
         {
             alive,
@@ -30,35 +35,75 @@ namespace ThePlatformer.Enemies
         }
         public LiveStatus liveStatus = LiveStatus.alive;
 
+        public EnemyBase()
+        {
+
+        }
         public EnemyBase(Vector2 position)
             : base(position)
         {
+            animation = new AnimationImpl(200, this, "marco", "arrow");
         }
 
-        public void Load(ContentManager Content,String path)
+        public void Load(ContentManager Content, String path)
         {
-            texture = Content.Load<Texture2D>(path);
             base.LoadContent(Content, path);
         }
-        public void Load(ContentManager Content,String path, Vector2 startPosition)
+        public void Load(ContentManager Content, String path, Vector2 startPosition)
         {
-                    Load(Content, path);
-                    this._position = startPosition;
-                    //_rectangle = new Rectangle((int)_position.X, (int)_position.Y, texture.Width, texture.Height);
-                    bulletStrengthHit = (int)((double)MarcoPlayer.healthBar.fullHealth / 5);
-                    healthBar = new HealthBar(Content);
-                    livePoints = healthBar.fullHealth;
+            Load(Content, path);
+            EnemyBase.Content = Content;
+            //this._position = startPosition;
+            //_rectangle = new Rectangle((int)_position.X, (int)_position.Y, texture.Width, texture.Height);
+            bulletStrengthHit = (int)((double)MarcoPlayer.healthBar.fullHealth / 5);
+            healthBar = new HealthBar(Content);
+            livePoints = healthBar.fullHealth;
         }
-        virtual public void  Update(GameTime gameTime)
+        public static void setContent(ContentManager Content)
+        {
+            EnemyBase.Content = Content;
+
+        }
+
+        public void Load(Texture2D texture)
+        {
+            animation.LoadConent(Content);
+            bulletStrengthHit = (int)((double)MarcoPlayer.healthBar.fullHealth / 5);
+            healthBar = new HealthBar(Content);
+            livePoints = healthBar.fullHealth;
+            animation.setCurrentAnimation("marco");
+            base.LoadContent(texture);
+        }
+        virtual public void Update(GameTime gameTime)
         {
             switch (liveStatus)
             {
                 case LiveStatus.alive:
                     myPosition();
                     gravity();
-                    base.Update(gameTime);
+                    base.Update(gameTime, animation.changeTextureOnAnimation(gameTime));
                     int healthBarShift = (int)((double)healthBar.fullHealth / 2 * scale);
-                    healthBar.Update(new Vector2(_rectangle.X + (texture.Width / 2) - healthBarShift, _rectangle.Y - 15));
+                    healthBar.Update(new Vector2(_rectangle.X + (_texture.Width / 2) - healthBarShift, _rectangle.Y - 15));
+                    checkCurrentHealthStatus();
+                    break;
+                case LiveStatus.dead:
+                    if (!isDead)
+                    {
+                        isDead = true;
+                    }
+                    break;
+            }
+        }
+        virtual public void TestUpdate(GameTime gameTime, Texture2D newTexture)
+        {
+            switch (liveStatus)
+            {
+                case LiveStatus.alive:
+                    myPosition();
+                    gravity();
+                    base.Update(gameTime, newTexture);
+                    int healthBarShift = (int)((double)healthBar.fullHealth / 2 * scale);
+                    healthBar.Update(new Vector2(_rectangle.X + (_texture.Width / 2) - healthBarShift, _rectangle.Y - 15));
                     checkCurrentHealthStatus();
                     break;
                 case LiveStatus.dead:
@@ -73,14 +118,29 @@ namespace ThePlatformer.Enemies
         private void myPosition()
         {
             _position += velocity;
-            _rectangle = new Rectangle((int)_position.X, (int)_position.Y, texture.Width, texture.Height);
+            _rectangle = new Rectangle((int)_position.X, (int)_position.Y, _texture.Width, _texture.Height);
         }
         private void gravity()
         {
             //grawitacja
             if (velocity.Y < 10)
             {
-                velocity.Y += 0.4f;
+                if ((GetType() == typeof(ShootingEnemy)))
+                {
+                    velocity.Y += 0.01f;
+                    if (parachute)
+                    {
+                        velocity.X += 0.001f;
+                    }
+                    else
+                    {
+                        velocity.X = 0;
+                    }
+                }
+                else
+                {
+                    velocity.Y += 0.5f;
+                }
             }
         }
         private void checkCurrentHealthStatus()
@@ -94,10 +154,11 @@ namespace ThePlatformer.Enemies
         {
             if (_rectangle.TouchTopOf(newRectangle))
             {
-               // _rectangle.Y = newRectangle.Y - _rectangle.Height;
+                // _rectangle.Y = newRectangle.Y - _rectangle.Height;
                 velocity.Y = 0f;
                 canTeleport = false;
                 hasJumped = false;
+                parachute = false;
             }
             else if (_rectangle.TouchLeftOf(newRectangle))
             {
@@ -135,7 +196,7 @@ namespace ThePlatformer.Enemies
             switch (liveStatus)
             {
                 case LiveStatus.alive:
-                   // spriteBatch.Draw(texture, _position, null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    // spriteBatch.Draw(texture, _position, null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
                     spriteBatch.Draw(_texture, _position, null, null, _origin, rotation, scaleVector, Color.White, SpriteEffects.None);
 
                     healthBar.Draw(spriteBatch, scale);
@@ -153,7 +214,10 @@ namespace ThePlatformer.Enemies
             }
             if (MarcoPlayer.rectangleStatic.Intersects(this._rectangle))
             {
-                player.playerGotHurt(bulletStrengthHit);
+                if ((GetType() == typeof(ShootingEnemy)))
+                {
+                    player.playerGotHurt(bulletStrengthHit);
+                }
                 player.knockBack(_position);
             }
         }
@@ -169,7 +233,7 @@ namespace ThePlatformer.Enemies
                 if (bulletList[i].rectangle.Intersects(MarcoPlayer.rectangleStatic))
                 {
                     bulletList.RemoveAt(i);
-                    
+
                     return true;
                 }
             }

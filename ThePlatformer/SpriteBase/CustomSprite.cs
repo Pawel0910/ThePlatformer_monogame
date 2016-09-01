@@ -27,7 +27,11 @@ namespace ThePlatformer
         //private List<Texture2D> textureList;
         public SpriteEffects spriteEffect = SpriteEffects.None;
         public int currentFrame = 0;
-        public CustomSprite(Vector2 position, float speed = 0, float angle = 0, float rotation = 0, float angularVelocity = 0, float scale = 1.0f,bool moveAble=false)
+        public CustomSprite()
+        {
+
+        }
+        public CustomSprite(Vector2 position, float speed = 0, float angle = 0, float rotation = 0, float angularVelocity = 0, float scale = 1.0f, bool moveAble = false)
         {
             this._position = position;
             this.angle = 0;
@@ -53,26 +57,31 @@ namespace ThePlatformer
         public void LoadContent(ContentManager content, string assetName)
         {
             _texture = content.Load<Texture2D>(assetName);
-          //  animation.LoadConent(content);
-          //  animation.setCurrentAnimation(assetName);
-            OnContentLoaded(content);
+            //  animation.LoadConent(content);
+            //  animation.setCurrentAnimation(assetName);
+            OnContentLoaded();
         }
-        protected void OnContentLoaded(ContentManager content)
+        public void LoadContent(Texture2D texture)
+        {
+            _texture = texture;
+            OnContentLoaded();
+        }
+        protected void OnContentLoaded()
         {
             _origin = new Vector2(_texture.Width / 2.0f, _texture.Height / 2.0f);
             UpdateTransformMatrix();
             UpdateRectangle();
         }
-        protected virtual void OnContentLoaded(ContentManager content, GraphicsDevice graphicsDevice)
+        protected virtual void OnContentLoaded(GraphicsDevice graphicsDevice)
         {
             _origin = new Vector2(_texture.Width / 2.0f, _texture.Height / 2.0f);
             UpdateTransformMatrix();
             UpdateRectangle();
         }
-        public void LoadStaticContent(Texture2D texture, ContentManager content, GraphicsDevice graphicsDevice)
+        public void LoadStaticContent(Texture2D texture, GraphicsDevice graphicsDevice)
         {
             this._texture = texture;
-            OnContentLoaded(content, graphicsDevice);
+            OnContentLoaded(graphicsDevice);
         }
 
         private void UpdateRectangle()
@@ -93,13 +102,13 @@ namespace ThePlatformer
             UpdatePosition(gameTime);
             UpdateTransformMatrix();
             UpdateRectangle();
-           // _texture = animation.changeTextureOnAnimation(gameTime) ?? _texture;
+            // _texture = animation.changeTextureOnAnimation(gameTime) ?? _texture;
         }
         public virtual void Update(GameTime gameTime, Texture2D newTexture)
         {
             UpdatePosition(gameTime);
             UpdateOrigin();
-           // UpdateRotation(gameTime);
+            // UpdateRotation(gameTime);
             UpdateTransformMatrix();
             UpdateRectangle();
 
@@ -143,11 +152,11 @@ namespace ThePlatformer
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.Q))
                 {
-                //    animation.setCurrentAnimation("arrow");
+                    //    animation.setCurrentAnimation("arrow");
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.E))
                 {
-              //      animation.setCurrentAnimation("marco");
+                    //      animation.setCurrentAnimation("marco");
                 }
             }
         }
@@ -183,13 +192,13 @@ namespace ThePlatformer
 
         public bool Collision(CustomSprite target)
         {
-            
+
             var collides = _rectangle.Intersects(target._rectangle) && TexturesCollide(transform, target.transform, target);
             Collided = collides;
             target.Collided = collides;
             return collides;
         }
-        private bool TexturesCollide( Matrix mat1, Matrix mat2,CustomSprite target)
+        private bool TexturesCollide(Matrix mat1, Matrix mat2, CustomSprite target)
         {
             Color[,] tex1 = TextureTo2DArray(this);
             Color[,] tex2 = TextureTo2DArray(target);
@@ -243,7 +252,7 @@ namespace ThePlatformer
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, _position, null, null,_origin, rotation, scaleVector, color, spriteEffect);
+            spriteBatch.Draw(_texture, _position, null, null, _origin, rotation, scaleVector, color, spriteEffect);
 
         }
     }

@@ -39,6 +39,13 @@ namespace ThePlatformer
         private readonly Color _rectangleColor = Color.Black;
         private Texture2D _rectangleTexture;
         public static HealthBar healthBar;
+        public void restartMarco()
+        {
+            _position = new Vector2(16, 38);
+            lives = 3;
+            bulletDistance = 200;
+            healthBar.restartHealthBar();
+        }
         enum Checkpoint
         {
             Checkpoint1,
@@ -286,18 +293,19 @@ namespace ThePlatformer
         {
             if (enemyPosition.X > _position.X)
             {
-                velocity += new Vector2(-80, 0);
+                velocity += new Vector2(-20, 0);
             }
             else
             {
-                velocity += new Vector2(80, 0);
+                velocity += new Vector2(20, 0);
             }
         }
-        private Vector2 setFontPosition(int shiftX, int shiftY)
+        private Vector2 setLeftCornerFontPosition(int shiftX, int shiftY)
         {
             return new Vector2(-screenWidth / 2 + _position.X + shiftX, -screenHeight / 2 + _position.Y + shiftY);
         }
-        public new void Draw(SpriteBatch spriteBatch)
+
+        public new void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             //spriteBatch.Draw(texture, position,null, Color.White,angle,origin,scale,flip,0);
             spriteBatch.Draw(_rectangleTexture, null, Rectangle, null, null, 0, null, Color.White);
@@ -306,8 +314,10 @@ namespace ThePlatformer
 
             // spriteBatch.Draw(_rectangleTexture,null, rectangleBase,null,null,0,null,Color.White);
             healthBar.Draw(spriteBatch, setHealthBarPosition());
-            spriteBatch.DrawString(font, "Lifes: " + lives, setFontPosition(30, 60), Color.Black);
-            spriteBatch.DrawString(font, "Score: " + score, setFontPosition(30, 90), Color.Black);
+            spriteBatch.DrawString(font, "Lifes: " + lives, setLeftCornerFontPosition(30, 60), Color.Black);
+            spriteBatch.DrawString(font, "Score: " + score, setLeftCornerFontPosition(30, 90), Color.Black);
+            // spriteBatch.DrawString(font, "Time: " + gameTime.TotalGameTime.Seconds, setRightCornerFontPosition(100, 30), Color.Black);
+
             foreach (Bullet bullet in bulletList)
             {
                 bullet.Draw(spriteBatch);

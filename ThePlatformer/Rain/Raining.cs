@@ -38,7 +38,7 @@ namespace ThePlatformer.Rain
             delay += (int)_position.X;
 
             //animation.LoadConent(Content);
-            base.LoadStaticContent(texture, Content, graphics);
+            base.LoadStaticContent(texture, graphics);
             // base.OnContentLoaded(Content, graphics);
         }
         public void Update(long totalGameTime, long elapsedGameTime)

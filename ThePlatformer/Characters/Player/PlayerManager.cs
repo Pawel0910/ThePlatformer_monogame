@@ -56,11 +56,12 @@ namespace ThePlatformer.Characters.Player
         }
         public void restart()
         {
-            marcoPlayer = null;
-            camera = null;
+            marcoPlayer.restartMarco();
+            //marcoPlayer = null;
+            //camera = null;
 
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred,
                        BlendState.AlphaBlend,
@@ -68,7 +69,7 @@ namespace ThePlatformer.Characters.Player
                        camera.get_transformation());
             background.Draw(spriteBatch);
 
-            marcoPlayer.Draw(spriteBatch);
+            marcoPlayer.Draw(spriteBatch, gameTime);
 
         }
     }

@@ -20,20 +20,20 @@ namespace ThePlatformer.SpriteBase
             _rectangleColor = rectangleColor;
         }
 
-        protected override void OnContentLoaded(ContentManager content, GraphicsDevice graphicsDevice)
-        {
-            var colors = new Color[Texture.Width * Texture.Height];
+        //protected override void OnContentLoaded(ContentManager content, GraphicsDevice graphicsDevice)
+        //{
+        //    var colors = new Color[Texture.Width * Texture.Height];
 
-            colors[0] = _rectangleColor;
-            colors[Texture.Width - 1] = _rectangleColor;
-            colors[(Texture.Width * Texture.Height) - Texture.Width] = _rectangleColor;
-            colors[(Texture.Width * Texture.Height) - 1] = _rectangleColor;
+        //    colors[0] = _rectangleColor;
+        //    colors[Texture.Width - 1] = _rectangleColor;
+        //    colors[(Texture.Width * Texture.Height) - Texture.Width] = _rectangleColor;
+        //    colors[(Texture.Width * Texture.Height) - 1] = _rectangleColor;
 
-            _rectangleTexture = new Texture2D(graphicsDevice, Texture.Width, Texture.Height);
-            _rectangleTexture.SetData(colors);
+        //    _rectangleTexture = new Texture2D(graphicsDevice, Texture.Width, Texture.Height);
+        //    _rectangleTexture.SetData(colors);
 
-            base.OnContentLoaded(content, graphicsDevice);
-        }
+        //    base.OnContentLoaded(content, graphicsDevice);
+        //}
 
        public override void Draw(SpriteBatch spriteBatch)
         {

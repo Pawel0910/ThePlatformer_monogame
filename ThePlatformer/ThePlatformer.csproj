@@ -101,6 +101,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Characters\Enemies\EnemiesManager\EnemiesManager.cs" />
+    <Compile Include="Characters\Enemies\EnemyTextures.cs" />
     <Compile Include="Characters\Player\PlayerManager.cs" />
     <Compile Include="SpriteBase\Animation\Events\EventizerAnimationImpl.cs" />
     <Compile Include="SpriteBase\Animation\Events\IEventizerAnimation.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="SpriteBase\Animation\AnimationImpl.cs" />
     <Compile Include="SpriteBase\RectangleTransform.cs" />
     <Compile Include="SpriteBase\CustomSprite.cs" />
+    <Compile Include="Treasures\TreasureManager.cs" />
     <Compile Include="View\Background\Background.cs" />
     <Compile Include="View\Background\BackgroundManager.cs" />
     <Compile Include="View\Background\Scrolling.cs" />
@@ -132,7 +134,7 @@
     <Compile Include="Health\HealthBar.cs" />
     <Compile Include="View\MapView\Map.cs" />
     <Compile Include="Characters\Player\MarcoPlayer.cs" />
-    <Compile Include="Characters\Enemies\NormalEnemy.cs" />
+    <Compile Include="Characters\Enemies\RunningEnemy.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerAnimationLists.cs" />
     <Compile Include="PlayerTexturePackerTest.cs" />

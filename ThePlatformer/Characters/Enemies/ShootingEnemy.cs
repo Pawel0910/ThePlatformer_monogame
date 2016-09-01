@@ -79,7 +79,7 @@ namespace ThePlatformer.Enemies
             switch (liveStatus)
             {
                 case LiveStatus.alive:
-                   // spriteBatch.Draw(texture, _position, null, Color.White, 0f, Vector2.Zero, 1, flip, 0);
+                    // spriteBatch.Draw(texture, _position, null, Color.White, 0f, Vector2.Zero, 1, flip, 0);
                     spriteBatch.Draw(_texture, _position, null, null, _origin, rotation, scaleVector, Color.White, flip);
 
                     healthBar.Draw(spriteBatch, scale);
