@@ -15,9 +15,17 @@ namespace ThePlatformer.Health
         private Vector2 position;
         public int fullHealth;
         public int currentHealth;
-        private Color healthBarColor=Color.Green;
+        private Color healthBarColor = Color.Green;
+
         public HealthBar(ContentManager content)
         {
+            LoadContent(content);
+            fullHealth = lifeBar.Width;
+            currentHealth = fullHealth;
+        }
+        public HealthBar(ContentManager content, Vector2 position)
+        {
+            this.position = position;
             LoadContent(content);
             fullHealth = lifeBar.Width;
             currentHealth = fullHealth;
@@ -25,7 +33,7 @@ namespace ThePlatformer.Health
         private void LoadContent(ContentManager content)
         {
             container = content.Load<Texture2D>("healthContainer");
-            lifeBar = content.Load<Texture2D>("healthBar"); 
+            lifeBar = content.Load<Texture2D>("healthBar");
         }
         /// <summary>
         /// 
@@ -35,16 +43,16 @@ namespace ThePlatformer.Health
         public void Update(Vector2 position)
         {
             this.position = position;
-            
+
         }
         public void updateHealthStatus(int percentAmountToChangeHeal)
         {
-            double amountToChange = ((double)percentAmountToChangeHeal / fullHealth)*100;
+            double amountToChange = ((double)percentAmountToChangeHeal / fullHealth) * 100;
             if (currentHealth > 0)
             {
-                double percent = (double)currentHealth / fullHealth*100;
-                currentHealth = (int)(percent-amountToChange);
-                currentHealth = (int)(((double)currentHealth * fullHealth)/100);
+                double percent = (double)currentHealth / fullHealth * 100;
+                currentHealth = (int)(percent - amountToChange);
+                currentHealth = (int)(((double)currentHealth * fullHealth) / 100);
             }
             colorSwitcher();
         }
@@ -65,17 +73,17 @@ namespace ThePlatformer.Health
             currentHealth = fullHealth;
             healthBarColor = Color.Green;
         }
-        public void Draw(SpriteBatch spriteBatch,Vector2 position)
+        public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-            spriteBatch.Draw(lifeBar, position, new Rectangle((int)position.X,(int)position.Y,currentHealth,lifeBar.Height),
+            spriteBatch.Draw(lifeBar, position, new Rectangle((int)position.X, (int)position.Y, currentHealth, lifeBar.Height),
                 healthBarColor);
             spriteBatch.Draw(container, position, Color.White);
         }
         public void Draw(SpriteBatch spriteBatch, float scale)
         {
             spriteBatch.Draw(lifeBar, position, new Rectangle((int)position.X, (int)position.Y, currentHealth, lifeBar.Height),
-               healthBarColor,0f,Vector2.Zero,scale,SpriteEffects.None,0);
-            spriteBatch.Draw(container, position,null, Color.White,0f,Vector2.Zero,scale,SpriteEffects.None,0);
+               healthBarColor, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            spriteBatch.Draw(container, position, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
         }
     }
 }
