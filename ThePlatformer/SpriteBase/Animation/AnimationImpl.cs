@@ -21,6 +21,7 @@ namespace ThePlatformer.SpriteBase.Animation
         private Dictionary<String, List<Texture2D>> textureDict;
         private Dictionary<String, List<EventizerAnimationImpl>> events;
         private List<Texture2D> currentAnimation;
+        private Dictionary<String, int?> delays;
         private String currentAnimationName;
         private Object spriteObject;
         public bool frameEnded { get; set; }
@@ -33,6 +34,7 @@ namespace ThePlatformer.SpriteBase.Animation
             textureDict = new Dictionary<String, List<Texture2D>>();
             events = new Dictionary<string, List<EventizerAnimationImpl>>();
             currentAnimation = new List<Texture2D>();
+            delays = new Dictionary<string, int?>();
             this.spriteObject = sprite;
             this.textureNames = textureNames;
             this.delayBeetwenFrames = delayBeetwenFrames;
@@ -56,6 +58,10 @@ namespace ThePlatformer.SpriteBase.Animation
                 textureDict.Add(textureName, textureList);
             }
 
+        }
+        public void setDelayBeetwenAnim(String animationName, int delay)
+        {
+            delays.Add(animationName, delay);
         }
         public void setEventOnAnimation(String textureName, String eventName, int frame)
         {
@@ -111,9 +117,17 @@ namespace ThePlatformer.SpriteBase.Animation
         }
         public Texture2D changeTextureOnAnimation(GameTime gameTime)
         {
-
+            int delay = 0;
             elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (elapsedTime > delayBeetwenFrames && currentAnimation.Count > 0)
+            if (currentAnimationName!=null&&delays.ContainsKey(currentAnimationName))
+            {
+                delay = (int)delays[currentAnimationName];
+            }
+            else
+            {
+                delay = delayBeetwenFrames;
+            }
+            if (elapsedTime > delay && currentAnimation.Count > 0)
             {
                 elapsedTime = 0;
                 if (currentFrame < currentAnimation.Count)

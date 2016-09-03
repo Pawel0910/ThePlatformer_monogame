@@ -65,7 +65,8 @@ namespace ThePlatformer
         : base(position, scale)
         {
             currentLifeNumber = lives;
-            animation = new AnimationImpl(10, this, "Player/Run/Run", "Player/Shoot/Shoot","Player/Idle/Idle");
+            animation = new AnimationImpl(10, this, "Player/Run/Run", "Player/Shoot/Shoot","Player/Idle/Idle","Player/Jump/Jump");
+
         }
 
         public void Load(ContentManager Content, GraphicsDevice graphicsDevice)
@@ -73,6 +74,7 @@ namespace ThePlatformer
             Color color = Color.Black;
             animation.LoadConent(Content);
             animation.setEventOnAnimation("Player/Shoot/Shoot", "shoot", 2);
+            animation.setDelayBeetwenAnim("Player/Jump/Jump", 100);
             //animation.setCurrentAnimation("Player/Run/Run");
             base.LoadContent(Content, "idle1");
             Bullet bullet1 = new Bullet();
@@ -120,13 +122,13 @@ namespace ThePlatformer
             {
                 animation.setCurrentAnimation("Player/Idle/Idle");
             }
-            if (velocity.X != 0 && !isShoot)
+            if (velocity.X != 0 && !isShoot && !hasJumped)
             {
                 animation.setCurrentAnimation("Player/Run/Run");
             }
-            if (velocity.Y != 0 && !isShoot)
+            if (velocity.Y < 0 || velocity.Y>1&& !isShoot)
             {
-                //setJump
+                animation.setCurrentAnimation("Player/Jump/Jump");
             }
             if (isShoot)
             {

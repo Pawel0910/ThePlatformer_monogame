@@ -19,6 +19,7 @@ namespace ThePlatformer.SpriteBase.Animation
         /// <param name="frame">Frame on which the event is to occur.</param>
         /// <param name="eventName">Method name which be called.</param>
         void setEventOnAnimation(String textureName, String eventName, int frame);
+        void setDelayBeetwenAnim(String animationName, int delay);
 
         void setCurrentAnimation(String textureName);
 
