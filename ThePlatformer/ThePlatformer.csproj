@@ -103,7 +103,7 @@
     <Compile Include="Characters\Enemies\EnemiesManager\EnemiesManager.cs" />
     <Compile Include="Characters\Enemies\EnemyTextures.cs" />
     <Compile Include="Characters\Player\PlayerManager.cs" />
-    <Compile Include="Health\UpgradeBar.cs" />
+    <Compile Include="Bars\UpgradeBar.cs" />
     <Compile Include="SpriteBase\Animation\Events\EventizerAnimationImpl.cs" />
     <Compile Include="SpriteBase\Animation\Events\IEventizerAnimation.cs" />
     <Compile Include="SpriteBase\Animation\IAnimation.cs" />
@@ -133,7 +133,7 @@
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Game1.cs" />
-    <Compile Include="Health\HealthBar.cs" />
+    <Compile Include="Bars\HealthBar.cs" />
     <Compile Include="View\MapView\Map.cs" />
     <Compile Include="Characters\Player\MarcoPlayer.cs" />
     <Compile Include="Characters\Enemies\RunningEnemy.cs" />

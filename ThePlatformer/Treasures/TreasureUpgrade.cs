@@ -20,6 +20,7 @@ namespace ThePlatformer.Treasures
             {
                 upgradeShooting = true;//TODO tutaj trzeba bedzie dodac szybsze strzelanie do playera
                 UpgradeBar.spawnUpgradeBar = true;
+                player.delayBetweenBulletShots = 200f;
             }
             base.upgrade(player);
         }

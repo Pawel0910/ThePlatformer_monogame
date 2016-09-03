@@ -22,7 +22,7 @@ namespace ThePlatformer.Characters.Enemies.EnemiesManager
         public int wave = 1, waveMultipier = 2;
         public EnemiesManager()
         {
-            enemyAnimations = new AnimationImpl(200, this, "marco", "arrow");
+            enemyAnimations = new AnimationImpl(200, this, "marco", "Soldier/Parachute/soldierParachute");
 
         }
         public void addEnemy()

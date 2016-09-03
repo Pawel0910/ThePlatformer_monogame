@@ -29,7 +29,7 @@ namespace ThePlatformer
         public int mapHeight { get; set; }
         public bool hasJumped = false, dead = false;
         public List<Bullet> bulletList = new List<Bullet>();
-        public float startTime = 0, delayBetweenBulletShots = 1000;
+        public float startTime = 0, delayBetweenBulletShots = 750;
         private int screenWidth, screenHeight;
         private SpriteFont font;
         public int score;
@@ -46,6 +46,7 @@ namespace ThePlatformer
         {
             _position = new Vector2(16, 38);
             lives = 3;
+            score = 0;
             bulletDistance = 200;
             healthBar.restartHealthBar();
         }
@@ -75,6 +76,7 @@ namespace ThePlatformer
             animation.LoadConent(Content);
             animation.setEventOnAnimation("Player/Shoot/Shoot", "shoot", 2);
             animation.setDelayBeetwenAnim("Player/Jump/Jump", 100);
+            animation.setDelayBeetwenAnim("Player/Shoot/Shoot", 50);
             //animation.setCurrentAnimation("Player/Run/Run");
             base.LoadContent(Content, "idle1");
             Bullet bullet1 = new Bullet();
@@ -126,17 +128,13 @@ namespace ThePlatformer
             {
                 animation.setCurrentAnimation("Player/Run/Run");
             }
-            if (velocity.Y < 0 || velocity.Y>1&& !isShoot)
+            if ((velocity.Y < 0 || velocity.Y>1) && !isShoot)
             {
                 animation.setCurrentAnimation("Player/Jump/Jump");
             }
             if (isShoot)
             {
                 animation.setCurrentAnimation("Player/Shoot/Shoot");
-                if (animation.frameEnded)
-                {
-                    isShoot = false;
-                }
             }
         }
         private void checkCurrentLifeStatus()
@@ -244,8 +242,6 @@ namespace ThePlatformer
             {
                 if (startTime > delayBetweenBulletShots)
                 {
-
-                   // animation.setCurrentAnimation("Player/Shoot/Shoot");
                     isShoot = true;
                     startTime = 0;
                 }
@@ -257,6 +253,7 @@ namespace ThePlatformer
             Vector2 ballPosition = new Vector2(_position.X + 8, _position.Y);
             Bullet bullet = new Bullet(ballPosition, isLeft);
             bulletList.Add(bullet);
+            isShoot = false;
         }
         public void allCollisionsWithEnemies(EnemyBase enemy)
         {

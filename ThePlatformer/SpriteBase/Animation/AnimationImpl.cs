@@ -20,8 +20,9 @@ namespace ThePlatformer.SpriteBase.Animation
         private int elapsedTime;
         private Dictionary<String, List<Texture2D>> textureDict;
         private Dictionary<String, List<EventizerAnimationImpl>> events;
-        private List<Texture2D> currentAnimation;
         private Dictionary<String, int?> delays;
+        private Dictionary<String, bool> animationStatus;
+        private List<Texture2D> currentAnimation;
         private String currentAnimationName;
         private Object spriteObject;
         public bool frameEnded { get; set; }
@@ -33,8 +34,10 @@ namespace ThePlatformer.SpriteBase.Animation
         {
             textureDict = new Dictionary<String, List<Texture2D>>();
             events = new Dictionary<string, List<EventizerAnimationImpl>>();
-            currentAnimation = new List<Texture2D>();
             delays = new Dictionary<string, int?>();
+            animationStatus = new Dictionary<string, bool>();
+            currentAnimation = new List<Texture2D>();
+
             this.spriteObject = sprite;
             this.textureNames = textureNames;
             this.delayBeetwenFrames = delayBeetwenFrames;
@@ -56,8 +59,12 @@ namespace ThePlatformer.SpriteBase.Animation
                     }
                 }
                 textureDict.Add(textureName, textureList);
+                animationStatus.Add(textureName, false);
             }
-
+        }
+        public bool getAnimationStatus(string animationName)
+        {
+            return animationStatus[animationName];
         }
         public void setDelayBeetwenAnim(String animationName, int delay)
         {
@@ -103,41 +110,22 @@ namespace ThePlatformer.SpriteBase.Animation
         }
         public void setCurrentAnimation(String textureName)
         {
-            if(currentAnimation == textureDict[textureName])
-            {
-                
-            }else
+            if(currentAnimation != textureDict[textureName])
             {
                 currentAnimation = textureDict[textureName];
                 currentAnimationName = textureDict.FirstOrDefault(x => x.Value == currentAnimation).Key;
                 elapsedTime = delayBeetwenFrames + 1;
-                frameEnded = false;
+                animationStatus[currentAnimationName] = false;
             }
-            
         }
         public Texture2D changeTextureOnAnimation(GameTime gameTime)
         {
-            int delay = 0;
             elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (currentAnimationName!=null&&delays.ContainsKey(currentAnimationName))
-            {
-                delay = (int)delays[currentAnimationName];
-            }
-            else
-            {
-                delay = delayBeetwenFrames;
-            }
-            if (elapsedTime > delay && currentAnimation.Count > 0)
+           
+            if (elapsedTime > setDifferentDelay() && currentAnimation.Count > 0)
             {
                 elapsedTime = 0;
-                if (currentFrame < currentAnimation.Count)
-                {
-                    currentFrame++;
-                }
-                else
-                {
-                    currentFrame = 1;
-                }
+                setFrameNumber();
                 if (events.ContainsKey(currentAnimationName))
                 {
                     foreach (var myEvent in events[currentAnimationName])
@@ -145,18 +133,42 @@ namespace ThePlatformer.SpriteBase.Animation
                         myEvent.runEvent(currentFrame);
                     }
                 }
-                if (currentFrame == currentAnimation.Count)
-                {
-                    frameEnded = true;
-                }
-                else
-                {
-                    frameEnded = false;
-                }
+                checkIfAnimationEnded();
                 return currentAnimation[currentFrame - 1];
 
             }
             return null;
+        }
+        private void checkIfAnimationEnded()
+        {
+            if (currentFrame == currentAnimation.Count)
+            {
+                animationStatus[currentAnimationName] = true;
+            }
+            else
+            {
+                animationStatus[currentAnimationName] = false;
+            }
+
+        }
+        private void setFrameNumber()
+        {
+            if (currentFrame < currentAnimation.Count)
+            {
+               currentFrame++;
+            }
+            else
+            {
+                currentFrame = 1;
+            }
+        }
+        private int setDifferentDelay()
+        {
+            if (currentAnimationName != null && delays.ContainsKey(currentAnimationName))
+            {
+               return (int)delays[currentAnimationName];
+            }
+            return delayBeetwenFrames;
         }
     }
 }

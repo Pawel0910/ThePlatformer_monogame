@@ -24,8 +24,14 @@ namespace ThePlatformer.Enemies
         {
         }
 
+        public override void Load(Texture2D texture)
+        {
+            base.Load(texture);
+
+        }
         public override void Update(GameTime gameTime)
         {
+
             playerPosX = MarcoPlayer.rectangleStatic.X;
             base.Update(gameTime);
             rotateEnemy();

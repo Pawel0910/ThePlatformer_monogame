@@ -24,7 +24,7 @@ namespace ThePlatformer.Treasures
         {
             this.graphics = graphics;
             TreasureManager.Content = Content;
-            upgradeBar = new UpgradeBar(Content, 0.65f);
+            upgradeBar = new UpgradeBar(Content,playerManager.getPlayer(), 0.65f);
 
             //for (int i = 0; i < treasureList.Count; i++)
             //{

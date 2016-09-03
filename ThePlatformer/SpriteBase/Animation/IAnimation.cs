@@ -29,6 +29,7 @@ namespace ThePlatformer.SpriteBase.Animation
         /// <returns></returns>
         Texture2D changeTextureOnAnimation(GameTime gameTime);
          bool frameEnded { get; set; }
+        bool getAnimationStatus(string animationName);
 
     }
 

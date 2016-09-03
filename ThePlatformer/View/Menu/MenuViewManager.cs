@@ -19,7 +19,7 @@ namespace ThePlatformer.View.Menu
         private cButton btnPlay;
         private cButton backToGameButton, exitButton;
         private bool pause = false;
-        public void LoadContent(ContentManager Content,Game1 game)
+        public void LoadContent(ContentManager Content, Game1 game)
         {
             this.game = game;
             mainMenu = new MainMenu();
@@ -30,7 +30,7 @@ namespace ThePlatformer.View.Menu
         }
         public void Update(GameTime gameTime, GraphicsDevice graphics)
         {
-            this.graphics = graphics;            
+            this.graphics = graphics;
         }
         public void UpdateMainMenu(GameTime gameTime)
         {
@@ -49,7 +49,7 @@ namespace ThePlatformer.View.Menu
         public void UpdatePause(GameTime gameTime)
         {
             MouseState mouse = Mouse.GetState();
-            game.IsMouseVisible=true;
+            game.IsMouseVisible = true;
             if (backToGameButton.isClicked == true)
             {
                 pause = false;
@@ -69,6 +69,7 @@ namespace ThePlatformer.View.Menu
             game.IsMouseVisible = true;
             if (backToGameButton.isClicked == true)
             {
+                backToGameButton.isClicked = false;
                 game.restart();
             }
             else
@@ -84,7 +85,7 @@ namespace ThePlatformer.View.Menu
         }
         public void UpdatePlaying()
         {
-            Mouse.SetPosition(0, 0);
+            // Mouse.SetPosition(0, 0);
             if (Keyboard.GetState().IsKeyDown(Keys.P) && pause == false)
             {
                 pause = true;

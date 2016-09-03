@@ -621,6 +621,9 @@
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Player\Shoot\Shoot4.xnb">
       <PackagePath>Content\Player\Shoot\Shoot4.xnb</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Parachute\soldierParachute1.xnb">
+      <PackagePath>Content\Soldier\Parachute\soldierParachute1.xnb</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\ThePlatformer.xr.xml">
       <PackagePath>ThePlatformer.xr.xml</PackagePath>
     </AppxPackagedFile>

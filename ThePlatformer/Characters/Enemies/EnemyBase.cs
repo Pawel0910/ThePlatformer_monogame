@@ -65,14 +65,14 @@ namespace ThePlatformer.Enemies
             EnemyBase.Content = Content;
 
         }
-        public void Load(Texture2D texture)
+        virtual public void Load(Texture2D texture)
         {
             //animation.LoadConent(Content);
             bulletStrengthHit = (int)((double)MarcoPlayer.healthBar.fullHealth / 5);
             healthBar = new HealthBar(Content, _position);
 
             livePoints = healthBar.fullHealth;
-            animation.setCurrentAnimation("marco");
+            animation.setCurrentAnimation("Soldier/Parachute/soldierParachute");
             base.LoadContent(texture);
         }
         virtual public void Update(GameTime gameTime)

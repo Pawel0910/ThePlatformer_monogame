@@ -20,7 +20,8 @@ namespace ThePlatformer.Enemies
         private float RotationAngle;
         public float bulletSpeed=1f;
         public Bullet() { }
-        public Bullet(Vector2 startPos,bool isLeft) {
+        public Bullet(Vector2 startPos,bool isLeft,float bulletSpeed=1f) {
+            this.bulletSpeed = bulletSpeed;
             this.startPos = startPos;
             this.position = startPos;
             this.negativeSpeed = isLeft;
