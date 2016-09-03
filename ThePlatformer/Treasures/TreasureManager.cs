@@ -37,7 +37,7 @@ namespace ThePlatformer.Treasures
             deleteCollectedTreasures(gameTime);
             for (int i = 0; i < treasureList.Count; i++)
             {
-                treasureList[i].Update(gameTime, playerManager.getPlayer());
+                 treasureList[i].Update(gameTime, playerManager.getPlayer());
                 foreach (CollisionTile tile in map.getMap().CollisionTiles)
                 {
                     treasureList[i].CollisionMap(tile.Rectangle, map.getMap().Width, map.getMap().Height);
@@ -69,7 +69,7 @@ namespace ThePlatformer.Treasures
         }
         public static void addTreasure(BaseTreasureAbstract treasure)
         {
-            treasure.Load(Content, "arrow1");
+            treasure.Load(Content, "Treasure/Chest/Chest");
             treasureList.Add(treasure);
         }
         private void deleteCollectedTreasures(GameTime gameTime)

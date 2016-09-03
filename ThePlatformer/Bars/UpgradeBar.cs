@@ -56,7 +56,7 @@ namespace ThePlatformer.Health
                 elapsed = 0;
                 currentHealth = fullHealth;
                 UpgradeBar.spawnUpgradeBar = false;
-                player.delayBetweenBulletShots = 750f;
+                player.delayBetweenBulletShots = 600f;
             }
             else
             {

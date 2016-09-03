@@ -11,6 +11,7 @@ using ThePlatformer.SpriteBase;
 using ThePlatformer.View.Background;
 using System.Diagnostics;
 using ThePlatformer.Treasures;
+using ThePlatformer.Health;
 
 namespace ThePlatformer
 {
@@ -33,7 +34,7 @@ namespace ThePlatformer
         private TreasureManager treasureManager;
         private Stopwatch clock = new Stopwatch();
         private SpriteFont font;
-        public static long EndTime = 90 * 1000;//czas odliczany do konca gry
+        public static long EndTime = 40 * 1000;//czas odliczany do konca gry
 
         // private DebugSprite _arrow1;
         //TEST
@@ -250,6 +251,8 @@ namespace ThePlatformer
             playerManager.restart();
             CurrentGameState = GameState.Playing;
             clock.Reset();
+            UpgradeBar.spawnUpgradeBar = false;
+            EndTime = 40*1000;
             //Initialize();
             // LoadContent();
         }

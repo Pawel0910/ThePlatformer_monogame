@@ -116,6 +116,7 @@
     <Compile Include="SpriteBase\RectangleTransform.cs" />
     <Compile Include="SpriteBase\CustomSprite.cs" />
     <Compile Include="Treasures\TreasureManager.cs" />
+    <Compile Include="Treasures\TreasureTime.cs" />
     <Compile Include="Treasures\TreasureUpgrade.cs" />
     <Compile Include="View\Background\Background.cs" />
     <Compile Include="View\Background\BackgroundManager.cs" />
@@ -148,7 +149,7 @@
     <Compile Include="TexturePackerLoader\SpriteSheetLoader.cs" />
     <Compile Include="View\MapView\Tile.cs" />
     <Compile Include="Treasures\BaseTreasureAbstract.cs" />
-    <Compile Include="Treasures\TreasureChest.cs" />
+    <Compile Include="Treasures\TreasureHealth.cs" />
     <Compile Include="View\Menu\MainMenu.cs" />
     <Compile Include="View\Menu\MenuViewManager.cs" />
   </ItemGroup>

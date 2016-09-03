@@ -28,13 +28,13 @@
     <AppXManifest Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-09-03T19:49:02.196</Modified>
+      <Modified>2016-09-03T20:36:28.330</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\ThePlatformer.exe">
       <PackagePath>entrypoint\ThePlatformer.exe</PackagePath>
-      <Modified>2016-09-03T19:49:01.596</Modified>
+      <Modified>2016-09-03T20:36:27.772</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\.nuget\packages\Microsoft.CSharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -834,6 +834,10 @@
       <PackagePath>Content\Soldier\Parachute\soldierParachute1.xnb</PackagePath>
       <Modified>2016-09-03T16:07:27.474</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Treasure\Chest\Chest.xnb">
+      <PackagePath>Content\Treasure\Chest\Chest.xnb</PackagePath>
+      <Modified>2016-09-03T20:04:28.552</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\ThePlatformer.xr.xml">
       <PackagePath>ThePlatformer.xr.xml</PackagePath>
       <Modified>2016-05-03T11:46:29.620</Modified>
@@ -844,11 +848,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2016-09-03T17:48:20.171</Modified>
+      <Modified>2016-09-03T20:24:07.226</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\ThePlatformer.exe">
       <PackagePath>ThePlatformer.exe</PackagePath>
-      <Modified>2016-09-03T19:49:02.191</Modified>
+      <Modified>2016-09-03T20:36:28.324</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

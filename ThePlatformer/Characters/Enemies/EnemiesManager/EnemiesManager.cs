@@ -27,7 +27,16 @@ namespace ThePlatformer.Characters.Enemies.EnemiesManager
         }
         public void addEnemy()
         {
-            EnemyBase enemy = new ShootingEnemy(new Vector2(randInt(0, mapManager.getMapWidth() - 200), -500), enemyAnimations);
+            EnemyBase enemy;
+            switch (randInt(0, 7))
+            {
+                case 4:
+                    enemy = new RunningEnemy(new Vector2(randInt(0, mapManager.getMapWidth() - 200), -500), enemyAnimations);
+                    break;
+                default:
+                    enemy = new ShootingEnemy(new Vector2(randInt(0, mapManager.getMapWidth() - 200), -500), enemyAnimations);
+                    break;
+            }
             enemy.Load(EnemyTextures.idle);
             enemiesList.Add(enemy);
         }

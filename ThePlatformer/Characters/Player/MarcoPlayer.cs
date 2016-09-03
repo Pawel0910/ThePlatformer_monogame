@@ -23,13 +23,13 @@ namespace ThePlatformer
         public Vector2 velocity;
         private SpriteEffects flip;
         private bool isLeft = false, isRight = true;
-        public int bulletDistance = 200;
+        public int bulletDistance = 300;
         public static Rectangle rectangleStatic;
         public int mapWidth { get; set; }
         public int mapHeight { get; set; }
         public bool hasJumped = false, dead = false;
         public List<Bullet> bulletList = new List<Bullet>();
-        public float startTime = 0, delayBetweenBulletShots = 750;
+        public float startTime = 0, delayBetweenBulletShots = 450;
         private int screenWidth, screenHeight;
         private SpriteFont font;
         public int score;
@@ -251,7 +251,7 @@ namespace ThePlatformer
         public void shoot()
         {
             Vector2 ballPosition = new Vector2(_position.X + 8, _position.Y);
-            Bullet bullet = new Bullet(ballPosition, isLeft);
+            Bullet bullet = new Bullet(ballPosition, isLeft,5f);
             bulletList.Add(bullet);
             isShoot = false;
         }

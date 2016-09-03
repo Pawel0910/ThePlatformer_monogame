@@ -682,3 +682,4 @@ C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanows
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Content\Player\Jump\Jump8.xnb
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Content\Player\Jump\Jump9.xnb
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Content\Soldier\Parachute\soldierParachute1.xnb
+C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Content\Treasure\Chest\Chest.xnb

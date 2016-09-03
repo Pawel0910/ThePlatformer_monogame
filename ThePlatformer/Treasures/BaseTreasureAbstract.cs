@@ -28,7 +28,7 @@ namespace ThePlatformer.Treasures
         public void Update(GameTime gameTime, MarcoPlayer player)
         {
             position += velocity;
-            rectangle = new Rectangle((int)position.X + 10, (int)position.Y, texture.Width - 20, texture.Height);
+            rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
             gravity();
             treasureCollectCollision(player);
             upgrade(player);
@@ -38,14 +38,14 @@ namespace ThePlatformer.Treasures
         {
             if (rectangle.TouchTopOf(newRectangle))
             {
-                rectangle.Y = newRectangle.Y - rectangle.Height;
+                rectangle.Y = newRectangle.Y - rectangle.Height*2;
                 velocity.Y = 0f;
             }
-            else if (rectangle.TouchLeftOf(newRectangle))
-            {
-                position.X = newRectangle.X - rectangle.Width - 2;
+            //else if (rectangle.TouchLeftOf(newRectangle))
+            //{
+            //    position.X = newRectangle.X - rectangle.Width - 2;
 
-            }
+            //}
             else if (rectangle.TouchBottomOf(newRectangle))
             {
                 velocity.Y = 1f;
@@ -66,13 +66,16 @@ namespace ThePlatformer.Treasures
         {
             if (player._rectangle.TouchTopOf(this.rectangle))
             {
-                player.velocity += new Vector2(0, -10);
+                player.velocity += new Vector2(0, -20);
                 destroyTreasure();
             }
             else if (player._rectangle.TouchLeftOf(this.rectangle))
             {
                 if (player.velocity.X > 0)
+                {
                     player.velocity.X = 0;
+                    //velocity.X = 0.1f;
+                }
             }
             else if (player._rectangle.TouchRightOf(this.rectangle))
             {

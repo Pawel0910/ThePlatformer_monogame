@@ -17,10 +17,11 @@ namespace ThePlatformer
     {
         private int distanceToPlayer = 100;
         private float startTime = 0, endTime = 0;
-
+        private Random rand;
         public RunningEnemy(Vector2 position, IAnimation animation)
             : base(position, animation)
         {
+            rand = new Random();
         }
         public override void Update(GameTime gameTime)
         {
@@ -46,9 +47,28 @@ namespace ThePlatformer
         {
             if (isDead)
             {
-                BaseTreasureAbstract treasure = new TreasureUpgrade(new Vector2(_position.X, _position.Y - 50));
+                BaseTreasureAbstract treasure;
+                switch (randTreasure())
+                {
+                    case 0:
+                        treasure = new TreasureUpgrade(new Vector2(_position.X, _position.Y - 50));
+                        break;
+                    case 1:
+                        treasure = new TreasureHealth(new Vector2(_position.X, _position.Y - 50));
+                        break;
+                    case 2:
+                        treasure = new TreasureTime(new Vector2(_position.X, _position.Y - 50));
+                        break;
+                    default:
+                        treasure = new TreasureUpgrade(new Vector2(_position.X, _position.Y - 50));
+                        break;
+                }
                 TreasureManager.addTreasure(treasure);
             }
+        }
+        private int randTreasure()
+        {
+            return rand.Next(0, 3);
         }
     }
 }
