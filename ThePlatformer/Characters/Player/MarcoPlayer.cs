@@ -65,13 +65,14 @@ namespace ThePlatformer
         : base(position, scale)
         {
             currentLifeNumber = lives;
-            animation = new AnimationImpl(150, this, "Player/Run/Run", "Player/Shoot/Shoot","Player/Idle/Idle");
+            animation = new AnimationImpl(10, this, "Player/Run/Run", "Player/Shoot/Shoot","Player/Idle/Idle");
         }
 
         public void Load(ContentManager Content, GraphicsDevice graphicsDevice)
         {
             Color color = Color.Black;
             animation.LoadConent(Content);
+            animation.setEventOnAnimation("Player/Shoot/Shoot", "shoot", 2);
             //animation.setCurrentAnimation("Player/Run/Run");
             base.LoadContent(Content, "idle1");
             Bullet bullet1 = new Bullet();
@@ -242,14 +243,18 @@ namespace ThePlatformer
                 if (startTime > delayBetweenBulletShots)
                 {
 
-                    Bullet bullet = new Bullet(_position, isLeft);
                    // animation.setCurrentAnimation("Player/Shoot/Shoot");
                     isShoot = true;
-                    bulletList.Add(bullet);
                     startTime = 0;
                 }
 
             }
+        }
+        public void shoot()
+        {
+            Vector2 ballPosition = new Vector2(_position.X + 8, _position.Y);
+            Bullet bullet = new Bullet(ballPosition, isLeft);
+            bulletList.Add(bullet);
         }
         public void allCollisionsWithEnemies(EnemyBase enemy)
         {
