@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using ThePlatformer.Health;
 
 namespace ThePlatformer.Treasures
 {
-    public class TreasureChest : BaseTreasureAbstract
+    public class TreasureUpgrade : BaseTreasureAbstract
     {
-        public TreasureChest(Vector2 position)
-            : base(position)
+        public TreasureUpgrade(Vector2 position) :
+            base(position)
         {
         }
-
         public override void upgrade(MarcoPlayer player)
         {
             if (!isExist)
             {
-                player.giveMeHP();
-                // isExist = true;//po to by player nie byl niesmiertelny :((
+                upgradeShooting = true;//TODO tutaj trzeba bedzie dodac szybsze strzelanie do playera
+                UpgradeBar.spawnUpgradeBar = true;
             }
+            base.upgrade(player);
         }
     }
 }

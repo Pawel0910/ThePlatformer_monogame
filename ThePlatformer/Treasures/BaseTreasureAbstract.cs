@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThePlatformer.Health;
 
 namespace ThePlatformer.Treasures
 {
     public class BaseTreasureAbstract
     {
+        public bool upgradeShooting = false;
         public bool isExist = true;
         public Rectangle rectangle;
         public Texture2D texture;
@@ -23,10 +25,10 @@ namespace ThePlatformer.Treasures
         {
             texture = Content.Load<Texture2D>(path);
         }
-        virtual public void Update(GameTime gameTime, MarcoPlayer player)
+        public void Update(GameTime gameTime, MarcoPlayer player)
         {
             position += velocity;
-            rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+            rectangle = new Rectangle((int)position.X + 10, (int)position.Y, texture.Width - 20, texture.Height);
             gravity();
             treasureCollectCollision(player);
             upgrade(player);
@@ -62,19 +64,26 @@ namespace ThePlatformer.Treasures
 
         public void treasureCollectCollision(MarcoPlayer player)
         {
-            if (MarcoPlayer.rectangleStatic.TouchTopOf(this.rectangle))
+            if (player._rectangle.TouchTopOf(this.rectangle))
             {
-                player.velocity += new Vector2(0, -2);
+                player.velocity += new Vector2(0, -10);
                 destroyTreasure();
             }
-            else if (MarcoPlayer.rectangleStatic.TouchLeftOf(this.rectangle))
+            else if (player._rectangle.TouchLeftOf(this.rectangle))
             {
-                player._position.X = position.X - rectangle.Width - 2;
+                if (player.velocity.X > 0)
+                    player.velocity.X = 0;
             }
-            else if (MarcoPlayer.rectangleStatic.TouchRightOf(this.rectangle))
+            else if (player._rectangle.TouchRightOf(this.rectangle))
             {
-                player._position.X = position.X + rectangle.Width + 2;
+                if (player.velocity.X < 0)
+                    player.velocity.X = 0;
+                // player._position.X = position.X + rectangle.Width + 2;
             }
+        }
+        public void downGradePlayerShooting(MarcoPlayer player)
+        {
+
         }
         private void destroyTreasure()
         {
@@ -86,6 +95,10 @@ namespace ThePlatformer.Treasures
             if (isExist)
             {
                 spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
+            }
+            if (upgradeShooting)
+            {
+
             }
         }
     }

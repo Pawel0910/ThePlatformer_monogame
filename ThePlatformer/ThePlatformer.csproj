@@ -115,6 +115,7 @@
     <Compile Include="SpriteBase\RectangleTransform.cs" />
     <Compile Include="SpriteBase\CustomSprite.cs" />
     <Compile Include="Treasures\TreasureManager.cs" />
+    <Compile Include="Treasures\TreasureUpgrade.cs" />
     <Compile Include="View\Background\Background.cs" />
     <Compile Include="View\Background\BackgroundManager.cs" />
     <Compile Include="View\Background\Scrolling.cs" />
