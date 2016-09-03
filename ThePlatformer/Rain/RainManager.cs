@@ -81,7 +81,7 @@ namespace ThePlatformer.Rain
                     createWind(rainList[i], stopwatch.ElapsedMilliseconds);
 
                 rainList[i].Update(totalGameTime, elapsedGameTime);
-                if (rainList[i].isCollisionWithSprite(player))//jesli kolizja z playerem
+                if (player.isCollisionWithSprite(rainList[i]))
                 {
                     rainList.RemoveAt(i);
                     addOne();

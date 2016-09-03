@@ -23,6 +23,8 @@ namespace ThePlatformer.SpriteBase.Animation
         private List<Texture2D> currentAnimation;
         private String currentAnimationName;
         private Object spriteObject;
+        public bool frameEnded { get; set; }
+
         private int framesAmount { get; set; }
         private int delayBeetwenFrames { get; set; }
 
@@ -95,9 +97,17 @@ namespace ThePlatformer.SpriteBase.Animation
         }
         public void setCurrentAnimation(String textureName)
         {
-            currentAnimation = textureDict[textureName];
-            currentAnimationName = textureDict.FirstOrDefault(x => x.Value == currentAnimation).Key;
-            elapsedTime = delayBeetwenFrames + 1;
+            if(currentAnimation == textureDict[textureName])
+            {
+                
+            }else
+            {
+                currentAnimation = textureDict[textureName];
+                currentAnimationName = textureDict.FirstOrDefault(x => x.Value == currentAnimation).Key;
+                elapsedTime = delayBeetwenFrames + 1;
+                frameEnded = false;
+            }
+            
         }
         public Texture2D changeTextureOnAnimation(GameTime gameTime)
         {
@@ -120,6 +130,14 @@ namespace ThePlatformer.SpriteBase.Animation
                     {
                         myEvent.runEvent(currentFrame);
                     }
+                }
+                if (currentFrame == currentAnimation.Count)
+                {
+                    frameEnded = true;
+                }
+                else
+                {
+                    frameEnded = false;
                 }
                 return currentAnimation[currentFrame - 1];
 

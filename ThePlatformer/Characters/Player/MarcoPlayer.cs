@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ThePlatformer.Enemies;
 using ThePlatformer.Health;
+using ThePlatformer.SpriteBase.Animation;
 
 namespace ThePlatformer
 {
@@ -28,7 +29,7 @@ namespace ThePlatformer
         public int mapHeight { get; set; }
         public bool hasJumped = false, dead = false;
         public List<Bullet> bulletList = new List<Bullet>();
-        public float startTime = 0, delayBetweenBulletShots = 100;
+        public float startTime = 0, delayBetweenBulletShots = 1000;
         private int screenWidth, screenHeight;
         private SpriteFont font;
         public int score;
@@ -39,6 +40,8 @@ namespace ThePlatformer
         private readonly Color _rectangleColor = Color.Black;
         private Texture2D _rectangleTexture;
         public static HealthBar healthBar;
+        private IAnimation animation;
+        private bool isShoot;
         public void restartMarco()
         {
             _position = new Vector2(16, 38);
@@ -58,15 +61,18 @@ namespace ThePlatformer
         {
             get { return _position; }
         }
-        public MarcoPlayer(Vector2 position)
-        : base(position)
+        public MarcoPlayer(Vector2 position, float scale = 1f)
+        : base(position, scale)
         {
             currentLifeNumber = lives;
+            animation = new AnimationImpl(150, this, "Player/Run/Run", "Player/Shoot/Shoot","Player/Idle/Idle");
         }
 
         public void Load(ContentManager Content, GraphicsDevice graphicsDevice)
         {
             Color color = Color.Black;
+            animation.LoadConent(Content);
+            //animation.setCurrentAnimation("Player/Run/Run");
             base.LoadContent(Content, "idle1");
             Bullet bullet1 = new Bullet();
             bullet1.Load(Content);
@@ -95,16 +101,41 @@ namespace ThePlatformer
             updateScreenInfo(graphics);
             isCrossedMap();
             updatePosition();
-            base.Update(gameTime);
+            Texture2D text = animation.changeTextureOnAnimation(gameTime);
+            base.Update(gameTime, text);
             Input(gameTime);
             gravity();
             checkpointManager();
             destroyBullet();
 
             checkCurrentLifeStatus();
-
+            animator();
         }
 
+        private void animator()
+        {
+            if ((velocity.X == 0 && velocity.Y>0&&velocity.Y<0.5f)&&!isShoot)//tyle warunków ponieważ
+                //przez grawitacje velocity.Y niestety nie było zerowe zawsze
+            {
+                animation.setCurrentAnimation("Player/Idle/Idle");
+            }
+            if (velocity.X != 0 && !isShoot)
+            {
+                animation.setCurrentAnimation("Player/Run/Run");
+            }
+            if (velocity.Y != 0 && !isShoot)
+            {
+                //setJump
+            }
+            if (isShoot)
+            {
+                animation.setCurrentAnimation("Player/Shoot/Shoot");
+                if (animation.frameEnded)
+                {
+                    isShoot = false;
+                }
+            }
+        }
         private void checkCurrentLifeStatus()
         {
             if (livePoints <= 0 && lives > 0)
@@ -212,6 +243,8 @@ namespace ThePlatformer
                 {
 
                     Bullet bullet = new Bullet(_position, isLeft);
+                   // animation.setCurrentAnimation("Player/Shoot/Shoot");
+                    isShoot = true;
                     bulletList.Add(bullet);
                     startTime = 0;
                 }
@@ -322,6 +355,14 @@ namespace ThePlatformer
             {
                 bullet.Draw(spriteBatch);
             }
+        }
+        public bool isCollisionWithSprite(CustomSprite sprite)
+        {
+            if (sprite.Collision(this))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

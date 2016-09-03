@@ -14,7 +14,7 @@ namespace ThePlatformer
     public class MapManager
     {
         private static MapManager mapManager;
-        private BaseTreasureAbstract treasureChest;
+        // private BaseTreasureAbstract treasureChest;
 
         private MapManager() { }
         public static MapManager getInstance()
@@ -30,7 +30,7 @@ namespace ThePlatformer
         public void Initialize()
         {
             map = new Map();
-            treasureChest = new TreasureChest(new Vector2(100, 10));
+            //treasureChest = new TreasureChest(new Vector2(100,10));
 
         }
         public void LoadContent(ContentManager Content)
@@ -48,21 +48,21 @@ namespace ThePlatformer
                 {2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2},
                 {2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2},
            }, 80);
-            treasureChest.Load(Content, "idle2");
+            // treasureChest.Load(Content, "idle2");
 
         }
-        public void collisions()
-        {
-            foreach (CollisionTile tile in mapManager.getMap().CollisionTiles)
-            {
-                treasureChest.CollisionMap(tile.Rectangle, mapManager.getMapWidth(), mapManager.getMapHeight());
-            }
-        }
-        public void Update(GameTime gameTime, PlayerManager playerManager)
-        {
-            treasureChest.Update(gameTime, playerManager.getPlayer());
-            collisions();
-        }
+        //public void collisions()
+        //{
+        //    foreach (CollisionTile tile in mapManager.getMap().CollisionTiles)
+        //    {
+        //        treasureChest.CollisionMap(tile.Rectangle, mapManager.getMapWidth(), mapManager.getMapHeight());
+        //    }
+        //}
+        //public void Update(GameTime gameTime,PlayerManager playerManager)
+        //{
+        //   // treasureChest.Update(gameTime, playerManager.getPlayer());
+        //    //collisions();
+        //}
         public int getMapWidth()
         {
             return map.Width;
@@ -79,7 +79,7 @@ namespace ThePlatformer
         {
 
             map.Draw(spriteBatch);
-            treasureChest.Draw(spriteBatch);
+            //  treasureChest.Draw(spriteBatch);
 
         }
     }

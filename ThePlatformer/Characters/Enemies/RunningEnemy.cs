@@ -46,7 +46,7 @@ namespace ThePlatformer
         {
             if (isDead)
             {
-                BaseTreasureAbstract treasure = new TreasureChest(_position);
+                BaseTreasureAbstract treasure = new TreasureUpgrade(new Vector2(_position.X, _position.Y - 50));
                 TreasureManager.addTreasure(treasure);
             }
         }

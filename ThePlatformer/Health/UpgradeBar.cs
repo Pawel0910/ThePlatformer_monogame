@@ -34,21 +34,27 @@ namespace ThePlatformer.Health
         }
         public void Update(GameTime gameTime)
         {
-            elapsed += gameTime.ElapsedGameTime.Milliseconds;
-            if (elapsed > upgradeTime)
-            {
-                elapsed = 0;
-                currentHealth = fullHealth;
-                UpgradeBar.spawnUpgradeBar = false;
-                //downgrade strzelania playera
-            }
-            else
-            {
+            //elapsed += gameTime.ElapsedGameTime.Milliseconds;
+            //if (elapsed > upgradeTime)
+            //{
+            //    elapsed = 0;
+            //    currentHealth = fullHealth;
+            //    UpgradeBar.spawnUpgradeBar = false;
+            //}
+            //else
+            //{
                 if (currentHealth > 0)
                 {
-                    currentHealth -= gameTime.ElapsedGameTime.Milliseconds;
-                }
+                    currentHealth -= 2;
+
+            }else
+            {
+                currentHealth = fullHealth;
+                UpgradeBar.spawnUpgradeBar = false;
+                //    //downgrade strzelania playera
+
             }
+            // }
             updatePosition();
         }
         private void updatePosition()
@@ -57,10 +63,12 @@ namespace ThePlatformer.Health
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
+            if (spawnUpgradeBar)
+            {
             spriteBatch.Draw(upgradeBar, position, new Rectangle((int)position.X, (int)position.Y, currentHealth, upgradeBar.Height),
                 healthBarColor, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
             spriteBatch.Draw(container, position, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
-
+            }
         }
     }
 }

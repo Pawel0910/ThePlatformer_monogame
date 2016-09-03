@@ -33,6 +33,7 @@ namespace ThePlatformer
         private TreasureManager treasureManager;
         private Stopwatch clock = new Stopwatch();
         private SpriteFont font;
+        public static long EndTime = 90 * 1000;//czas odliczany do konca gry
 
         // private DebugSprite _arrow1;
         //TEST
@@ -58,11 +59,11 @@ namespace ThePlatformer
         {
             //  _arrow1 = new DebugSprite(new Vector2(20, 30), Color.White, 10, 0, 0, MathHelper.ToRadians(-2.0f), 1f,true);
             // 
-           // graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-           // graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            graphics.IsFullScreen = true;
+          //  graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+          //  graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+           // graphics.IsFullScreen = true;
            // if (!graphics.IsFullScreen)
-          //      graphics.ToggleFullScreen();
+           //     graphics.ToggleFullScreen();
             graphics.ApplyChanges();
             if (firsLoad)
                 mapManager.Initialize();
@@ -95,7 +96,7 @@ namespace ThePlatformer
             // _arrow1.LoadContent(Content, "arrow1");
             rainManager.Load(Content, GraphicsDevice);
             font = Content.Load<SpriteFont>("healthsFont");
-            treasureManager.Load(Content);
+            treasureManager.Load(Content, GraphicsDevice);
             //Texture2D texturePlayer = Content.Load<Texture2D>("Images/idle");
             // player = new Player(texturePlayer, 1, 4);
             // playerTxtPacker = new PlayerTexturePackerTest(texturePlayer, 1, 4);
@@ -144,11 +145,11 @@ namespace ThePlatformer
 
                     enemiesManager.collisionsWithPlayer(playerManager.getPlayer());
 
-                    mapManager.Update(gameTime, playerManager);
+                    //mapManager.Update(gameTime, playerManager);
                     treasureManager.Update(gameTime);
                     //  player.Update(gameTime);
                     rainManager.waitForEndOfUpdate();
-                    //       _arrow1.Collision(playerManager.getPlayer());
+                    checkIfNotExceedEndTime();
                     break;
                 #endregion
                 #region Pause update
@@ -220,7 +221,9 @@ namespace ThePlatformer
                     mapManager.Draw(spriteBatch);
                     enemiesManager.Draw(spriteBatch);
                     treasureManager.Draw(spriteBatch, gameTime);
-                    spriteBatch.DrawString(font, "Time: " + clock.ElapsedMilliseconds / 1000, setRightCornerFontPosition(100, 30), Color.Black);
+                    spriteBatch.DrawString(font, "Operation time: " + EndTime / 1000, setRightCornerFontPosition(175, 30), Color.Black);
+
+                    spriteBatch.DrawString(font, "Time: " + clock.ElapsedMilliseconds / 1000, setRightCornerFontPosition(175, 50), Color.Black);
                     break;
                     #endregion
             }
@@ -232,6 +235,13 @@ namespace ThePlatformer
         {
             return new Vector2(playerManager.getPlayer()._position.X + graphics.PreferredBackBufferWidth / 2 - shiftX,
                 playerManager.getPlayer()._position.Y - graphics.PreferredBackBufferHeight / 2 + shiftY);
+        }
+        private void checkIfNotExceedEndTime()
+        {
+            if (clock.ElapsedMilliseconds > EndTime)
+            {
+                CurrentGameState = GameState.DeadMenu;
+            }
         }
         public void restart()
         {

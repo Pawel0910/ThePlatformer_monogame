@@ -84,12 +84,9 @@ namespace ThePlatformer.Characters.Enemies.EnemiesManager
         private void spawnNewEnemies(GameTime gameTime)
         {
             elapsed += gameTime.ElapsedGameTime.Milliseconds;
-            if (elapsed > nextWave)
+            if (elapsed > nextWave && enemiesList.Count < 15)
             {
-                for (int i = 0; i < 1; i++)
-                {
-                    addEnemy();
-                }
+                addEnemy();
                 waveAnalyzer();
                 wave++;
                 elapsed = 0;
@@ -97,11 +94,15 @@ namespace ThePlatformer.Characters.Enemies.EnemiesManager
         }
         private void waveAnalyzer()
         {
-            if (wave > 4 * waveMultipier)
+            if (nextWave > 750)
             {
-                nextWave /= 2;
-                waveMultipier++;
+                if (wave > 4 * waveMultipier)
+                {
+                    nextWave /= 2;
+                    waveMultipier++;
+                }
             }
+
         }
         public void CollisionsWithMap(Map map)
         {

@@ -57,7 +57,7 @@ namespace ThePlatformer.Enemies
             //this._position = startPosition;
             //_rectangle = new Rectangle((int)_position.X, (int)_position.Y, texture.Width, texture.Height);
             bulletStrengthHit = (int)((double)MarcoPlayer.healthBar.fullHealth / 5);
-            healthBar = new HealthBar(Content);
+            healthBar = new HealthBar(Content, _position);
             livePoints = healthBar.fullHealth;
         }
         public static void setContent(ContentManager Content)
@@ -65,15 +65,12 @@ namespace ThePlatformer.Enemies
             EnemyBase.Content = Content;
 
         }
-        public void LoadAnimation(ContentManager Content)
-        {
-
-        }
         public void Load(Texture2D texture)
         {
             //animation.LoadConent(Content);
             bulletStrengthHit = (int)((double)MarcoPlayer.healthBar.fullHealth / 5);
-            healthBar = new HealthBar(Content);
+            healthBar = new HealthBar(Content, _position);
+
             livePoints = healthBar.fullHealth;
             animation.setCurrentAnimation("marco");
             base.LoadContent(texture);
