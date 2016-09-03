@@ -18,8 +18,8 @@ namespace ThePlatformer
         private int distanceToPlayer = 100;
         private float startTime = 0, endTime = 0;
         private Random rand;
-        public RunningEnemy(Vector2 position, IAnimation animation)
-            : base(position, animation)
+        public RunningEnemy(Vector2 position)
+            : base(position)
         {
             rand = new Random();
         }

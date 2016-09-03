@@ -18,10 +18,10 @@ namespace ThePlatformer.SpriteBase.Animation
         private readonly String[] textureNames;
         private int currentFrame = 1;
         private int elapsedTime;
-        private Dictionary<String, List<Texture2D>> textureDict;
-        private Dictionary<String, List<EventizerAnimationImpl>> events;
-        private Dictionary<String, int?> delays;
-        private Dictionary<String, bool> animationStatus;
+        public Dictionary<String, List<Texture2D>> textureDict { get; set; }
+        public Dictionary<String, List<EventizerAnimationImpl>> events { get; set; }
+        public Dictionary<String, int?> delays;
+        public Dictionary<String, bool> animationStatus { get; set; }
         private List<Texture2D> currentAnimation;
         private String currentAnimationName;
         private Object spriteObject;
@@ -41,6 +41,22 @@ namespace ThePlatformer.SpriteBase.Animation
             this.spriteObject = sprite;
             this.textureNames = textureNames;
             this.delayBeetwenFrames = delayBeetwenFrames;
+        }
+        public AnimationImpl(int delayBeetwenFrames =200,Object sprite = null)
+        {
+            textureDict = new Dictionary<String, List<Texture2D>>();
+            events = new Dictionary<string, List<EventizerAnimationImpl>>();
+            delays = new Dictionary<string, int?>();
+            animationStatus = new Dictionary<string, bool>();
+            currentAnimation = new List<Texture2D>();
+
+            this.spriteObject = sprite;
+            this.delayBeetwenFrames = delayBeetwenFrames;
+        }
+        public void setFromDifferentAnimation(IAnimation differentAnim)
+        {
+            textureDict = differentAnim.textureDict;
+            animationStatus = differentAnim.animationStatus;
         }
         public void LoadConent(ContentManager content)
         {
@@ -164,7 +180,7 @@ namespace ThePlatformer.SpriteBase.Animation
         }
         private int setDifferentDelay()
         {
-            if (currentAnimationName != null && delays.ContainsKey(currentAnimationName))
+            if (currentAnimationName != null && delays.ContainsKey(currentAnimationName) && delays[currentAnimationName]!=null)
             {
                return (int)delays[currentAnimationName];
             }

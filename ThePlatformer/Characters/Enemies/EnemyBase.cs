@@ -34,39 +34,25 @@ namespace ThePlatformer.Enemies
             dead
         }
         public LiveStatus liveStatus = LiveStatus.alive;
-
-        public EnemyBase()
-        {
-
-        }
-        public EnemyBase(Vector2 position, IAnimation animation)
+        
+        public EnemyBase(Vector2 position)
             : base(position)
         {
             // animation = new AnimationImpl(200, this, "marco", "arrow");
-            this.animation = animation;
-        }
-
-        public void Load(ContentManager Content, String path)
-        {
-            base.LoadContent(Content, path);
-        }
-        public void Load(ContentManager Content, String path, Vector2 startPosition)
-        {
-            Load(Content, path);
-            EnemyBase.Content = Content;
-            //this._position = startPosition;
-            //_rectangle = new Rectangle((int)_position.X, (int)_position.Y, texture.Width, texture.Height);
-            bulletStrengthHit = (int)((double)MarcoPlayer.healthBar.fullHealth / 5);
-            healthBar = new HealthBar(Content, _position);
-            livePoints = healthBar.fullHealth;
+            this.animation = new AnimationImpl(200, this);
         }
         public static void setContent(ContentManager Content)
         {
             EnemyBase.Content = Content;
 
         }
-        virtual public void Load(Texture2D texture)
+        virtual public void Load(Texture2D texture, IAnimation animation=null)
         {
+            if (this.animation != null)
+            {
+                this.animation.setFromDifferentAnimation(animation);
+            }
+
             //animation.LoadConent(Content);
             bulletStrengthHit = (int)((double)MarcoPlayer.healthBar.fullHealth / 5);
             healthBar = new HealthBar(Content, _position);
@@ -80,9 +66,11 @@ namespace ThePlatformer.Enemies
             switch (liveStatus)
             {
                 case LiveStatus.alive:
+                    animator();
                     myPosition();
                     gravity();
-                    base.Update(gameTime, animation.changeTextureOnAnimation(gameTime));
+                    Texture2D anim = animation.changeTextureOnAnimation(gameTime);
+                    base.Update(gameTime, anim);
                     int healthBarShift = (int)((double)healthBar.fullHealth / 2 * scale);
                     healthBar.Update(new Vector2(_rectangle.X + (_texture.Width / 2) - healthBarShift, _rectangle.Y - 15));
                     checkCurrentHealthStatus();
@@ -95,24 +83,15 @@ namespace ThePlatformer.Enemies
                     break;
             }
         }
-        virtual public void TestUpdate(GameTime gameTime, Texture2D newTexture)
+        private void animator()
         {
-            switch (liveStatus)
+            if (velocity.X == 0 && !parachute)
             {
-                case LiveStatus.alive:
-                    myPosition();
-                    gravity();
-                    base.Update(gameTime, newTexture);
-                    int healthBarShift = (int)((double)healthBar.fullHealth / 2 * scale);
-                    healthBar.Update(new Vector2(_rectangle.X + (_texture.Width / 2) - healthBarShift, _rectangle.Y - 15));
-                    checkCurrentHealthStatus();
-                    break;
-                case LiveStatus.dead:
-                    if (!isDead)
-                    {
-                        isDead = true;
-                    }
-                    break;
+                animation.setCurrentAnimation("Soldier/Idle/Idle");
+            }
+            if (parachute)
+            {
+                animation.setCurrentAnimation("Soldier/Parachute/soldierParachute");
             }
         }
 
@@ -123,15 +102,16 @@ namespace ThePlatformer.Enemies
         }
         private void gravity()
         {
+            
             //grawitacja
             if (velocity.Y < 10)
             {
-                if ((GetType() == typeof(ShootingEnemy)))
+                if ((GetType() == typeof(ShootingEnemy)))//warunek by pozniej runningEnemy mogl podskakiwac.
                 {
                     velocity.Y += 0.01f;
                     if (parachute)
                     {
-                        velocity.X += 0.001f;
+                        velocity.X += 0.005f;
                     }
                     else
                     {
@@ -164,7 +144,7 @@ namespace ThePlatformer.Enemies
             else if (_rectangle.TouchLeftOf(newRectangle))
             {
                 _position.X = newRectangle.X - _rectangle.Width - 2;
-                if (hasJumped == false)
+                if (hasJumped == false&&!parachute)
                 {
                     _position.Y -= 5f;
                     velocity.Y = -12f;
@@ -174,6 +154,8 @@ namespace ThePlatformer.Enemies
             else if (_rectangle.TouchBottomOf(newRectangle))
             {
                 velocity.Y = 1f;
+                parachute = false;
+
             }
             if (!_rectangle.TouchTopOf(newRectangle))
             {

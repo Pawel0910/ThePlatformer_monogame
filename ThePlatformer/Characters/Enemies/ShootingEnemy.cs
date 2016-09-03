@@ -19,14 +19,14 @@ namespace ThePlatformer.Enemies
         public float startTime = 0, delayBetweenBulletShots = 1000;
         public int maxBulletCount = 3;
 
-        public ShootingEnemy(Vector2 position, IAnimation animation)
-            : base(position, animation)
+        public ShootingEnemy(Vector2 position)
+            : base(position)
         {
         }
 
-        public override void Load(Texture2D texture)
+        public override void Load(Texture2D texture,IAnimation animation)
         {
-            base.Load(texture);
+            base.Load(texture,animation);
 
         }
         public override void Update(GameTime gameTime)

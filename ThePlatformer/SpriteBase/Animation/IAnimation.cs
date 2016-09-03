@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
+using ThePlatformer.SpriteBase.Animation.Events;
 
 namespace ThePlatformer.SpriteBase.Animation
 {
@@ -30,7 +32,10 @@ namespace ThePlatformer.SpriteBase.Animation
         Texture2D changeTextureOnAnimation(GameTime gameTime);
          bool frameEnded { get; set; }
         bool getAnimationStatus(string animationName);
-
+        Dictionary<String, List<EventizerAnimationImpl>> events { get; set; }
+        Dictionary<String, List<Texture2D>> textureDict { get; set; }
+        Dictionary<String, bool> animationStatus { get; set; }
+        void setFromDifferentAnimation(IAnimation differentAnim);
     }
 
 }
