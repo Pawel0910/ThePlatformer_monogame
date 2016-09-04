@@ -222,5 +222,13 @@ namespace ThePlatformer.Enemies
             }
             return false;
         }
+        public bool isCollisionWithSprite(CustomSprite sprite)
+        {
+            if (sprite.Collision(this))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

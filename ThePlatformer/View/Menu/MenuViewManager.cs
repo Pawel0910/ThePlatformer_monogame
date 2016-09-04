@@ -17,16 +17,17 @@ namespace ThePlatformer.View.Menu
         private MainMenu mainMenu;
         private GraphicsDevice graphics;
         private cButton btnPlay;
-        private cButton backToGameButton, exitButton;
+        private cButton backToGameButton, exitButton,restartButton;
         private bool pause = false;
         public void LoadContent(ContentManager Content, Game1 game)
         {
             this.game = game;
             mainMenu = new MainMenu();
             mainMenu.LoadContent(Content);
-            btnPlay = new cButton(Content.Load<Texture2D>("button"));
-            backToGameButton = new cButton(Content.Load<Texture2D>("button"));
-            exitButton = new cButton(Content.Load<Texture2D>("button"));
+            btnPlay = new cButton(Content.Load<Texture2D>("Menu/Buttons/playButton"));
+            backToGameButton = new cButton(Content.Load<Texture2D>("Menu/Buttons/playButton"));
+            exitButton = new cButton(Content.Load<Texture2D>("Menu/Buttons/exitButton"));
+            restartButton = new cButton(Content.Load<Texture2D>("Menu/Buttons/restartButton"));
         }
         public void Update(GameTime gameTime, GraphicsDevice graphics)
         {
@@ -67,14 +68,14 @@ namespace ThePlatformer.View.Menu
         {
             MouseState mouse = Mouse.GetState();
             game.IsMouseVisible = true;
-            if (backToGameButton.isClicked == true)
+            if (restartButton.isClicked == true)
             {
-                backToGameButton.isClicked = false;
+                restartButton.isClicked = false;
                 game.restart();
             }
             else
             {
-                backToGameButton.Update(mouse);
+                restartButton.Update(mouse);
             }
             if (exitButton.isClicked == true)
             {
@@ -101,7 +102,7 @@ namespace ThePlatformer.View.Menu
             Vector2 position = getXYtoDrawMenu();
 
             mainMenu.Draw(spriteBatch, position);
-            btnPlay.setPosition(new Vector2(330 + (int)position.Y, 300 + (int)position.X));
+            btnPlay.setPosition(new Vector2(330 + (int)position.Y, 255 + (int)position.X));
             btnPlay.Draw(spriteBatch);
         }
 
@@ -118,9 +119,9 @@ namespace ThePlatformer.View.Menu
         public void DrawDeadMenu(SpriteBatch spriteBatch)
         {
             Vector2 position = getXYtoDrawMenu();
-            backToGameButton.setPosition(new Vector2(330 + (int)position.Y, 300 + (int)position.X));
+            restartButton.setPosition(new Vector2(330 + (int)position.Y, 300 + (int)position.X));
 
-            backToGameButton.Draw(spriteBatch);
+            restartButton.Draw(spriteBatch);
             exitButton.setPosition(new Vector2(330 + (int)position.Y, 350 + (int)position.X));
 
             exitButton.Draw(spriteBatch);

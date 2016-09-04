@@ -525,6 +525,15 @@
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Background\scrollingBackground12.xnb">
       <PackagePath>Content\Background\scrollingBackground12.xnb</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Menu\Buttons\exitButton.xnb">
+      <PackagePath>Content\Menu\Buttons\exitButton.xnb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Menu\Buttons\playButton.xnb">
+      <PackagePath>Content\Menu\Buttons\playButton.xnb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Menu\Buttons\restartButton.xnb">
+      <PackagePath>Content\Menu\Buttons\restartButton.xnb</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Player\Idle\Idle1.xnb">
       <PackagePath>Content\Player\Idle\Idle1.xnb</PackagePath>
     </AppxPackagedFile>

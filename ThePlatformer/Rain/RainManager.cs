@@ -90,7 +90,7 @@ namespace ThePlatformer.Rain
                 for (int j = 0; j < enemyManager.getEnemies().Count; j++)
                 {
                     EnemyBase enemy = enemyManager.getEnemies()[j];
-                    if (enemy != null && rainList[i].isCollisionWithSprite(enemy))
+                    if (enemy != null && enemy.isCollisionWithSprite(rainList[i]))
                     {
                         rainList.RemoveAt(i);
                         addOne();

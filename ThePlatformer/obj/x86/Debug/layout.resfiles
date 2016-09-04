@@ -18,6 +18,9 @@ Content\marco1.xnb
 Content\marco2.xnb
 Content\marco3.xnb
 Content\marco4.xnb
+Content\Menu\Buttons\exitButton.xnb
+Content\Menu\Buttons\playButton.xnb
+Content\Menu\Buttons\restartButton.xnb
 Content\Player\Idle\Idle1.xnb
 Content\Player\Idle\Idle10.xnb
 Content\Player\Idle\Idle2.xnb
