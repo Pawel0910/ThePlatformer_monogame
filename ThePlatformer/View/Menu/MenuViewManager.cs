@@ -19,6 +19,8 @@ namespace ThePlatformer.View.Menu
         private cButton btnPlay;
         private cButton backToGameButton, exitButton,restartButton;
         private bool pause = false;
+        private SpriteFont font;
+
         public void LoadContent(ContentManager Content, Game1 game)
         {
             this.game = game;
@@ -28,6 +30,8 @@ namespace ThePlatformer.View.Menu
             backToGameButton = new cButton(Content.Load<Texture2D>("Menu/Buttons/playButton"));
             exitButton = new cButton(Content.Load<Texture2D>("Menu/Buttons/exitButton"));
             restartButton = new cButton(Content.Load<Texture2D>("Menu/Buttons/restartButton"));
+            font = Content.Load<SpriteFont>("healthsFont");
+
         }
         public void Update(GameTime gameTime, GraphicsDevice graphics)
         {
@@ -122,6 +126,9 @@ namespace ThePlatformer.View.Menu
             restartButton.setPosition(new Vector2(330 + (int)position.Y, 300 + (int)position.X));
 
             restartButton.Draw(spriteBatch);
+            spriteBatch.DrawString(font, "You gained: ", new Vector2(340 + (int)position.Y, 250 + (int)position.X), Color.Black);
+            spriteBatch.DrawString(font, MarcoPlayer.score.ToString()+" points" , new Vector2(350 + (int)position.Y, 280 + (int)position.X), Color.Black);
+
             exitButton.setPosition(new Vector2(330 + (int)position.Y, 350 + (int)position.X));
 
             exitButton.Draw(spriteBatch);

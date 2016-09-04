@@ -32,7 +32,7 @@ namespace ThePlatformer
         public float startTime = 0, delayBetweenBulletShots = 450;
         private int screenWidth, screenHeight;
         private SpriteFont font;
-        public int score;
+        public static int score;
         public int currentLifeNumber { get; set; }
         public int lives = 3;
         public int livePoints;// pkt życia w jednym życiu :P
