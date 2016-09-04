@@ -57,7 +57,7 @@ namespace ThePlatformer.Enemies
             if (_rectangle.X - distanceToSeePlayer < playerPosX && playerPosX < _rectangle.X ||
                 playerPosX > _rectangle.X && _rectangle.X + distanceToSeePlayer > playerPosX)
             {
-                if (startTime > delayBetweenBulletShots && bulletList.Count < maxBulletCount)
+                if (startTime > delayBetweenBulletShots && bulletList.Count < maxBulletCount &&!isShoot)
                 {
                     isShoot = true;
                     startTime = 0;
@@ -66,11 +66,13 @@ namespace ThePlatformer.Enemies
         }
         public void myShoot()
         {
-            Vector2 ballPosition = new Vector2(_position.X + 12, _position.Y);
-            Bullet bullet = new Bullet(ballPosition, isLeft,3.5f);
-            bulletList.Add(bullet);
-            isShoot = false;
-
+            if (isShoot)
+            {
+                Vector2 ballPosition = new Vector2(_position.X + 12, _position.Y);
+                Bullet bullet = new Bullet(ballPosition, isLeft, 3.5f);
+                bulletList.Add(bullet);
+                isShoot = false;
+            }
         }
         private new void rotateEnemy()
         {

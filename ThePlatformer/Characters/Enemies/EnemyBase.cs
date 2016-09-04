@@ -87,7 +87,7 @@ namespace ThePlatformer.Enemies
         }
         private void animator()
         {
-            if (velocity.X == 0 && !parachute && !hasJumped && !isShoot)
+            if ((velocity.X == 0 && !parachute && !hasJumped ) && !isShoot)
             {
                 animation.setCurrentAnimation("Soldier/Idle/Idle");
             }
@@ -103,7 +103,7 @@ namespace ThePlatformer.Enemies
             {
                 animation.setCurrentAnimation("Soldier/Jump/Jump");
             }
-            if (isShoot)
+            if (isShoot && !parachute)
             {
                 animation.setCurrentAnimation("Soldier/Shooting/Shoot");
             }

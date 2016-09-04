@@ -204,30 +204,33 @@ namespace ThePlatformer
             Color[,] tex2 = TextureTo2DArray(target);
 
             Matrix mat1to2 = mat1 * Matrix.Invert(mat2);
-            int width1 = tex1.GetLength(0);
-            int height1 = tex1.GetLength(1);
-            int width2 = tex2.GetLength(0);
-            int height2 = tex2.GetLength(1);
-
-            for (int x1 = 0; x1 < width1; x1++)
+            
+            if(tex1 != null && tex2 != null)
             {
-                for (int y1 = 0; y1 < height1; y1++)
+                int width1 = tex1.GetLength(0);
+                int height1 = tex1.GetLength(1);
+                int width2 = tex2.GetLength(0);
+                int height2 = tex2.GetLength(1);
+                for (int x1 = 0; x1 < width1; x1++)
                 {
-                    Vector2 pos1 = new Vector2(x1, y1);
-                    Vector2 pos2 = Vector2.Transform(pos1, mat1to2);
-
-                    int x2 = (int)pos2.X;
-                    int y2 = (int)pos2.Y;
-                    if ((x2 >= 0) && (x2 < width2))
+                    for (int y1 = 0; y1 < height1; y1++)
                     {
-                        if ((y2 >= 0) && (y2 < height2))
+                        Vector2 pos1 = new Vector2(x1, y1);
+                        Vector2 pos2 = Vector2.Transform(pos1, mat1to2);
+
+                        int x2 = (int)pos2.X;
+                        int y2 = (int)pos2.Y;
+                        if ((x2 >= 0) && (x2 < width2))
                         {
-                            if (tex1[x1, y1].A > 0)
+                            if ((y2 >= 0) && (y2 < height2))
                             {
-                                if (tex2[x2, y2].A > 0)
+                                if (tex1[x1, y1].A > 0)
                                 {
-                                    Vector2 screenPos = Vector2.Transform(pos1, mat1);
-                                    return true;
+                                    if (tex2[x2, y2].A > 0)
+                                    {
+                                        Vector2 screenPos = Vector2.Transform(pos1, mat1);
+                                        return true;
+                                    }
                                 }
                             }
                         }
@@ -238,13 +241,22 @@ namespace ThePlatformer
         }
         private Color[,] TextureTo2DArray(CustomSprite sprite)
         {
-            Color[] colors1D = new Color[sprite._texture.Width * sprite._texture.Height];
-            sprite._texture.GetData(colors1D);
+            Color[,] colors2D;
+            try
+            {
+                Color[] colors1D = new Color[sprite._texture.Width * sprite._texture.Height];
 
-            Color[,] colors2D = new Color[sprite._texture.Width, sprite._texture.Height];
-            for (int x = 0; x < sprite._texture.Width; x++)
+                sprite._texture.GetData(colors1D);
+                 colors2D = new Color[sprite._texture.Width, sprite._texture.Height];
+
+                for (int x = 0; x < sprite._texture.Width; x++)
                 for (int y = 0; y < sprite._texture.Height; y++)
                     colors2D[x, y] = colors1D[x + y * sprite._texture.Width];
+            }
+            catch(IndexOutOfRangeException e)
+            {
+                colors2D = null;
+            }
 
             return colors2D;
         }

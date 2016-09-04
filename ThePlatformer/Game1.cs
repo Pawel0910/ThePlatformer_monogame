@@ -23,10 +23,6 @@ namespace ThePlatformer
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        // SpriteSheet spriteSheet;
-        // SpriteRender spriteRender;
-        //private Player player;
-        //private PlayerTexturePackerTest playerTxtPacker;
         private MapManager mapManager = MapManager.getInstance();
         private MenuViewManager menuManager = new MenuViewManager();
         private PlayerManager playerManager = new PlayerManager();
@@ -36,8 +32,6 @@ namespace ThePlatformer
         private SpriteFont font;
         public static long EndTime = 40 * 1000;//czas odliczany do konca gry
 
-        // private DebugSprite _arrow1;
-        //TEST
         private RainManager rainManager;
         private bool firsLoad = true;
         public enum GameState
@@ -58,13 +52,7 @@ namespace ThePlatformer
 
         protected override void Initialize()
         {
-            //  _arrow1 = new DebugSprite(new Vector2(20, 30), Color.White, 10, 0, 0, MathHelper.ToRadians(-2.0f), 1f,true);
-            // 
-          //  graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-          //  graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-           // graphics.IsFullScreen = true;
-           // if (!graphics.IsFullScreen)
-           //     graphics.ToggleFullScreen();
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             if (firsLoad)
                 mapManager.Initialize();
@@ -85,11 +73,6 @@ namespace ThePlatformer
             }
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            //Task.Factory.StartNew(() =>
-            //{
-            //    var updateLoop = new UpdateLoop(rainManager);
-            //    updateLoop.LoopDraw(spriteBatch);
-            //});
         }
 
         protected override void LoadContent()
@@ -98,9 +81,6 @@ namespace ThePlatformer
             rainManager.Load(Content, GraphicsDevice);
             font = Content.Load<SpriteFont>("healthsFont");
             treasureManager.Load(Content, GraphicsDevice);
-            //Texture2D texturePlayer = Content.Load<Texture2D>("Images/idle");
-            // player = new Player(texturePlayer, 1, 4);
-            // playerTxtPacker = new PlayerTexturePackerTest(texturePlayer, 1, 4);
             menuManager.LoadContent(Content, this);
             #region Map initialize
             if (firsLoad)
@@ -109,11 +89,6 @@ namespace ThePlatformer
 
             playerManager.LoadContent(Content, GraphicsDevice.Viewport, GraphicsDevice);
             enemiesManager.LoadContent(Content);
-
-            //SpriteSheetLoader spriteSheetLoader = new SpriteSheetLoader(this.Content);
-            //this.spriteSheet = spriteSheetLoader.Load("CapGuyDemo.png");
-            //this.spriteBatch = new SpriteBatch(GraphicsDevice);
-            //this.spriteRender = new SpriteRender(this.spriteBatch);
 
         }
         protected override void Update(GameTime gameTime)
@@ -124,7 +99,6 @@ namespace ThePlatformer
             {
                 #region MainMen update
                 case GameState.MainMenu:
-                    //playerTxtPacker.Update(gameTime);
 
                     menuManager.Update(gameTime, GraphicsDevice);
                     menuManager.UpdateMainMenu(gameTime);
@@ -132,10 +106,6 @@ namespace ThePlatformer
                 #endregion
                 #region Playing update
                 case GameState.Playing:
-                    // IsMouseVisible = true;
-                    //TEST
-                    // rainManager.Update(gameTime);
-                    //TEST
                     clock.Start();
                     menuManager.UpdatePlaying();
 
@@ -145,10 +115,8 @@ namespace ThePlatformer
                     enemiesManager.CollisionsWithMap(mapManager.getMap());
 
                     enemiesManager.collisionsWithPlayer(playerManager.getPlayer());
-
-                    //mapManager.Update(gameTime, playerManager);
+                    
                     treasureManager.Update(gameTime);
-                    //  player.Update(gameTime);
                     rainManager.waitForEndOfUpdate();
                     checkIfNotExceedEndTime();
                     break;
@@ -164,8 +132,7 @@ namespace ThePlatformer
                     break;
                     #endregion
             }
-
-            // base.Update(gameTime);
+            
         }
 
         protected override void Draw(GameTime gameTime)
@@ -200,19 +167,7 @@ namespace ThePlatformer
                 #endregion
                 #region Playing Draw
                 case GameState.Playing:
-                    playerManager.Draw(spriteBatch, gameTime);//to musi być pierwsze bo kamera używa begin by się dodać
-                                                              //a to moze byc wywolane tylko raz
-                                                              //rainManager.resetDrawEvent();
-                                                              //rainManager.waitForEndDraw();
-                                                              //    _arrow1.Draw(spriteBatch);
-                                                              //    if (_arrow1.Collided )
-                                                              //{
-                                                              //    GraphicsDevice.Clear(Color.Red);
-                                                              //}
-                                                              //else
-                                                              //{
-                                                              //    GraphicsDevice.Clear(Color.White);
-                                                              //}
+                    playerManager.Draw(spriteBatch, gameTime);
                     rainManager.Draw(spriteBatch);
                     if (RainManager.TEST)
                     {
@@ -230,7 +185,6 @@ namespace ThePlatformer
             }
 
             spriteBatch.End();
-            //base.Draw(gameTime);
         }
         private Vector2 setRightCornerFontPosition(int shiftX, int shiftY)
         {
@@ -253,8 +207,6 @@ namespace ThePlatformer
             clock.Reset();
             UpgradeBar.spawnUpgradeBar = false;
             EndTime = 40*1000;
-            //Initialize();
-            // LoadContent();
         }
     }
 }
