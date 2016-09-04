@@ -28,6 +28,7 @@ namespace ThePlatformer.Enemies
         private static ContentManager Content;
         private bool parachute = true;
         public IAnimation animation;
+        public bool isShoot;
         public enum LiveStatus
         {
             alive,
@@ -52,13 +53,14 @@ namespace ThePlatformer.Enemies
             {
                 this.animation.setFromDifferentAnimation(animation);
             }
-
             //animation.LoadConent(Content);
             bulletStrengthHit = (int)((double)MarcoPlayer.healthBar.fullHealth / 5);
             healthBar = new HealthBar(Content, _position);
 
             livePoints = healthBar.fullHealth;
             animation.setCurrentAnimation("Soldier/Parachute/soldierParachute");
+            this.animation.setEventOnAnimation("Soldier/Shooting/Shoot", "myShoot",3);
+
             base.LoadContent(texture);
         }
         virtual public void Update(GameTime gameTime)
@@ -85,16 +87,28 @@ namespace ThePlatformer.Enemies
         }
         private void animator()
         {
-            if (velocity.X == 0 && !parachute)
+            if (velocity.X == 0 && !parachute && !hasJumped && !isShoot)
             {
                 animation.setCurrentAnimation("Soldier/Idle/Idle");
             }
-            if (parachute)
+            if (!hasJumped && !parachute && velocity.X!=0 && !isShoot)
+            {
+                animation.setCurrentAnimation("Soldier/Running/Run");
+            }
+            if (parachute && !isShoot)
             {
                 animation.setCurrentAnimation("Soldier/Parachute/soldierParachute");
             }
+            if (hasJumped && !parachute && (velocity.Y < 0 || velocity.Y > 1)&&!isShoot)
+            {
+                animation.setCurrentAnimation("Soldier/Jump/Jump");
+            }
+            if (isShoot)
+            {
+                animation.setCurrentAnimation("Soldier/Shooting/Shoot");
+            }
+            
         }
-
         private void myPosition()
         {
             _position += velocity;

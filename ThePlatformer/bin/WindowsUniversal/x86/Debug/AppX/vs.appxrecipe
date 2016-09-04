@@ -28,13 +28,13 @@
     <AppXManifest Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-09-04T18:45:39.082</Modified>
+      <Modified>2016-09-04T21:41:24.827</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\ThePlatformer.exe">
       <PackagePath>entrypoint\ThePlatformer.exe</PackagePath>
-      <Modified>2016-09-04T18:45:38.114</Modified>
+      <Modified>2016-09-04T21:41:24.134</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\.nuget\packages\Microsoft.CSharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -858,9 +858,113 @@
       <PackagePath>Content\Soldier\Idle\Idle4.xnb</PackagePath>
       <Modified>2016-09-03T21:16:23.471</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Jump\Jump1.xnb">
+      <PackagePath>Content\Soldier\Jump\Jump1.xnb</PackagePath>
+      <Modified>2016-09-04T19:03:18.870</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Jump\Jump10.xnb">
+      <PackagePath>Content\Soldier\Jump\Jump10.xnb</PackagePath>
+      <Modified>2016-09-04T19:03:19.067</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Jump\Jump11.xnb">
+      <PackagePath>Content\Soldier\Jump\Jump11.xnb</PackagePath>
+      <Modified>2016-09-04T19:03:19.078</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Jump\Jump2.xnb">
+      <PackagePath>Content\Soldier\Jump\Jump2.xnb</PackagePath>
+      <Modified>2016-09-04T19:03:18.908</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Jump\Jump3.xnb">
+      <PackagePath>Content\Soldier\Jump\Jump3.xnb</PackagePath>
+      <Modified>2016-09-04T19:03:18.942</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Jump\Jump4.xnb">
+      <PackagePath>Content\Soldier\Jump\Jump4.xnb</PackagePath>
+      <Modified>2016-09-04T19:03:18.964</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Jump\Jump5.xnb">
+      <PackagePath>Content\Soldier\Jump\Jump5.xnb</PackagePath>
+      <Modified>2016-09-04T19:03:18.978</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Jump\Jump6.xnb">
+      <PackagePath>Content\Soldier\Jump\Jump6.xnb</PackagePath>
+      <Modified>2016-09-04T19:03:18.998</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Jump\Jump7.xnb">
+      <PackagePath>Content\Soldier\Jump\Jump7.xnb</PackagePath>
+      <Modified>2016-09-04T19:03:19.010</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Jump\Jump8.xnb">
+      <PackagePath>Content\Soldier\Jump\Jump8.xnb</PackagePath>
+      <Modified>2016-09-04T19:03:19.047</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Jump\Jump9.xnb">
+      <PackagePath>Content\Soldier\Jump\Jump9.xnb</PackagePath>
+      <Modified>2016-09-04T19:03:19.056</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Parachute\soldierParachute1.xnb">
       <PackagePath>Content\Soldier\Parachute\soldierParachute1.xnb</PackagePath>
       <Modified>2016-09-03T16:07:27.474</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Running\Run1.xnb">
+      <PackagePath>Content\Soldier\Running\Run1.xnb</PackagePath>
+      <Modified>2016-09-04T19:44:15.947</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Running\Run10.xnb">
+      <PackagePath>Content\Soldier\Running\Run10.xnb</PackagePath>
+      <Modified>2016-09-04T19:44:16.176</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Running\Run11.xnb">
+      <PackagePath>Content\Soldier\Running\Run11.xnb</PackagePath>
+      <Modified>2016-09-04T19:44:16.191</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Running\Run12.xnb">
+      <PackagePath>Content\Soldier\Running\Run12.xnb</PackagePath>
+      <Modified>2016-09-04T19:44:16.212</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Running\Run2.xnb">
+      <PackagePath>Content\Soldier\Running\Run2.xnb</PackagePath>
+      <Modified>2016-09-04T19:44:15.997</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Running\Run3.xnb">
+      <PackagePath>Content\Soldier\Running\Run3.xnb</PackagePath>
+      <Modified>2016-09-04T19:44:16.019</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Running\Run4.xnb">
+      <PackagePath>Content\Soldier\Running\Run4.xnb</PackagePath>
+      <Modified>2016-09-04T19:44:16.039</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Running\Run5.xnb">
+      <PackagePath>Content\Soldier\Running\Run5.xnb</PackagePath>
+      <Modified>2016-09-04T19:44:16.066</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Running\Run6.xnb">
+      <PackagePath>Content\Soldier\Running\Run6.xnb</PackagePath>
+      <Modified>2016-09-04T19:44:16.082</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Running\Run7.xnb">
+      <PackagePath>Content\Soldier\Running\Run7.xnb</PackagePath>
+      <Modified>2016-09-04T19:44:16.104</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Running\Run8.xnb">
+      <PackagePath>Content\Soldier\Running\Run8.xnb</PackagePath>
+      <Modified>2016-09-04T19:44:16.126</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Running\Run9.xnb">
+      <PackagePath>Content\Soldier\Running\Run9.xnb</PackagePath>
+      <Modified>2016-09-04T19:44:16.150</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Shooting\Shoot1.xnb">
+      <PackagePath>Content\Soldier\Shooting\Shoot1.xnb</PackagePath>
+      <Modified>2016-09-04T20:35:10.243</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Shooting\Shoot2.xnb">
+      <PackagePath>Content\Soldier\Shooting\Shoot2.xnb</PackagePath>
+      <Modified>2016-09-04T20:35:10.306</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Shooting\Shoot3.xnb">
+      <PackagePath>Content\Soldier\Shooting\Shoot3.xnb</PackagePath>
+      <Modified>2016-09-04T20:35:10.325</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Treasure\Chest\Chest.xnb">
       <PackagePath>Content\Treasure\Chest\Chest.xnb</PackagePath>
@@ -876,11 +980,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2016-09-04T18:10:46.434</Modified>
+      <Modified>2016-09-04T20:28:56.926</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Core\ThePlatformer.exe">
       <PackagePath>ThePlatformer.exe</PackagePath>
-      <Modified>2016-09-04T18:45:39.075</Modified>
+      <Modified>2016-09-04T21:41:24.823</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

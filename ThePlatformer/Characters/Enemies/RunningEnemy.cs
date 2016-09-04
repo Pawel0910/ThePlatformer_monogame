@@ -32,11 +32,19 @@ namespace ThePlatformer
             }
             if (_rectangle.X - MarcoPlayer.rectangleStatic.X < distanceToPlayer)
             {
-                _position += new Vector2(4, 0);
+                velocity.X = 4;
+                //_position += new Vector2(4, 0);
             }
             else if (_rectangle.X < MarcoPlayer.rectangleStatic.X)
             {
+                velocity.X = 0;
                 _position += new Vector2(0, 0);
+            }
+            if (_rectangle.X - MarcoPlayer.rectangleStatic.X > distanceToPlayer)
+            {
+                velocity.X = 0;
+
+
             }
 
             spawnTreasure();

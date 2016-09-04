@@ -27,7 +27,6 @@ namespace ThePlatformer.Enemies
         public override void Load(Texture2D texture,IAnimation animation)
         {
             base.Load(texture,animation);
-
         }
         public override void Update(GameTime gameTime)
         {
@@ -46,6 +45,7 @@ namespace ThePlatformer.Enemies
                 }
             }
         }
+       
         private void shooting(GameTime gameTime)
         {
             if (playerPosX < 0)
@@ -59,13 +59,19 @@ namespace ThePlatformer.Enemies
             {
                 if (startTime > delayBetweenBulletShots && bulletList.Count < maxBulletCount)
                 {
-                    Bullet bullet = new Bullet(_position, isLeft);
-                    bulletList.Add(bullet);
+                    isShoot = true;
                     startTime = 0;
                 }
             }
         }
+        public void myShoot()
+        {
+            Vector2 ballPosition = new Vector2(_position.X + 12, _position.Y);
+            Bullet bullet = new Bullet(ballPosition, isLeft,3.5f);
+            bulletList.Add(bullet);
+            isShoot = false;
 
+        }
         private new void rotateEnemy()
         {
             if (_rectangle.X < playerPosX)

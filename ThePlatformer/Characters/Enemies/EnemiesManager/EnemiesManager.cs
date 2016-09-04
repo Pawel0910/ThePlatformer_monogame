@@ -23,7 +23,7 @@ namespace ThePlatformer.Characters.Enemies.EnemiesManager
         public EnemiesManager()
         {
             enemyAnimations = new AnimationImpl(200, this, "marco", "Soldier/Parachute/soldierParachute",
-                "Soldier/Idle/Idle");
+                "Soldier/Idle/Idle","Soldier/Jump/Jump","Soldier/Running/Run","Soldier/Shooting/Shoot");
 
         }
         public void addEnemy()

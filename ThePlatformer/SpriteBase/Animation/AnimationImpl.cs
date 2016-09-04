@@ -144,7 +144,7 @@ namespace ThePlatformer.SpriteBase.Animation
                 setFrameNumber();
                 if (events.ContainsKey(currentAnimationName))
                 {
-                    foreach (var myEvent in events[currentAnimationName])
+                     foreach (var myEvent in events[currentAnimationName])
                     {
                         myEvent.runEvent(currentFrame);
                     }
