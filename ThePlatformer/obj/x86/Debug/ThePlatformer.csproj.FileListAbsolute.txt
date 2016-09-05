@@ -716,3 +716,5 @@ C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanows
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Content\Soldier\Shooting\Shoot1.xnb
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Content\Soldier\Shooting\Shoot2.xnb
 C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Content\Soldier\Shooting\Shoot3.xnb
+C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Content\Soldier\Idle\Idle5.xnb
+C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\bin\WindowsUniversal\x86\Debug\Content\Soldier\Idle\Idle6.xnb

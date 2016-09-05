@@ -12,6 +12,7 @@ namespace ThePlatformer.Treasures
         public TreasureTime(Vector2 position) :
             base(position)
         {
+            title = "+ 10sec";
         }
         public override void upgrade(MarcoPlayer player)
         {

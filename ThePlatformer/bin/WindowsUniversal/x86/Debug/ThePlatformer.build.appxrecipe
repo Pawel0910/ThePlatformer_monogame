@@ -642,6 +642,12 @@
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Idle\Idle4.xnb">
       <PackagePath>Content\Soldier\Idle\Idle4.xnb</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Idle\Idle5.xnb">
+      <PackagePath>Content\Soldier\Idle\Idle5.xnb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Idle\Idle6.xnb">
+      <PackagePath>Content\Soldier\Idle\Idle6.xnb</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\Content\bin\WindowsStoreApp\Soldier\Jump\Jump1.xnb">
       <PackagePath>Content\Soldier\Jump\Jump1.xnb</PackagePath>
     </AppxPackagedFile>

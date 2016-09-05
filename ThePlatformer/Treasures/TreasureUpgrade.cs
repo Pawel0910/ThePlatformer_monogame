@@ -13,6 +13,7 @@ namespace ThePlatformer.Treasures
         public TreasureUpgrade(Vector2 position) :
             base(position)
         {
+            title = "+ speed shooting";
         }
         public override void upgrade(MarcoPlayer player)
         {

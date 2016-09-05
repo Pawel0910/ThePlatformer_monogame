@@ -11,6 +11,7 @@ namespace ThePlatformer.Treasures
     {
         private static List<BaseTreasureAbstract> treasureList;
         private static ContentManager Content;
+        private List<CollectTreasureInfo> collectedTreasureInfo;
         private PlayerManager playerManager;
         private MapManager map = MapManager.getInstance();
         private UpgradeBar upgradeBar;
@@ -18,13 +19,15 @@ namespace ThePlatformer.Treasures
         public TreasureManager(PlayerManager playerManager)
         {
             treasureList = new List<BaseTreasureAbstract>();
+            collectedTreasureInfo = new List<CollectTreasureInfo>();
             this.playerManager = playerManager;
         }
         public void Load(ContentManager Content, GraphicsDevice graphics)
         {
             this.graphics = graphics;
             TreasureManager.Content = Content;
-            upgradeBar = new UpgradeBar(Content,playerManager.getPlayer(), 0.65f);
+            CollectTreasureInfo.LoadContent(Content);
+            upgradeBar = new UpgradeBar(Content, playerManager.getPlayer(), 0.65f);
 
             //for (int i = 0; i < treasureList.Count; i++)
             //{
@@ -37,11 +40,16 @@ namespace ThePlatformer.Treasures
             deleteCollectedTreasures(gameTime);
             for (int i = 0; i < treasureList.Count; i++)
             {
-                 treasureList[i].Update(gameTime, playerManager.getPlayer());
+                treasureList[i].Update(gameTime, playerManager.getPlayer());
                 foreach (CollisionTile tile in map.getMap().CollisionTiles)
                 {
-                    treasureList[i].CollisionMap(tile.Rectangle, map.getMap().Width, map.getMap().Height);
+                    //treasureList[i].CollisionMap(tile.Rectangle, map.getMap().Width, map.getMap().Height);
+                    treasureList[i].defaultCollisionMap(tile.Rectangle);
                 }
+            }
+            for (int i = 0; i < collectedTreasureInfo.Count; i++)
+            {
+                collectedTreasureInfo[i].Update(gameTime);
             }
         }
         public void upgradeShooting(GameTime gameTime)
@@ -53,6 +61,10 @@ namespace ThePlatformer.Treasures
         }
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
+            for (int i = 0; i < collectedTreasureInfo.Count; i++)
+            {
+                collectedTreasureInfo[i].Draw(spriteBatch);
+            }
             for (int i = 0; i < treasureList.Count; i++)
             {
                 treasureList[i].Draw(spriteBatch);
@@ -78,9 +90,22 @@ namespace ThePlatformer.Treasures
             {
                 if (!treasureList[i].isExist)
                 {
+                    addCollectTreasureInfo(treasureList[i]);
                     treasureList.RemoveAt(i);
                 }
             }
+            for (int i = 0; i < collectedTreasureInfo.Count; i++)
+            {
+                if (collectedTreasureInfo[i].deleteMyself)
+                {
+                    collectedTreasureInfo.RemoveAt(i);
+                }
+            }
+        }
+        private void addCollectTreasureInfo(BaseTreasureAbstract treasure)
+        {
+            CollectTreasureInfo collectInfo = new CollectTreasureInfo(treasure.title, treasure.position);
+            collectedTreasureInfo.Add(collectInfo);
         }
     }
 }

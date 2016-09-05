@@ -204,8 +204,8 @@ namespace ThePlatformer
             Color[,] tex2 = TextureTo2DArray(target);
 
             Matrix mat1to2 = mat1 * Matrix.Invert(mat2);
-            
-            if(tex1 != null && tex2 != null)
+
+            if (tex1 != null && tex2 != null)
             {
                 int width1 = tex1.GetLength(0);
                 int height1 = tex1.GetLength(1);
@@ -247,13 +247,13 @@ namespace ThePlatformer
                 Color[] colors1D = new Color[sprite._texture.Width * sprite._texture.Height];
 
                 sprite._texture.GetData(colors1D);
-                 colors2D = new Color[sprite._texture.Width, sprite._texture.Height];
+                colors2D = new Color[sprite._texture.Width, sprite._texture.Height];
 
                 for (int x = 0; x < sprite._texture.Width; x++)
-                for (int y = 0; y < sprite._texture.Height; y++)
-                    colors2D[x, y] = colors1D[x + y * sprite._texture.Width];
+                    for (int y = 0; y < sprite._texture.Height; y++)
+                        colors2D[x, y] = colors1D[x + y * sprite._texture.Width];
             }
-            catch(IndexOutOfRangeException e)
+            catch (IndexOutOfRangeException e)
             {
                 colors2D = null;
             }

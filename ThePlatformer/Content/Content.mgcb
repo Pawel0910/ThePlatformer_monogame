@@ -931,3 +931,39 @@
 /processorParam:TextureFormat=Color
 /build:Soldier/Shooting/Shoot3.png
 
+#begin ../../../../../../../Desktop/LastTEST3/ThePlatformer/ThePlatformer/Content/Soldier/Idle/Idle4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../../../../../Desktop/LastTEST3/ThePlatformer/ThePlatformer/Content/Soldier/Idle/Idle4.png
+
+#begin Soldier/Idle/Idle5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Soldier/Idle/Idle5.png
+
+#begin Soldier/Idle/Idle6.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Soldier/Idle/Idle6.png
+

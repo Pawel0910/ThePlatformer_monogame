@@ -54,6 +54,7 @@ namespace ThePlatformer.Rain
 
             this.graphics = graphics;
             Raining.Load(Content);
+            setDropAmount();
             this.Content = Content;
             loadList();
 
@@ -63,18 +64,15 @@ namespace ThePlatformer.Rain
             }
 
         }
-
+        private void setDropAmount()
+        {
+            if (graphics.Viewport.Width <= 800 && graphics.Viewport.Height <= 600)
+            {
+                dropAmount = 150;
+            }
+        }
         public void UpdateTest(long totalGameTime, long elapsedGameTime)
         {
-            //if (Keyboard.GetState().IsKeyDown(Keys.T))
-            //{
-            //    stopwatch.Start();
-            //}
-            //if (Keyboard.GetState().IsKeyDown(Keys.U))
-            //{
-            //    stopwatch.Stop();
-            //    stopwatch.Reset();
-            //}
             for (int i = 0; i < rainList.Count; i++)
             {
                 if (stopwatch.ElapsedMilliseconds > 0)
@@ -104,14 +102,6 @@ namespace ThePlatformer.Rain
                         addOne();
                     }
                 }
-                //for (int tile = 0; tile < mapManager.getMap().CollisionTiles.Count; tile++)
-                //{
-                //    if (rainList[i]._rectangle.Intersects(mapManager.getMap().CollisionTiles[tile].Rectangle))
-                //    {
-                //        rainList.RemoveAt(i);
-                //        addOne();
-                //    }
-                //}
                 if (rainList[i].outOfBound(graphics.Viewport.Bounds, player._position))
                 {
                     rainList.RemoveAt(i);
@@ -132,11 +122,6 @@ namespace ThePlatformer.Rain
         }
         public void createWind(Raining drop, long gameTime)
         {
-            // var stop = stopwatch.ElapsedMilliseconds - currentTime;
-            //// if (stop<1000)
-            //// {
-            //     drop._position.X +=3-stop;
-            // //}
 
             if (gameTime > drop.delay && drop.dustWinds < 10)
             {

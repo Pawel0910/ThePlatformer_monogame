@@ -12,6 +12,7 @@ namespace ThePlatformer.Treasures
         public TreasureHealth(Vector2 position)
             : base(position)
         {
+            title = "+ HP";
         }
 
         public override void upgrade(MarcoPlayer player)

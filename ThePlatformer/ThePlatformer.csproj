@@ -115,6 +115,7 @@
     <Compile Include="SpriteBase\Animation\AnimationImpl.cs" />
     <Compile Include="SpriteBase\RectangleTransform.cs" />
     <Compile Include="SpriteBase\CustomSprite.cs" />
+    <Compile Include="Treasures\CollectTreasureInfo.cs" />
     <Compile Include="Treasures\TreasureManager.cs" />
     <Compile Include="Treasures\TreasureTime.cs" />
     <Compile Include="Treasures\TreasureUpgrade.cs" />

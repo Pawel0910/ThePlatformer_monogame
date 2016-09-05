@@ -23,13 +23,13 @@ namespace ThePlatformer.Characters.Enemies.EnemiesManager
         public EnemiesManager()
         {
             enemyAnimations = new AnimationImpl(200, this, "marco", "Soldier/Parachute/soldierParachute",
-                "Soldier/Idle/Idle","Soldier/Jump/Jump","Soldier/Running/Run","Soldier/Shooting/Shoot");
+                "Soldier/Idle/Idle", "Soldier/Jump/Jump", "Soldier/Running/Run", "Soldier/Shooting/Shoot");
 
         }
         public void addEnemy()
         {
             EnemyBase enemy;
-            switch (randInt(0, 7))
+            switch (randInt(1, 5))
             {
                 case 4:
                     enemy = new RunningEnemy(new Vector2(randInt(0, mapManager.getMapWidth() - 200), -500));
@@ -53,7 +53,7 @@ namespace ThePlatformer.Characters.Enemies.EnemiesManager
             enemiesList.Add(new ShootingEnemy(new Vector2(190, 10)));
             foreach (EnemyBase enemy in enemiesList)
             {
-                enemy.Load(EnemyTextures.idle,enemyAnimations);
+                enemy.Load(EnemyTextures.idle, enemyAnimations);
             }
         }
         public List<EnemyBase> getEnemies()
@@ -73,7 +73,7 @@ namespace ThePlatformer.Characters.Enemies.EnemiesManager
             enemyAnimations.LoadConent(content);
             foreach (EnemyBase enemy in enemiesList)
             {
-                enemy.Load(EnemyTextures.idle,enemyAnimations);
+                enemy.Load(EnemyTextures.idle, enemyAnimations);
             }
         }
         private int test = 0;

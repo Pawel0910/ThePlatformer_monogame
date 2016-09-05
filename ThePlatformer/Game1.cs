@@ -30,7 +30,7 @@ namespace ThePlatformer
         private TreasureManager treasureManager;
         private Stopwatch clock = new Stopwatch();
         private SpriteFont font;
-        public static long EndTime = 40 * 1000;//czas odliczany do konca gry
+        public static long EndTime = 60 * 1000;//czas odliczany do konca gry
 
         private RainManager rainManager;
         private bool firsLoad = true;
@@ -52,7 +52,11 @@ namespace ThePlatformer
 
         protected override void Initialize()
         {
-            graphics.IsFullScreen = true;
+            // graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            // graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            // graphics.IsFullScreen = true;
+            //if (!graphics.IsFullScreen)
+            //    graphics.ToggleFullScreen();
             graphics.ApplyChanges();
             if (firsLoad)
                 mapManager.Initialize();
@@ -80,6 +84,7 @@ namespace ThePlatformer
             // _arrow1.LoadContent(Content, "arrow1");
             rainManager.Load(Content, GraphicsDevice);
             font = Content.Load<SpriteFont>("healthsFont");
+
             treasureManager.Load(Content, GraphicsDevice);
             menuManager.LoadContent(Content, this);
             #region Map initialize
@@ -115,7 +120,7 @@ namespace ThePlatformer
                     enemiesManager.CollisionsWithMap(mapManager.getMap());
 
                     enemiesManager.collisionsWithPlayer(playerManager.getPlayer());
-                    
+
                     treasureManager.Update(gameTime);
                     rainManager.waitForEndOfUpdate();
                     checkIfNotExceedEndTime();
@@ -132,7 +137,7 @@ namespace ThePlatformer
                     break;
                     #endregion
             }
-            
+
         }
 
         protected override void Draw(GameTime gameTime)
@@ -145,7 +150,7 @@ namespace ThePlatformer
                 case GameState.MainMenu:
                     GraphicsDevice.Clear(Color.White);
                     spriteBatch.Begin();
-                    menuManager.DrawBegin(spriteBatch);
+                    menuManager.DrawMainMenu(spriteBatch);
                     break;
                 #endregion
                 #region Pause Draw
@@ -206,7 +211,7 @@ namespace ThePlatformer
             CurrentGameState = GameState.Playing;
             clock.Reset();
             UpgradeBar.spawnUpgradeBar = false;
-            EndTime = 40*1000;
+            EndTime = 40 * 1000;
         }
     }
 }

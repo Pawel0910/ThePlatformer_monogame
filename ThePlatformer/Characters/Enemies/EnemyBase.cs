@@ -35,7 +35,7 @@ namespace ThePlatformer.Enemies
             dead
         }
         public LiveStatus liveStatus = LiveStatus.alive;
-        
+
         public EnemyBase(Vector2 position)
             : base(position)
         {
@@ -47,7 +47,7 @@ namespace ThePlatformer.Enemies
             EnemyBase.Content = Content;
 
         }
-        virtual public void Load(Texture2D texture, IAnimation animation=null)
+        virtual public void Load(Texture2D texture, IAnimation animation = null)
         {
             if (this.animation != null)
             {
@@ -59,7 +59,7 @@ namespace ThePlatformer.Enemies
 
             livePoints = healthBar.fullHealth;
             animation.setCurrentAnimation("Soldier/Parachute/soldierParachute");
-            this.animation.setEventOnAnimation("Soldier/Shooting/Shoot", "myShoot",3);
+            this.animation.setEventOnAnimation("Soldier/Shooting/Shoot", "myShoot", 3);
 
             base.LoadContent(texture);
         }
@@ -87,11 +87,11 @@ namespace ThePlatformer.Enemies
         }
         private void animator()
         {
-            if ((velocity.X == 0 && !parachute && !hasJumped ) && !isShoot)
+            if ((velocity.X == 0 && !parachute && !hasJumped) && !isShoot)
             {
                 animation.setCurrentAnimation("Soldier/Idle/Idle");
             }
-            if (!hasJumped && !parachute && velocity.X!=0 && !isShoot)
+            if (!hasJumped && !parachute && velocity.X != 0 && !isShoot)
             {
                 animation.setCurrentAnimation("Soldier/Running/Run");
             }
@@ -99,7 +99,7 @@ namespace ThePlatformer.Enemies
             {
                 animation.setCurrentAnimation("Soldier/Parachute/soldierParachute");
             }
-            if (hasJumped && !parachute && (velocity.Y < 0 || velocity.Y > 1)&&!isShoot)
+            if (hasJumped && !parachute && (velocity.Y < 0 || velocity.Y > 1) && !isShoot)
             {
                 animation.setCurrentAnimation("Soldier/Jump/Jump");
             }
@@ -107,7 +107,6 @@ namespace ThePlatformer.Enemies
             {
                 animation.setCurrentAnimation("Soldier/Shooting/Shoot");
             }
-            
         }
         private void myPosition()
         {
@@ -116,7 +115,7 @@ namespace ThePlatformer.Enemies
         }
         private void gravity()
         {
-            
+
             //grawitacja
             if (velocity.Y < 10)
             {
@@ -158,7 +157,7 @@ namespace ThePlatformer.Enemies
             else if (_rectangle.TouchLeftOf(newRectangle))
             {
                 _position.X = newRectangle.X - _rectangle.Width - 2;
-                if (hasJumped == false&&!parachute)
+                if (hasJumped == false && !parachute)
                 {
                     _position.Y -= 5f;
                     velocity.Y = -12f;

@@ -17,6 +17,7 @@ namespace ThePlatformer.Treasures
         public Rectangle rectangle;
         public Texture2D texture;
         public Vector2 velocity, position = new Vector2(100, 10);//velocity jest, by działała na niego grawitacja
+        public string title = "";
         public BaseTreasureAbstract(Vector2 position)
         {
             this.position = position;
@@ -34,11 +35,20 @@ namespace ThePlatformer.Treasures
             upgrade(player);
         }
         public virtual void upgrade(MarcoPlayer player) { }
+        public void defaultCollisionMap(Rectangle newRectangle)
+        {
+            if (rectangle.Intersects(newRectangle))
+            {
+                rectangle.Y = newRectangle.Y - rectangle.Height * 2;
+
+                velocity.Y = 0f;
+            }
+        }
         public void CollisionMap(Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (rectangle.TouchTopOf(newRectangle))
             {
-                rectangle.Y = newRectangle.Y - rectangle.Height*2;
+                rectangle.Y = newRectangle.Y - rectangle.Height * 2;
                 velocity.Y = 0f;
             }
             //else if (rectangle.TouchLeftOf(newRectangle))

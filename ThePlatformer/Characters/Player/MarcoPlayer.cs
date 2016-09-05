@@ -66,7 +66,7 @@ namespace ThePlatformer
         : base(position, scale)
         {
             currentLifeNumber = lives;
-            animation = new AnimationImpl(10, this, "Player/Run/Run", "Player/Shoot/Shoot","Player/Idle/Idle","Player/Jump/Jump");
+            animation = new AnimationImpl(10, this, "Player/Run/Run", "Player/Shoot/Shoot", "Player/Idle/Idle", "Player/Jump/Jump");
 
         }
 
@@ -119,8 +119,8 @@ namespace ThePlatformer
 
         private void animator()
         {
-            if ((velocity.X == 0 && velocity.Y>0&&velocity.Y<0.5f)&&!isShoot)//tyle warunków ponieważ
-                //przez grawitacje velocity.Y niestety nie było zerowe zawsze
+            if ((velocity.X == 0 && velocity.Y > 0 && velocity.Y < 0.5f) && !isShoot)//tyle warunków ponieważ
+                                                                                     //przez grawitacje velocity.Y niestety nie było zerowe zawsze
             {
                 animation.setCurrentAnimation("Player/Idle/Idle");
             }
@@ -128,7 +128,7 @@ namespace ThePlatformer
             {
                 animation.setCurrentAnimation("Player/Run/Run");
             }
-            if ((velocity.Y < 0 || velocity.Y>1) && !isShoot)
+            if ((velocity.Y < 0 || velocity.Y > 1) && !isShoot)
             {
                 animation.setCurrentAnimation("Player/Jump/Jump");
             }
@@ -251,7 +251,7 @@ namespace ThePlatformer
         public void shoot()
         {
             Vector2 ballPosition = new Vector2(_position.X + 8, _position.Y);
-            Bullet bullet = new Bullet(ballPosition, isLeft,5f);
+            Bullet bullet = new Bullet(ballPosition, isLeft, 5f);
             bulletList.Add(bullet);
             isShoot = false;
         }
@@ -285,9 +285,6 @@ namespace ThePlatformer
         {
             if (_rectangle.TouchTopOf(newRectangle))
             {
-                //var cos = new Rectangle(3, 5, 10, 15);
-                //if(!hasJumped)
-                //position.Y = newRectangle.Y - rectangle.Height;
                 velocity.Y = 0f;
                 hasJumped = false;
             }
@@ -303,11 +300,8 @@ namespace ThePlatformer
             {
                 velocity.Y = 1f;
             }
-            if (_position.X < 0) _position.X = 0;
+            if (_position.X < 5) _position.X = 5;
             if (_position.X > xOffset - _rectangle.Width) _position.X = xOffset - _rectangle.Width;
-            // if (position.Y < 0) velocity.Y = 1f;
-            //isCrossedMap(xOffset,yOffset);
-            // if (position.Y > yOffset - rectangle.Height) position.Y = yOffset - rectangle.Height;
         }
         public void isCrossedMap()
         {
@@ -317,7 +311,6 @@ namespace ThePlatformer
                 lives--;
                 livePoints = healthBar.fullHealth;
                 healthBar.restartHealthBar();
-                // dead = true;
             }
 
         }
@@ -344,16 +337,13 @@ namespace ThePlatformer
 
         public new void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            //spriteBatch.Draw(texture, position,null, Color.White,angle,origin,scale,flip,0);
             spriteBatch.Draw(_rectangleTexture, null, Rectangle, null, null, 0, null, Color.White);
 
             spriteBatch.Draw(_texture, _position, null, null, _origin, rotation, scaleVector, Color.White, flip);
 
-            // spriteBatch.Draw(_rectangleTexture,null, rectangleBase,null,null,0,null,Color.White);
             healthBar.Draw(spriteBatch, setHealthBarPosition());
             spriteBatch.DrawString(font, "Lifes: " + lives, setLeftCornerFontPosition(30, 60), Color.Black);
             spriteBatch.DrawString(font, "Score: " + score, setLeftCornerFontPosition(30, 90), Color.Black);
-            // spriteBatch.DrawString(font, "Time: " + gameTime.TotalGameTime.Seconds, setRightCornerFontPosition(100, 30), Color.Black);
 
             foreach (Bullet bullet in bulletList)
             {

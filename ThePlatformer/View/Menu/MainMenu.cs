@@ -22,39 +22,32 @@ namespace ThePlatformer.View.Menu
         public MainMenu()
         {
             currentFrame = 0;
-            totalFrames = PlayerAnimationLists.drawMenuStart().Count-1;
+            //totalFrames = PlayerAnimationLists.drawMenuStart().Count - 1;
         }
         public void LoadContent(ContentManager Content)
         {
             texture = Content.Load<Texture2D>("mainMenu");
         }
-        
+
         public void Update(GameTime gameTime)
         {
-            timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-            if (timeSinceLastFrame > millisecondsPerFrame)
-            {
-                timeSinceLastFrame -= millisecondsPerFrame;
+            //timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+            //if (timeSinceLastFrame > millisecondsPerFrame)
+            //{
+            //    timeSinceLastFrame -= millisecondsPerFrame;
 
-                //icnrement current frame 
-                currentFrame++;
-                timeSinceLastFrame = 0;
-                if (currentFrame == totalFrames)
-                {
-                    currentFrame = 0;
-                }
-            }
+            //    //icnrement current frame 
+            //    currentFrame++;
+            //    timeSinceLastFrame = 0;
+            //    if (currentFrame == totalFrames)
+            //    {
+            //        currentFrame = 0;
+            //    }
+            //}
         }
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
             spriteBatch.Draw(texture, new Rectangle((int)position.Y, (int)position.X, 800, 600), Color.White);
-        }
-        public void Draw(SpriteRender spriteRender, SpriteSheet spriteSheet)
-        {
-            List<String> lista1 = PlayerAnimationLists.getTestList();
-            spriteRender.Draw(
-                spriteSheet.Sprite(lista1[currentFrame]),
-                    new Vector2(200, 200));
         }
     }
 }
