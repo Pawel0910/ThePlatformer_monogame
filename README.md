@@ -13,4 +13,8 @@ B-poruszanie się w prawo.
 SpaceBar-podskok
 Left Ctrl - strzelanie.
 
+
+By zbudować projekt Visual2017 sam powinien doinstalować potrzebne pakiety (tak jak UWP), oraz osobno musimy zainstalować MonoGame.
+Gra jest napisana w technologii UWP tzn działa również na urzędzeniach mobilnych
+
 Paweł Kielanowski
