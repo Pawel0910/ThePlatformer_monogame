@@ -13,7 +13,17 @@ Content\arrow2.xnb
 Content\arrow3.xnb
 Content\Background\scrollingBackground11.xnb
 Content\Background\scrollingBackground12.xnb
+Content\bulletBig.xnb
+Content\bulletSmall.xnb
+Content\CustomDrop.xnb
+Content\healthBar.xnb
+Content\healthContainer.xnb
 Content\healthsFont.xnb
+Content\idle1.xnb
+Content\idle2.xnb
+Content\idle3.xnb
+Content\idle4.xnb
+Content\mainMenu.xnb
 Content\marco1.xnb
 Content\marco2.xnb
 Content\marco3.xnb
@@ -86,6 +96,8 @@ Content\Soldier\Running\Run9.xnb
 Content\Soldier\Shooting\Shoot1.xnb
 Content\Soldier\Shooting\Shoot2.xnb
 Content\Soldier\Shooting\Shoot3.xnb
+Content\tile1.xnb
+Content\tile2.xnb
 Content\Treasure\Chest\Chest.xnb
 Content\bulletBig.png
 Content\bulletSmall.png

@@ -4,85 +4,96 @@
   <Platform>WindowsStoreApp</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/healthsFont.spritefont</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/arrow1.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/arrow2.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/arrow3.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/marco1.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/marco2.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/marco3.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/marco4.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Background/scrollingBackground11.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Background/scrollingBackground12.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run1.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run2.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run3.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run4.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run5.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run6.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run7.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run8.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Shoot/Shoot1.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Shoot/Shoot2.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Shoot/Shoot3.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Shoot/Shoot4.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle1.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle2.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle3.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle4.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle5.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle6.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle7.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle8.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle9.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle10.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump1.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump2.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump3.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump4.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump5.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump6.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump7.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump8.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump9.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump10.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Parachute/soldierParachute1.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Treasure/Chest/Chest.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Idle/Idle1.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Idle/Idle2.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Idle/Idle3.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Idle/Idle4.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Menu/Buttons/exitButton.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Menu/Buttons/playButton.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Menu/Buttons/restartButton.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump1.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump2.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump3.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump4.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump5.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump6.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump7.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump8.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump9.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump10.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump11.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run1.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run2.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run3.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run4.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run5.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run6.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run7.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run8.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run9.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run10.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run11.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run12.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Shooting/Shoot1.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Shooting/Shoot2.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Shooting/Shoot3.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/../../../../../../../Desktop/LastTEST3/ThePlatformer/ThePlatformer/Content/Soldier/Idle/Idle4.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Idle/Idle5.png</File>
-    <File>C:/Users/Kielan/Documents/Visual Studio 2015/Projects/Platformer/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Idle/Idle6.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/healthsFont.spritefont</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/arrow1.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/arrow2.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/arrow3.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/marco1.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/marco2.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/marco3.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/marco4.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Background/scrollingBackground11.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Background/scrollingBackground12.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run1.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run2.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run3.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run4.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run5.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run6.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run7.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Run/Run8.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Shoot/Shoot1.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Shoot/Shoot2.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Shoot/Shoot3.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Shoot/Shoot4.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle1.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle2.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle3.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle4.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle5.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle6.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle7.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle8.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle9.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Idle/Idle10.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump1.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump2.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump3.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump4.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump5.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump6.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump7.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump8.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump9.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Player/Jump/Jump10.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Parachute/soldierParachute1.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Treasure/Chest/Chest.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Idle/Idle1.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Idle/Idle2.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Idle/Idle3.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Idle/Idle4.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Menu/Buttons/exitButton.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Menu/Buttons/playButton.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Menu/Buttons/restartButton.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump1.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump2.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump3.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump4.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump5.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump6.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump7.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump8.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump9.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump10.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Jump/Jump11.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run1.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run2.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run3.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run4.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run5.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run6.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run7.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run8.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run9.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run10.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run11.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Running/Run12.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Shooting/Shoot1.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Shooting/Shoot2.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Shooting/Shoot3.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Idle/Idle5.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/Soldier/Idle/Idle6.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/bulletBig.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/bulletSmall.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/CustomDrop.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/idle1.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/idle2.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/idle3.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/idle4.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/mainMenu.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/tile1.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/tile2.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/healthBar.png</File>
+    <File>C:/Users/kiela/Desktop/grafika/Pawel_Kielanowski_187724/ThePlatformer/Content/healthContainer.png</File>
   </SourceFiles>
 </SourceFileCollection>

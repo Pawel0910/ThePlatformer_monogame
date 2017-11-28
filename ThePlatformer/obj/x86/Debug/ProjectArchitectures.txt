@@ -1,1 +1,1 @@
-C:\Users\Kielan\Documents\Visual Studio 2015\Projects\Platformer\Pawel_Kielanowski_187724\ThePlatformer\ThePlatformer.csproj;x86
+C:\Users\kiela\Desktop\grafika\Pawel_Kielanowski_187724\ThePlatformer\ThePlatformer.csproj;x86
